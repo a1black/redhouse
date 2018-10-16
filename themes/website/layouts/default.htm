@@ -1,0 +1,45 @@
+description = "Default layout"
+==
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{% if this.page.description %}{{ this.page.description }}{% else %}{{ this.theme.meta_description }}{% endif %}">
+        <meta name="keywords" content="{% if this.page.keywords %}{{ this.page.keywords }}{% else %}{{ this.theme.meta_keywords }}{% endif %}">
+        <meta name="title" content="{% if this.page.title %}{{ this.page.title }}{% else %}{{ this.theme.meta_title }}{% endif %}">
+        <meta name="author" content="{{ this.theme.website_author }}">
+
+        <!-- favicons -->
+        <link rel="apple-touch-icon" href="{{ 'assets/dist/images/favicons/apple-touch-icon.png'|theme }}" sizes="180x180">
+        <link rel="icon" href="{{ 'assets/dist/images/favicons/favicon-32x32.png'|theme }}" sizes="32x32" type="image/png">
+        <link rel="icon" href="{{ 'assets/dist/images/favicons/favicon-16x16.png'|theme }}" sizes="16x16" type="image/png">
+        <link rel="manifest" href="{{ 'assets/dist/images/favicons/manifest.json'|theme }}">
+        <link rel="mask-icon" href="{{ 'assets/dist/images/favicons/safari-pinned-tab.svg'|theme }}" color="#563d7c">
+        <link rel="icon" href="{{ 'assets/dist/images/favicons/favicon.ico'|theme }}">
+        <meta name="msapplication-config" content="{{ 'assets/dist/images/favicons/browserconfig.xml'|theme }}">
+        <meta name="theme-color" content="#563d7c">
+
+        <!-- styles -->
+        <link href="{{ 'assets/dist/css/app.css'|theme }}" rel="stylesheet">
+        {% styles %}
+        <title>{% if this.page.url == '/' %} {% elseif this.page.title %}{{ this.page.title }} | {% else %}{{ this.theme.meta_title }} | {% endif %}{{ this.theme.website_name }}</title>
+    </head>
+    <body class="layout-{{ this.layout.id }} page-{{ this.page.id }}">
+        <div id="site-header" class="site-header">
+            {% partial 'site/header' %}
+        </div>
+        <div id="site-content" class="site-content">
+            {% partial 'site/content' %}
+        </div>
+        <div id="site-footer" class="site-footer">
+            {% partial 'site/footer' %}
+        </div>
+
+        <script src="{{ 'assets/dist/js/app.js'|theme }}"></script>
+        {% framework extras %}
+        {% scripts %}
+    </body>
+
+</html>
+

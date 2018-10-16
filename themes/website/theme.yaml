@@ -3,3 +3,4 @@ description: 'OctoberCMS theme for RedHouse shelter official web page. This them
 author: ''
 homepage: ''
 code: ''
+form: configs/fields.yaml
