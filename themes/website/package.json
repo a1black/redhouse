@@ -1,0 +1,32 @@
+{
+  "name": "redhouse-shelter",
+  "version": "1.0.0",
+  "description": "Web site for dog shelter.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/a1black/redhouse"
+  },
+  "keywords": [
+    "shelter",
+    "charity"
+  ],
+  "author": "a1black",
+  "license": "MIT",
+  "devDependencies": {
+    "laravel-mix": "^2.1.14",
+    "browser-sync": "2.26.3"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4"
+  }
+}

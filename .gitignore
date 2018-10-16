@@ -1,0 +1,37 @@
+*.local
+*.tmp
+*.cache
+.env
+# merge conflict
+*.orig
+*.rej
+# PHP
+coverage/
+#vendor/
+.composer.lock
+# Laravel
+/storage/
+/artisan
+# OctoberCMS
+/public/
+/themes/*
+!/themes/website
+/plugins/*
+!/plugins/a1black
+/index.php
+# JS
+dist/
+node_modules/
+package-lock.json
+# Other
+.gitattribute
+tags
+# Vim
+*.swp
+.netrwhist
+tags
+TAGS
+# IDEA
+.idea
+.DS_Store
+nbproject/
