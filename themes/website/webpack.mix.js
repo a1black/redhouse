@@ -11,11 +11,12 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.browserSync('192.168.10.10');
+//mix.browserSync('192.168.10.10');
+mix.setPublicPath('assets/dist')
 
-mix.js('assets/src/js/app.js', 'assets/dist/js/').version();
-mix.sass('assets/src/sass/app.scss', 'assets/dist/css/').version();
-mix.autoload({
+mix.js('assets/src/js/app.js', 'js/')
+   .sass('assets/src/sass/app.scss', 'css/')
+   .autoload({
         jquery: ['$', 'jQuery', 'jquery', 'window.jQuery'],
         'popper.js/dist/umd/popper.js': ['Popper']
     })

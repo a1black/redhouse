@@ -12,20 +12,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/a1black/redhouse"
+    "url": "https://github.com/a1black/redhouse.git"
   },
-  "keywords": [
-    "shelter",
-    "charity"
-  ],
+  "keywords": [],
   "author": "a1black",
   "license": "MIT",
   "devDependencies": {
-    "laravel-mix": "^2.1.14",
-    "browser-sync": "2.26.3"
+    "laravel-mix": "^2.1.14"
   },
   "dependencies": {
     "bootstrap": "^4.1.3",
+    "@fortawesome/fontawesome-free": "^5.x",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.4"
   }

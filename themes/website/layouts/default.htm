@@ -20,25 +20,36 @@ description = "Default layout"
         <meta name="msapplication-config" content="{{ 'assets/dist/images/favicons/browserconfig.xml'|theme }}">
         <meta name="theme-color" content="#563d7c">
 
+        <!-- fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
         <!-- styles -->
         <link href="{{ 'assets/dist/css/app.css'|theme }}" rel="stylesheet">
         {% styles %}
+
         <title>{% if this.page.url == '/' %} {% elseif this.page.title %}{{ this.page.title }} | {% else %}{{ this.theme.meta_title }} | {% endif %}{{ this.theme.website_name }}</title>
     </head>
     <body class="layout-{{ this.layout.id }} page-{{ this.page.id }}">
-        <div id="site-header" class="site-header">
-            {% partial 'site/header' %}
-        </div>
-        <div id="site-content" class="site-content">
-            {% partial 'site/content' %}
-        </div>
-        <div id="site-footer" class="site-footer">
-            {% partial 'site/footer' %}
-        </div>
+        <!-- @TODO Look into "display: flex" -->
+        <!-- Navigation -->
+        {%partial 'site/nav' %}
 
+        <!-- Header -->
+        {% partial 'site/header' %}
+
+        <!-- Page content -->
+        {% partial 'site/content' %}
+
+        <!-- Footer -->
+        {% partial 'site/footer' %}
+
+        <!-- scripts -->
+        <script src="{{ 'assets/dist/js/manifest.js'|theme }}"></script>
+        <script src="{{ 'assets/dist/js/vendor.js'|theme }}"></script>
         <script src="{{ 'assets/dist/js/app.js'|theme }}"></script>
-        {% framework extras %}
-        {% scripts %}
+        <!--{ framework extras %}-->
+        <!--{ scripts %}-->
     </body>
 
 </html>
