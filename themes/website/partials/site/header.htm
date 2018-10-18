@@ -1,0 +1,19 @@
+description = "Site Header"
+==
+<!-- @TODO make different headers (or use %placeholder%):
+        - for landing pade with full wide image
+        - for rest of of pages
+-->
+<header class="masthead" style="background-image: url('{{ 'assets/dist/images/header-wide-bg.jpg'|theme }}')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>{{ this.page.title }}</h1>
+                    <span class="subheading">{{ this.page.description }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

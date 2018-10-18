@@ -5,9 +5,9 @@ description = "Default layout"
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{% if this.page.description %}{{ this.page.description }}{% else %}{{ this.theme.meta_description }}{% endif %}">
+        <meta name="description" content="{{ this.theme.meta_description }} {{ this.page.meta_description }}">
         <meta name="keywords" content="{% if this.page.keywords %}{{ this.page.keywords }}{% else %}{{ this.theme.meta_keywords }}{% endif %}">
-        <meta name="title" content="{% if this.page.title %}{{ this.page.title }}{% else %}{{ this.theme.meta_title }}{% endif %}">
+        <meta name="title" content="{% if this.page.meta_title %}{{ this.page.meta_title }}{% else %}{{ this.theme.meta_title }}{% endif %}">
         <meta name="author" content="{{ this.theme.website_author }}">
 
         <!-- favicons -->
@@ -21,17 +21,20 @@ description = "Default layout"
         <meta name="theme-color" content="#563d7c">
 
         <!-- fonts -->
-        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <!--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;subset=cyrillic' rel='stylesheet' type='text/css'>-->
+        <!--<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
+        <!--<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&amp;subset=cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>-->
 
         <!-- styles -->
         <link href="{{ 'assets/dist/css/app.css'|theme }}" rel="stylesheet">
         {% styles %}
 
-        <title>{% if this.page.url == '/' %} {% elseif this.page.title %}{{ this.page.title }} | {% else %}{{ this.theme.meta_title }} | {% endif %}{{ this.theme.website_name }}</title>
+        <title>{% if this.page.url == '/' %} {% elseif this.page.title %}{{ this.page.title }} | {% endif %}{{ this.theme.website_name }}</title>
     </head>
     <body class="layout-{{ this.layout.id }} page-{{ this.page.id }}">
         <!-- @TODO Look into "display: flex" -->
+        <!-- @TODO Decide on color theme, I think white-black-darkorange. -->
+        <!-- @TODO Make logo and update favicons images and colors. -->
         <!-- Navigation -->
         {%partial 'site/nav' %}
 
@@ -49,8 +52,7 @@ description = "Default layout"
         <script src="{{ 'assets/dist/js/vendor.js'|theme }}"></script>
         <script src="{{ 'assets/dist/js/app.js'|theme }}"></script>
         <!--{ framework extras %}-->
-        <!--{ scripts %}-->
+        { scripts %}
     </body>
-
 </html>
 

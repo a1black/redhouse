@@ -1,0 +1,66 @@
+description = "Site Navigation"
+==
+use Cms\Classes\Page as Pg;
+use Cms\Classes\Theme;
+
+function onStart() {
+    $theme = Theme::getEditTheme();
+    $pages = Pg::listInTheme($theme, true);
+    $refes = [];
+    foreach ($pages as $page) {
+    $refes[$page->baseFileName] = [$page->url, $page->title];
+    }
+    $this['pages'] = $refes;
+}
+==
+
+<!-- @TODO add Logo to "navbar-brand" -->
+<!-- @TODO remove border for "dropdown-menu show" -->
+
+{% set
+    links = [
+        'home',
+        'news',
+        {parent: 'Помочь', children: ['donate', 'adoption', 'volunteer']},
+        'about'
+    ]
+%}
+
+{% macro render_menu(links, pages, currentPage) %}
+    {% for link in links %}
+        <li class="nav-item {{ link.children ? 'dropdown' }} {{ link == currentPage ? 'active' }}">
+        {% if link.children %}
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ link.parent }}</a>
+            <ul class="dropdown-menu bg-dark">
+            {% for child in link.children %}
+                <a class="nav-link" href="{{ pages[child][0] }}">{{ pages[child][1] }}</a>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <a class="nav-link" href="{{ attribute(pages, link)[0] }}">{{ attribute(pages, link)[1] }}</a>
+        {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+{% import _self as nav %}
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="{{ 'home'|page }}">
+            <!--<span class="fa-stack fa-lg">-->
+            <!--    <i class="fas fa-circle fa-stack-2x"></i>-->
+            <!--    <i class="fas fab fa-dog fa-inverse fa-stack-1x"></i>-->
+            <!--</span>-->
+            <i class="fa-lg fas fa-dog"></i>
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+             <i class="fas fa-bars"></i> 
+            <!--<span class="navbar-toggler-icon"></span>-->
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ml-auto">
+                {{ nav.render_menu(links, pages, this.page.baseFileName) }} </ul>
+        </div>
+    </div>
+</nav>

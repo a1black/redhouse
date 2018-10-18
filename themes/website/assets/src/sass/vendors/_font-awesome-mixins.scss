@@ -1,0 +1,11 @@
+// ======================================================================== //
+// Your mixins below
+// ======================================================================== //
+
+@import '~@fortawesome/fontawesome-free/scss/variables';
+
+// Font-Awesome
+// Convenience function used to set content property
+@function fa-content($fa-var) {
+  @return unquote("\"#{ $fa-var }\"");
+}
