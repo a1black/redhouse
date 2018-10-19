@@ -32,8 +32,6 @@ h3,
 h4,
 h5,
 h6 {
-  //font-weight: 800;
-  //@include sans-serif-font;
   // AGENCY
   font-weight: 700;
   @include heading-font;
@@ -103,7 +101,7 @@ section {
     font-style: italic;
     margin-bottom: 75px;
     text-transform: none;
-    @include serif-font;
+    @include heading-font;
   }
 }
 @media(min-width:768px) {

@@ -21,22 +21,23 @@ function onStart() {
     links = [
         'home',
         'news',
-        {parent: 'Помочь', children: ['donate', 'adoption', 'volunteer']},
+        {parent: 'Помочь', children: []},
         'about'
     ]
 %}
 
 {% macro render_menu(links, pages, currentPage) %}
     {% for link in links %}
-        <li class="nav-item {{ link.children ? 'dropdown' }} {{ link == currentPage ? 'active' }}">
-        {% if link.children %}
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ link.parent }}</a>
-            <ul class="dropdown-menu bg-dark">
-            {% for child in link.children %}
-                <a class="nav-link" href="{{ pages[child][0] }}">{{ pages[child][1] }}</a>
+        {% set parent = link is iterable ? 1 : 0 %}
+        <li class="nav-item {{ parent ? 'dropdown' }} {{ link == currentPage ? 'active' }}">
+        {% if parent %}
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">{{ link.parent }}</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownResources">
+            {% for child in link.children if attribute(pages, child) is defined %}
+                <a class="nav-link" href="{{ attribute(pages, child)[0] }}">{{ attribute(pages, child)[1] }}</a>
             {% endfor %}
-            </ul>
-        {% else %}
+            </div>
+        {% elseif attribute(pages, link) is defined %}
             <a class="nav-link" href="{{ attribute(pages, link)[0] }}">{{ attribute(pages, link)[1] }}</a>
         {% endif %}
         </li>

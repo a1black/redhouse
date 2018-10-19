@@ -1,0 +1,57 @@
+title = "Новости"
+url = "/news/:page?"
+layout = "default"
+description = "Страница со списком новостей, размещаемых на сайте."
+meta_title = "Новости благотворительного приюта для животных."
+meta_description = "Узнай о последних событиях в нашем благотворительном приюте для животных."
+is_hidden = 0
+
+[blogPosts newsList]
+pageNumber = "{{ :page }}"
+postsPerPage = 5
+noPostsMessage = "Нет новостей"
+sortOrder = "published_at desc"
+categoryPage = 404
+postPage = "news-post"
+==
+{% set posts = newsList.posts %}
+
+<div class="container">
+    <div class="row">
+        <!-- news.start -->
+        <div class="col-lg-10 col-md-10 mx-auto">
+            <h1 class="my-4">Новости
+                <small></small>
+            </h1>
+
+            <!-- post.list -->
+            {% for post in posts %}
+                <div class="post-preview">
+                    <a href="{{ post.url }}">
+                        <h2 class="post-title">{{ post.title }}</h2>
+                        <h3 class="text post-subtitle">{{ post.summary|striptags }}</h3>
+                    </a>
+                    <p class="post-subtitle">Опуб. {{ post.published_at|date('d M') }}</p>
+                </div>
+                <hr>
+            {% else %}
+                <div class="post-preview">
+                    <div class="text post-subtitle">{{ noPostsMessage }}</div>
+                </div>
+            {% endfor %}
+
+            <!-- news.pager -->
+            <div class="clearfix">
+            {% if posts.lastPage > posts.currentPage %}
+                <a class="btn btn-primary float-right" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}">Вперед &rarr;</a>
+            {% endif %}
+            {% if posts.currentPage > 1 %}
+                <a class="btn btn-primary" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}">&larr; Назад</a>
+            {% endif %}
+            </div>
+        </div>
+        <!-- news.end -->
+    </div>
+</div>
+
+<hr>

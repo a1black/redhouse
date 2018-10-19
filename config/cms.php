@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'activeTheme' => 'demo',
+    'activeTheme' => 'website',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'backendTimezone' => 'UTC',
+    'backendTimezone' => 'Europe/Moscow',
 
     /*
     |--------------------------------------------------------------------------
@@ -141,7 +141,7 @@ return [
     |
     */
 
-    'enableRoutesCache' => false,
+    'enableRoutesCache' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -181,7 +181,7 @@ return [
     |
     */
 
-    'enableAssetCache' => false,
+    'enableAssetCache' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -195,7 +195,7 @@ return [
     |
     */
 
-    'enableAssetMinify' => null,
+    'enableAssetMinify' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -280,7 +280,7 @@ return [
     |
     */
 
-    'convertLineEndings' => false,
+    'convertLineEndings' => true,
 
     /*
     |--------------------------------------------------------------------------

@@ -3,17 +3,17 @@ description = "Site Header"
 <!-- @TODO make different headers (or use %placeholder%):
         - for landing pade with full wide image
         - for rest of of pages
+     @TODO On home page move title and desc to left.
+     @TODO Hide home page desc on small screens.
+     @TODO Font size is pain in the ass, get it right later.
+     @TODO Header css has .meta style for 3rd row, see if it really needed.
 -->
 <header class="masthead" style="background-image: url('{{ 'assets/dist/images/header-wide-bg.jpg'|theme }}')">
     <div class="overlay"></div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>{{ this.page.title }}</h1>
-                    <span class="subheading">{{ this.page.description }}</span>
-                </div>
-            </div>
+        <div class="site-heading">
+            <h1>{{ this.page.title }}</h1>
+            <span class="subheading">{{ this.page.description }}</span>
         </div>
     </div>
 </header>

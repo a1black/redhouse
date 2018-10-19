@@ -1,16 +1,16 @@
 description = "Default layout"
 ==
 <!doctype html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="{{ this.theme.meta_description }} {{ this.page.meta_description }}">
-        <meta name="keywords" content="{% if this.page.keywords %}{{ this.page.keywords }}{% else %}{{ this.theme.meta_keywords }}{% endif %}">
+        <meta name="keywords" content="{{ this.theme.meta_keywords }}">
         <meta name="title" content="{% if this.page.meta_title %}{{ this.page.meta_title }}{% else %}{{ this.theme.meta_title }}{% endif %}">
         <meta name="author" content="{{ this.theme.website_author }}">
 
-        <!-- favicons -->
+        <!-- favicons.start -->
         <link rel="apple-touch-icon" href="{{ 'assets/dist/images/favicons/apple-touch-icon.png'|theme }}" sizes="180x180">
         <link rel="icon" href="{{ 'assets/dist/images/favicons/favicon-32x32.png'|theme }}" sizes="32x32" type="image/png">
         <link rel="icon" href="{{ 'assets/dist/images/favicons/favicon-16x16.png'|theme }}" sizes="16x16" type="image/png">
@@ -19,11 +19,7 @@ description = "Default layout"
         <link rel="icon" href="{{ 'assets/dist/images/favicons/favicon.ico'|theme }}">
         <meta name="msapplication-config" content="{{ 'assets/dist/images/favicons/browserconfig.xml'|theme }}">
         <meta name="theme-color" content="#563d7c">
-
-        <!-- fonts -->
-        <!--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;subset=cyrillic' rel='stylesheet' type='text/css'>-->
-        <!--<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
-        <!--<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&amp;subset=cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>-->
+        <!-- favicons.end -->
 
         <!-- styles -->
         <link href="{{ 'assets/dist/css/app.css'|theme }}" rel="stylesheet">
@@ -35,24 +31,29 @@ description = "Default layout"
         <!-- @TODO Look into "display: flex" -->
         <!-- @TODO Decide on color theme, I think white-black-darkorange. -->
         <!-- @TODO Make logo and update favicons images and colors. -->
-        <!-- Navigation -->
+
+        <!-- navbar.start -->
         {%partial 'site/nav' %}
+        <!-- navbar.end -->
 
-        <!-- Header -->
+        <!-- header.start -->
         {% partial 'site/header' %}
+        <!-- header.end -->
 
-        <!-- Page content -->
+        <!-- container.start -->
         {% partial 'site/content' %}
+        <!-- container.end -->
 
-        <!-- Footer -->
+        <!-- footer.start -->
         {% partial 'site/footer' %}
+        <!-- footer.end -->
 
         <!-- scripts -->
         <script src="{{ 'assets/dist/js/manifest.js'|theme }}"></script>
         <script src="{{ 'assets/dist/js/vendor.js'|theme }}"></script>
         <script src="{{ 'assets/dist/js/app.js'|theme }}"></script>
         <!--{ framework extras %}-->
-        { scripts %}
+        {% scripts %}
     </body>
 </html>
 

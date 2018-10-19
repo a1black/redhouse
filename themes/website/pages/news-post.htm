@@ -1,0 +1,98 @@
+title = "Новостной Пост"
+url = "/news/post/:slug"
+layout = "default"
+description = "Страница для отображения содержиния новостной статьи."
+meta_title = "Новости благотворительного приюта для животных."
+meta_description = "Узнай о последних событиях в нашем благотворительном приюте для животных."
+is_hidden = 0
+
+[blogPost newsPost]
+slug = "{{ :slug }}"
+categoryPage = 404
+==
+use System\Helpers\DateTime;
+
+function onEnd() {
+        $this['post'] = $this->components['newsPost']->post;
+        if (!$this['post']) {
+            return Redirect::to('/');
+        }
+        $postTitle = $this['post']->title;
+        $this->page->title = $postTitle;
+        $this->page->meta_title .= ' '.$postTitle;
+}
+==
+<!--
+    @TODO Apply bootstrap styles to news post raw content:
+        - <blockquote> - .blockquote
+        - <h1>...<h6> - .section-heading
+        - <img> - .image-fluid .rounded
+    @TODO Maybe if <img> is first item in post raw it should be moved in header with post title.
+          If moving isn't option then certanly we need place image before title.
+    @TODO Add view carusel for post featured images. Probobal implemntation:
+        - create empty <div> for hosting carusel
+        - create <img> for all featured images below carusel (see Bootstrap Store Home)
+        - mark featured <img> with class .carusel slide
+        - add js news post initialization function
+        - if news post has only one featured <img> destroy carusel
+        - copy .carusel-slide into carusel
+    @TODO On small screen hide either carusel or featured images.
+    @TODO Published at is pain in the ass, create Twig filter: https://twig.symfony.com/doc/2.x/advanced.html
+-->
+
+<!-- newspost.start -->
+<article>
+    <div class="container">
+        <!-- newspost.content.start -->
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+
+                <!-- newspost.title -->
+                <h1 class="mt-4">{{ post.title }}</h1>
+
+                <!-- newspost.author -->
+                <div class="lead clearfix">
+                    <div class="float-right">Опуб. {{ post.published_at|date('d M') }}</div>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/groups/632640273590306/">
+                                <span class="fa-stack fa-xs">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://vk.com/club136697688">
+                                <span class="fa-stack fa-xs">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-vk fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://ok.ru/ryzhiki">
+                                <span class="fa-stack fa-xs">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-odnoklassniki fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <hr>
+
+                <!-- newspost.preview -->
+                <!--<img class="img-fluid rounded" src="" alt="">-->
+
+                <!-- newspost.body -->
+                {{ post.content_html|raw }}
+            </div>
+        </div>
+        <!-- newspost.featured -->
+        {% partial 'widgets/bootstrap-carousel' name=post.slug images=post.featured_images %}
+    </div>
+</article>
+<!-- newspost.end -->
+<hr>
