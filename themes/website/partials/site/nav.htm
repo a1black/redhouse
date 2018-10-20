@@ -21,7 +21,7 @@ function onStart() {
     links = [
         'home',
         'news',
-        {parent: 'Помочь', children: []},
+        {parent: 'Помочь', children: ['donate', 'adopt']},
         'about'
     ]
 %}
@@ -46,7 +46,7 @@ function onStart() {
 
 {% import _self as nav %}
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="{{ 'home'|page }}">
             <!--<span class="fa-stack fa-lg">-->

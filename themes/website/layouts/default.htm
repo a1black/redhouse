@@ -5,9 +5,9 @@ description = "Default layout"
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{% if attribute(this.page, 'meta_description') is defined %}{{ this.page.meta_description }}{% else %}{{ this.theme.meta_description }}{% endif %}">
+        <meta name="description" content="{{ this.theme.meta_description }}">
         <meta name="keywords" content="{{ this.theme.meta_keywords }}">
-        <meta name="title" content="{{ this.theme.meta_title }} {% if attribute(this.page, 'meta_title') is defined %}{{ this.page.meta_title }}{% else %}{{ this.page.title }}{% endif %}">
+        <meta name="title" content="{{ this.theme.meta_title }}">
         <meta name="author" content="{{ this.theme.website_author }}">
 
         <!-- favicons.start -->
@@ -27,7 +27,7 @@ description = "Default layout"
 
         <title>{% if this.page.url == '/' %} {% elseif this.page.title %}{{ this.page.title }} | {% endif %}{{ this.theme.website_name }}</title>
     </head>
-    <body class="layout-{{ this.layout.id }} page-{{ this.page.id }}">
+    <body class="layout-{{ this.layout.id }} page-{{ this.page.id }}" style="padding-top: 156px">
         <!-- @TODO Look into "display: flex" -->
         <!-- @TODO Decide on color theme, I think white-black-darkorange. -->
         <!-- @TODO Make logo and update favicons images and colors. -->
