@@ -45,14 +45,14 @@ function onEnd() {
     <div class="container">
         <!-- newspost.content.start -->
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-lg-10 col-md-10 mx-auto">
 
                 <!-- newspost.title -->
                 <h1 class="mt-4">{{ post.title }}</h1>
 
                 <!-- newspost.author -->
                 <div class="lead clearfix">
-                    <div class="float-right">Опуб. {{ post.published_at|date('d M') }}</div>
+                    <div class="float-right post-meta">опуб. {{ post.published_at|date('d M') }}</div>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <a href="https://www.facebook.com/groups/632640273590306/">

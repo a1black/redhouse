@@ -31,7 +31,7 @@ postPage = "news-post"
                         <h2 class="post-title">{{ post.title }}</h2>
                         <h3 class="text post-subtitle">{{ post.summary|striptags }}</h3>
                     </a>
-                    <p class="post-subtitle">Опуб. {{ post.published_at|date('d M') }}</p>
+                    <p class="post-meta">опуб. {{ post.published_at|date('d M') }}</p>
                 </div>
                 <hr>
             {% else %}
