@@ -1,4 +1,4 @@
-title = "Стать опекуном"
+title = "Припучить питомца"
 url = "/adopt"
 layout = "default"
 description = "Информация о приручении питомца."
@@ -6,3 +6,102 @@ meta_title = "Приручение питомцев из приюта"
 meta_description = "Информация о приручении питомцев из приюта «Рыжики»."
 is_hidden = 0
 ==
+function onEnd() {
+    $gingers = new stdClass();
+    $gingers->contacts = [];
+    for ($i=0; $i<2; $i++) {
+        $contact = ['operator' => 'Имя оператора', 'note' => 'звонить с 9:00 по 22:00 МКС', 'contacts' => []];
+        for ($j=0; $j<5; $j++) {
+            $contact['contacts'][] = ['phone' => '+7 (555) 555-55-55', 'provider' => 'mobile'];
+        }
+        $contact['contacts'][] = ['phone' => 'skype:user', 'provider' => 'skype'];
+        $contact['contacts'][] = ['phone' => 'viber:user', 'provider' => 'viber'];
+        $gingers->contacts[] = $contact;
+    }
+    $this['gingers'] = $gingers;
+}
+==
+<!--
+    @TODO This page is a condidate for full width header pic.
+    @TODO Add plugin for controlling contact info.
+    @TODO This section can be made into article.
+    @TODO Move page.title as article title and page.desc as article anotation.
+    @TODO Make btn-xs for call button.
+    @TODO Make normal spacing between number and button and vertical alignment (align-top).
+    @TODO Try integrate fa-icons as CSS styling.
+    @TODO On xs-screen remove x-padding in card item.
+
+    @TODO Read about ::before to insert number in <ul><li>..</li></ul>
+-->
+<!--
+    @CSS Page title and description
+    @CSS Page section title
+    @CSS Contact card item
+    @CSS Page article
+-->
+<!--
+    @COMPONENT: adoption article
+    @COMPONENT: contact phone numbers
+-->
+
+<div class="container">
+    <!-- adopt.title -->
+    <h1 class="page-title">Стать опекуном</h1>
+
+    <!-- adopt.description -->
+    <div class="row">
+        <div class="col-md-10 text page-desc">Если вы давно хотите завести нового друга, мы уверены, что вы можете найти его у нас.</div>
+    </div>
+
+    <!-- adopt.motivation -->
+    <article>
+       <div class="container">
+           <div class="row">
+                <div class="col-lg-10 col-md-10 mx-auto section-article">
+                    <h4>У вас есть сомения?</h4>
+                    <p>И не видел больше Шухов ни озера дальнего, где солнце блеснило по снегу, ни как по зоне разбредались из обогревалок работяги — кто ямки долбать, с утра недодолбанные, кто арматуру крепить, кто стропила поднимать на мастерских. Шухов видел только стену свою — от развязки слева, где кладка поднималась ступеньками выше пояса, и направо до угла, где сходилась его стена и Кильдигсова.</p>
+
+                    <h4>Как приручить?</h4>
+                    <ul>
+                        <li>Что-то что-то что-то.</li>
+                        <li>Ознакомьтесь с <a href="{{ 'animals'|page }}" target="_blank">обитателями приюта</a>.</li>
+                        <li>Свяжитесь с нами по одному из контактных телефонов.</li>
+                        <li>Приежзайте к нам чтобы забрать притомца.</li>
+                        <li>Что-то что-то позитивное.</li>
+                    </ul>
+                </div>
+           </div>
+       </div>
+    </article>
+
+    {% if gingers.contacts|length %}
+    <h3 class="my-4 page-section-title">Контактные номера</h3>
+    <div class="row justify-content-start text-left">
+        {% for contact in gingers.contacts %}
+        <div class="col-md-6 col-lg-4 contact-card">
+            <div class="card-body">
+                <h6 class="card-title">{{ contact.operator }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted small">{{ contact.note }}</h6>
+                <ul class="card-text list-group list-group-flush">
+                    {% for number in contact.contacts %}
+                        {% if number.provider == 'skype' %}
+                        <li class="list-group-item"><i class="fab fa-skype"></i> <a href="skype:{{ number.phone }}?call" data-provider="skype">skype:user</a></li>
+                        {% elseif number.provider == 'viber' %}
+                        <li class="list-group-item"><i class="fab fa-viber"></i> <a href="viber://add?number={{ number.phone }}" data-provider="viber">viber:user</a></li>
+                        {% else %}
+                        <li class="list-group-item">
+                            <i class="fas fa-mobile-alt"></i> {{ number.phone }}
+                            <a class="btn btn-primary btn-sm d-md-none ml-2" role="button" href="tel:{{ number.phone }}" data-provider="{{ number.provider }}">
+                                <i class="fas fa-phone fa-sm"></i> Call
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
