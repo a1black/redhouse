@@ -6,3 +6,84 @@ meta_title = "Сбор пожертвований для приюта"
 meta_description = "Информация по сбору пожертваваний для приюта «Рыжики»."
 is_hidden = 0
 ==
+
+<!--
+    @TODO Add plugin for managing donation methods.
+-->
+<!--
+    @CSS Page title + description
+    @CSS Page section title
+    @CSS Bank card item
+    @CSS Accent text for bank names
+    @CSS Accent text for recipients fields
+-->
+
+<div class="container">
+    <!-- donate.title -->
+    <h1 class="page-title">Финансовая помощь</h1>
+
+    <!-- donate.description -->
+    <div class="row">
+        <div class="col-sm-10 text page-desc">Вы можете помочь приюту одним из ниже перечисленных способов.</div>
+    </div>
+
+    <hr>
+
+    <!-- donate.account -->
+    <h3 class="my-4 page-section-title">По банковским реквизитам</h3>
+    <div class="row justify-content-start text-left">
+        <div class="col col-md-6 col-lg-4 card account-card">
+            <div class="card-body">
+                <h6 class="card-title">АО «АЛЬФА-БАНК»</h6>
+                <p class="card-text">Счет № 12345678901234567890<br/>БИК 012345678</p>
+            </div>
+        </div>
+        <div class="col col-md-6 col-lg-4 card account-card">
+            <div class="card-body">
+                <h6 class="card-title">ПАО СБЕРБАНК</h6>
+                <p class="card-text">Счет № 12345678901234567890<br/>БИК 012345678</p>
+            </div>
+        </div>
+        <div class="col col-md-6 col-lg-4 card account-card">
+            <div class="card-body">
+                <h6 class="card-title">АО «Райффайзенбанк»</h6>
+                <p class="card-text">Счет № 12345678901234567890<br/>БИК 012345678</p>
+            </div>
+        </div>
+
+        <hr class="w-100">
+
+        <ul class="col list-group list-group-flush recipient-card">
+            <li class="list-group-item border-0 recipient-field"><span class="accent">Получатель</span> Имя получателя</li>
+            <li class="list-group-item border-0 recipient-field"><span class="accent">ИНН</span> 0123456789</li>
+            <li class="list-group-item border-0 recipient-field"><span class="accent">Наименование платежа</span> Благотворительное пожертвование</li>
+        </ul>
+    </div>
+
+    <!-- donate.webmoney -->
+    <h3 class="my-4 page-section-title">На электронный кошелек</h3>
+    <div class="row justify-content-start text-left">
+        <div class="col-md-6 col-lg-4 account-card">
+            <div class="card-body">
+                <h6 class="card-title">Яндекс.Деньги</h6>
+                <h6 class="card-subtitle mb-2 text-muted small">
+                    <a href="https://money.yandex.ru/page?id=522764" target="_blank">Соглашение</a> и <a href="https://yandex.ru/support/money/fees-limits/transfers.html" target="_blank">ограничения</a>
+                </h6>
+                <div class="card-text">
+                    <a href="https://money.yandex.ru" target="_blank" role="button" class="btn btn-primary">Перевести</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 account-card">
+            <div class="card-body">
+                <h6 class="card-title">PayPal</h6>
+                <h6 class="card-subtitle mb-2 text-muted small">
+                    <a href="https://www.paypal.com/ga/webapps/mpp/ua/useragreement-full" target="_blank">Пользовательское соглашение</a>
+                </h6>
+                <div class="card-text">
+                    <a href="https://www.paypal.com" target="_blank" role="button" class="btn btn-primary">Перевести</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
