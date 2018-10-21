@@ -20,7 +20,6 @@ coverage/
 !/plugins/a1black
 /index.php
 # JS
-dist/
 node_modules/
 package-lock.json
 # Other
