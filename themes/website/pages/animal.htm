@@ -1,0 +1,60 @@
+title = "Питомец"
+url = "/animal"
+layout = "default"
+description = "Описание питомца."
+meta_title = ""
+meta_description = ""
+meta_keywords = ""
+is_hidden = 0
+==
+function onEnd() {
+    $gingers = new stdClass();
+    $gingers->animal = ['name' => 'Кузя', 'age' => '10', 'sex' => 'm', 'photos' => []];
+    $this->page->title = $gingers->animal['name'];
+    $this['gingers'] = $gingers;
+}
+==
+
+<!--
+    @TODO Place contact information on the page.
+-->
+<!--
+    @CSS Page title and description
+    @CSS List group
+-->
+
+<div class="container">
+
+    <!-- animal.title -->
+    <h1 class="page-title">Привет, меня зовут {{ gingers.animal.name }}!</h1>
+
+    <!-- animal.body -->
+    <div class="row">
+
+        <!-- animal.photo -->
+        <div class="col-md-8">
+            <img class="img-fluid" src="{{ 'assets/dist/images/employees/security.jpg'|theme }}">
+        </div>
+
+        <!-- animal.specs -->
+        <div class="col-md-4">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <i class="fas fa-lg fa-female"></i> Мальчик
+                </li>
+                <li class="list-group-item">
+                    <i class="fas fa-lg fa-birthday-cake"></i> {{ gingers.animal.age }} Месяцев
+                </li>
+                <li class="list-group-item">
+                    <i class="fas fa-lg fa-heartbeat"></i> Здоров
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- animal.desc -->
+    <div class="row">
+        <p>Что выражалось во всей круглой фигуре графа, у Марьи Дмитриевны выражалось лишь в более и более улыбающемся лице и вздергивающемся носе. Но зато, ежели граф, все более и более расходясь, пленял зрителей неожиданностью ловких вывертов и легких прыжков своих мягких ног, Марья Дмитриевна малейшим усердием при движении плеч или округлении рук в поворотах и прито-пываньях производила не меньшее впечатление по заслуге, которую ценил всякий при ее тучности и всегдашней суровости.</p>
+    </div>
+
+</div>
