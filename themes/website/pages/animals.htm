@@ -1,0 +1,41 @@
+title = "Наши питомцы"
+url = "/animals"
+layout = "default"
+description = "Животные прошедшие через наш приют."
+meta_title = ""
+meta_description = ""
+meta_keywords = ""
+is_hidden = 0
+==
+function onEnd() {
+    $gingers = new stdClass();
+    $gingers->animals = [];
+    for ($i=0; $i<10; $i++) {
+        $gingers->animals[] = ['name' => 'Кузя', 'age' => (10 + $i), 'sex' => 'm'];
+    }
+    $this['gingers'] = $gingers;
+}
+==
+
+<div class="container">
+    <!-- animals.title -->
+    <h1 class="page-title">Наши питомцы</h1>
+
+    <!-- animals.list -->
+    <div class="row justify-content-around animal-list">
+        {% for animal in gingers.animals %}
+        <div class="col-md-6 col-lg-4">
+            <a href="#" class="d-block position-relative mb-4 text-left animal-card">
+                <span class="d-flex w-100 position-absolute">
+                    <span class="p-4">
+                        <h6>Привер, меня зовут {{ animal.name }}!</h6>
+                        <p>Я мальчик, мне {{ animal.age }} месяцев.</p>
+                    </span>
+                </span>
+                <img class="img-fluid" src="{{ 'assets/dist/images/employees/security.jpg'|theme }}">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
