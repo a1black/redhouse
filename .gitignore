@@ -17,7 +17,7 @@ coverage/
 /themes/*
 !/themes/website
 /plugins/*
-!/plugins/a1black
+!/plugins/redhouse
 /index.php
 # JS
 node_modules/
