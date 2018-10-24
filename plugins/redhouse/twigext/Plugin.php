@@ -2,9 +2,9 @@
 
 namespace Redhouse\TwigExt;
 
-use Lang;
-use Carbon\Carbon;
-use System\Classes\PluginBase;
+use \Lang;
+use \Carbon\Carbon;
+use \System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
@@ -27,6 +27,7 @@ class Plugin extends PluginBase
 
         // Add custom filters
         $filters['age'] = [$this, 'makeAge'];
+        $filters['period'] = [$this, 'makeTimePeriod'];
 
         return [
             'filters' => $filters,
@@ -34,28 +35,68 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Return twig filter for converting month to 'X years Y months' string.
+     * Returns date or time difference between provided date and current time or
+     * date in specified format.
+     * Recognazed time periods: 'X (minutes|hours|days) ago', 'now', 'yesterday'.
      *
      * @return string
      */
-    public function makeAge($months)
+    public function makeTimePeriod($datetime, $format = 'd M Y')
     {
-        $years = floor(int($months) / 12);
-        $months = $months % 12;
+        $datetime = new Carbon($datetime);
+
+        $diff = $datetime->diffInSeconds(Carbon::now(), false);
+        if ($diff < 60) {
+            $str = Lang::get('redhouse.twigext::lang.since.now');
+        } else if ($diff < 60 * 60) {
+            $str = Lang::choice('redhouse.twigext::lang.since.minutes', floor($diff / (60 * 60)));
+        } else if ($diff < 60 * 60 * 24) {
+            $str = Lang::choice('redhouse.twigext::lang.since.hours', floor($diff / (60 * 60)));
+        } else if ($diff < 60 * 60 * 24 * 2) {
+            $str = Lang::get('redhouse.twigext::lang.since.yesterday');
+        } else if ($diff < 60 * 60 * 24 * 7) {
+            $str = Lang::choice('redhouse.twigext::lang.since.days', floor($diff / (60 * 60 * 24)));
+        } else if ($datetime->diffInYears(Carbon::now(), false) < 1) {
+            // I know it breaks US format dates, but project not intended to be used outside RU locale.
+            $str = $datetime->format(mb_ereg_replace('(y|Y)\W?', '', $format));
+        } else {
+            $str = $datetime->format($format);
+        }
+
+        return $str;
+    }
+
+    /**
+     * Converts birthday date into 'X years Y months' string.
+     *
+     * @return string
+     */
+    public function makeAge($birthday)
+    {
+        $birthday = new Carbon($birthday);
+        $now = Carbon::now();
+        $years = $birthday->diffInYears($now, false);
+        $months = $birthday->diffInMonths($now, false) - $years * 12;
+        if ($months < 1 && $years < 1) {
+            throw new InvalidArgumentException(Lang::get(
+                'redhouse.twigext::lang.errors.invalid_birthday',
+                ['msg'=> $birthday]));
+        }
         $str = [
             $years
-                ? Lang::choise(
+                ? Lang::choice(
                     'redhouse.twigext::lang.age.years',
                     $years,
-                    array('years' => $years))
+                    ['number' => $years])
                 : '',
             $months
-                ? Lang::choise(
+                ? Lang::choice(
                     'redhouse.twigext::lang.age.months',
                     $months,
-                    array('months' => $months))
-                : ''
+                    ['number' => $months])
+                : '',
         ];
+
         return trim(implode(' ', $str));
     }
 
@@ -83,7 +124,7 @@ class Plugin extends PluginBase
                 return rtrim($str, $charlist);
             },
             'itrim' => function ($str) {
-                return mb_regex_encoding("\s{2,}", "", $str);
+                return mb_ereg_replace("\s{2,}", "", $str);
             },
         ];
     }

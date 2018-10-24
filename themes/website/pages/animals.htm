@@ -11,7 +11,7 @@ function onEnd() {
     $gingers = new stdClass();
     $gingers->animals = [];
     for ($i=0; $i<10; $i++) {
-        $gingers->animals[] = ['name' => 'Кузя', 'age' => (10 + $i), 'sex' => 'm'];
+        $gingers->animals[] = ['name' => 'Кузя', 'birthday' => "1987-$i-01", 'sex' => 'm'];
     }
     $this['gingers'] = $gingers;
 }
@@ -30,7 +30,7 @@ function onEnd() {
                 <span class="d-flex w-100 position-absolute">
                     <span class="p-4">
                         <h6>Привер, меня зовут {{ animal.name }}!</h6>
-                        <p>Я мальчик, мне {{ animal.age }} месяцев.</p>
+                        <p>Я мальчик, мне {{ animal.birthday|age }}.</p>
                     </span>
                 </span>
                 <img class="img-fluid" src="{{ 'assets/dist/images/employees/security.jpg'|theme }}">
