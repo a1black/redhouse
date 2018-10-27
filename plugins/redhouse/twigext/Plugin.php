@@ -6,8 +6,7 @@ use \Lang;
 use \Carbon\Carbon;
 use \System\Classes\PluginBase;
 
-class Plugin extends PluginBase
-{
+class Plugin extends PluginBase {
     public function pluginDetails()
     {
         return [
@@ -50,9 +49,9 @@ class Plugin extends PluginBase
             $str = Lang::get('redhouse.twigext::lang.since.now');
         } else if ($diff < 60 * 60) {
             $str = Lang::choice('redhouse.twigext::lang.since.minutes', floor($diff / (60 * 60)));
-        } else if ($diff < 60 * 60 * 24) {
+        } elseif ($diff < 60 * 60 * 24) {
             $str = Lang::choice('redhouse.twigext::lang.since.hours', floor($diff / (60 * 60)));
-        } else if ($diff < 60 * 60 * 24 * 2) {
+        } elseif ($diff < 60 * 60 * 24 * 2) {
             $str = Lang::get('redhouse.twigext::lang.since.yesterday');
         } else if ($diff < 60 * 60 * 24 * 7) {
             $str = Lang::choice('redhouse.twigext::lang.since.days', floor($diff / (60 * 60 * 24)));

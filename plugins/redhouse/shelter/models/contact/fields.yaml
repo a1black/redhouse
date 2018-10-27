@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: redhouse.shelter::lang.contact.name_label
+        placeholder: redhouse.shelter::lang.contact.name_desc
+        required: true
+        type: text
+        span: left
+    note:
+        label: redhouse.shelter::lang.contact.note_label
+        placeholder: redhouse.shelter::lang.contact.note_desc
+        type: text
+        span: right
+    description:
+        label: redhouse.shelter::lang.contact.description_label
+        placeholder: redhouse.shelter::lang.contact.description_desc
+        type: text
+        span: full
+    published:
+        label: redhouse.shelter::lang.contact.published_label
+        default: true
+        type: switch
+        on: redhouse.shelter::lang.contact.published_switch.on
+        off: redhouse.shelter::lang.contact.published_switch.off

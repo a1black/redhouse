@@ -1,0 +1,34 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: redhouse.shelter::lang.contact.name_label
+        type: text
+        sortable: true
+        searchable: true
+
+    description:
+        label: redhouse.shelter::lang.contact.description_label
+        type: text
+        sortable: false
+        searchable: false
+
+    note:
+        label: redhouse.shelter::lang.contact.note_label
+        type: text
+        sortable: false
+        searchable: false
+        invisible: true
+
+    number_count:
+        label: redhouse.shelter::lang.contact.number_count_label
+        relation: contactnumbers
+        useRelationCount: true
+
+    published:
+        label: redhouse.shelter::lang.contact.published_label
+        type: switch
+        sortable: false
+        searchable: false

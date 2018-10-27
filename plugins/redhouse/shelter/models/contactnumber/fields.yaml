@@ -1,0 +1,30 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    contact:
+        label: Contact
+        type: relation
+        select: concat(name, '. ', description)
+
+    type:
+        label: redhouse.shelter::lang.contact_number.type_label
+        required: true
+        type: dropdown
+        options: listTypes
+        default: mobil
+        span: left
+
+    number:
+        label: redhouse.shelter::lang.contact_number.number_label
+        required: true
+        type: text
+        span: right
+
+    enabled:
+        label: redhouse.shelter::lang.contact_number.enabled_label
+        default: true
+        type: switch
+        on: redhouse.shelter::lang.contact_number.enabled_switch.on
+        off: redhouse.shelter::lang.contact_number.enabled_switch.off
