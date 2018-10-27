@@ -9,7 +9,7 @@ name: redhouse.shelter::lang.view.contact.form
 form: $/redhouse/shelter/models/contact/fields.yaml
 
 # Record model
-modelClass: Redhouse\Shelter\Contact
+modelClass: Redhouse\Shelter\Models\Contact
 
 # Default redirect destination
 defaultRedirect: redhouse/shelter/contacts

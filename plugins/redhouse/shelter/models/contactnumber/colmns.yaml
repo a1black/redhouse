@@ -3,11 +3,6 @@
 # ===================================
 
 columns:
-    contact_name:
-        label: redhouse.shelter::lang.contact.name_lebel
-        relation: contact
-        select: name
-
     type:
         label: redhouse.shelter::lang.contact_number.type_label
         type: text

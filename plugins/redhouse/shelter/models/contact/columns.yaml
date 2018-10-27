@@ -24,8 +24,7 @@ columns:
 
     number_count:
         label: redhouse.shelter::lang.contact.number_count_label
-        relation: contactnumbers
-        useRelationCount: true
+        sortable: false
 
     published:
         label: redhouse.shelter::lang.contact.published_label

@@ -2,7 +2,7 @@
 #  Relation Behavior Config
 # ===================================
 
-items:
+numbers:
     # Relation name (singular tense)
     label: redhouse.shelter::lang.contact_number.model_title
 

@@ -8,14 +8,14 @@ scopes:
         type: text
         condition: name = :value
 
-    number:
-        label: redhouse.shelter::lang.view.contact.filter.number
-        type: text
-        scope: FilterContactNumber
+    #number:
+    #    label: redhouse.shelter::lang.view.contact.filter.number
+    #    type: text
+    #    scope: FilterContactNumber
 
     published:
         label: redhouse.shelter::lang.view.contact.filter.published
         type: switch
         conditions:
-            - published = '1'
             - published <> '1'
+            - published = '1'

@@ -3,12 +3,6 @@
 # ===================================
 
 fields:
-    head_section:
-        label: redhouse.shelter::lang.social.head_section_label
-        comment: redhouse.shelter::lang.social.head_section_desc
-        span: full
-        type: section
-
     fb_link:
         label: redhouse.shelter::lang.social.fb_label
         placeholder: redhouse.shelter::lang.social.fb_desc
@@ -32,9 +26,3 @@ fields:
         placeholder: redhouse.shelter::lang.social.google_desc
         span: full
         type: text
-
-    toggle_section:
-        label: redhouse.shelter::lang.social.toggle_section_label
-        comment: redhouse.shelter::lang.social.toggle_section_desc
-        span: full
-        type: section

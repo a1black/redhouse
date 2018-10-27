@@ -22,6 +22,4 @@ fields:
     published:
         label: redhouse.shelter::lang.contact.published_label
         default: true
-        type: switch
-        on: redhouse.shelter::lang.contact.published_switch.on
-        off: redhouse.shelter::lang.contact.published_switch.off
+        type: checkbox

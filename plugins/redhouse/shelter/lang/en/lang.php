@@ -23,12 +23,17 @@ return [
         ],
     ],
     'redirect' => [
+        'return_to_main' => 'Back to Main',
         'return_to_contacts' => 'Back to Contacts',
     ],
     'form' => [
         'create_and_new' => 'Save and Add',
     ],
     'view' => [
+        'social' => [
+            'form' => 'Social Networks',
+            'update_msg' => 'Links has been updated',
+        ],
         'contact' => [
             'form' => 'Contact',
             'list' => 'List of Contacts',
@@ -80,7 +85,7 @@ return [
             'on' => 'Contact displayed',
             'off' => 'Contact hidden',
         ],
-        'number_count_label' => 'Amount of contact numbers',
+        'number_count_label' => 'Contact Count',
     ],
     'contact_number' => [
         'model_title' => 'Contact number',

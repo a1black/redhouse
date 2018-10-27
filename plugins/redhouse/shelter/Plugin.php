@@ -51,7 +51,7 @@ class Plugin extends PluginBase
                     'social' => [
                         'label' => 'redhouse.shelter::lang.nav.social.label',
                         'icon' => 'oc-icon-globe',
-                        'url' => Backend::url('redhouse/shelter/social'),
+                        'url' => Backend::url('redhouse/shelter/sociallinks'),
                         'permissions' => [],
                     ],
                     'contacts' => [

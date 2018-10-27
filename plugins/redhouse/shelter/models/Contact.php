@@ -21,6 +21,11 @@ class Contact extends Model
         'numbers' => ['Redhouse\Shelter\Models\ContactNumber'],
     ];
 
+    public function getNumberCountAttribute()
+    {
+        return $this->numbers->count();
+    }
+
     /**
      * Allows filtering for specific contact number.
      *

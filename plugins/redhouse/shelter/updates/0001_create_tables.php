@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Redhouse\Shelter\Updates;
 
-use Illuminate\Database\Schema\Blueprint;
-use October\Rain\Database\Migration;
 use Schema;
-
+use Illuminate\Database\Schema\Blueprint;
+use October\Rain\Database\Updates\Migration;
 
 /**
  * Creates database tables and set initial values.
@@ -17,22 +16,24 @@ class CreateTables extends Migration
     public function up()
     {
         // Organization contact list
-        Schema::create('redhouse_shelter_contacts', function($table) {
+        Schema::create('redhouse_shelter_contacts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('note')->nullable();
             $table->boolean('published')->default(true);
+            $table->timestamps();
         });
 
-        Schema::create('redhouse_shelter_contact_numbers', function($table) {
+        Schema::create('redhouse_shelter_contact_numbers', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('contact_id');
             $table->string('number');
             $table->char('type', 5);
             $table->boolean('enabled')->default(true);
+            $table->timestamps();
 
             $table->foreign('contact_id')
                 ->references('id')

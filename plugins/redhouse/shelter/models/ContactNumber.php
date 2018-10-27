@@ -12,7 +12,7 @@ use October\Rain\Database\Model;
 class ContactNumber extends Model
 {
     const CN_TYPE_MOBILE = 'mobil';
-    const CN_TYPE_SKYPE = 'slype';
+    const CN_TYPE_SKYPE = 'skype';
     const CN_TYPE_VIBER = 'viber';
 
     public static $contactNumberTypes = [
@@ -26,6 +26,11 @@ class ContactNumber extends Model
      */
     public $table = 'redhouse_shelter_contact_numbers';
 
+    /** @var array */
+    public $belongsTo = [
+        'contact' => ['Redhouse\Shelter\Models\Contact'],
+    ];
+
     /**
      * Returns list of contuct number types.
      *
@@ -34,7 +39,7 @@ class ContactNumber extends Model
     public function listTypes()
     {
         $list = [];
-        foreach (self::contactNumberTypes as $type) {
+        foreach (self::$contactNumberTypes as $type) {
             $list[$type] = 'redhouse.shelter::lang.contact_number.type.'.$type;
         }
 

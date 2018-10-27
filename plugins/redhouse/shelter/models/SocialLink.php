@@ -10,7 +10,7 @@ use System\Behaviors\SettingsModel;
 /**
  * Social links settings
  */
-class SocialLinks extends Model
+class SocialLink extends Model
 {
     /**
      * Unique identifier under which settings are stored.
@@ -19,19 +19,15 @@ class SocialLinks extends Model
      */
     public $settingsCode = 'redhouse_shelter_sociallinks';
 
+    /** @var array */
+    public $implement = ['System.Behaviors.SettingsModel'];
+
     /**
      * Form fields definitions.
      *
      * @var string
      */
     public $settingsFields = 'fields.yaml';
-
-    public function __construct(array $attributes = [])
-    {
-        $this->implements = ['System.Behaviors.SettingsModel'];
-
-        parent::__construct($attributes);
-    }
 
     /**
      * Checks whether social link is available.

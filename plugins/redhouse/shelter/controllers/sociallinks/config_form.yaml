@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: redhouse.shelter::lang.view.social.form
+
+# Form field configuration file
+form: $/redhouse/shelter/models/sociallinks/fields.yaml
+
+# Record model
+modelClass: Redhouse\Shelter\Models\SocialLink
+
+# Default redirect destination
+defaultRedirect: redhouse/shelter/sociallinks
+
+# Record update form configuration
+create:
+    title: redhouse.shelter::lang.view.social.form
+    redirect: redhouse/shelter/sociallinks
+    flashSave: redhouse.shelter::lang.view.social.update_msg
+
+# Record update form configuration
+update:
+    title: redhouse.shelter::lang.view.social.form
+    redirect: redhouse/shelter/sociallinks
+    flashSave: redhouse.shelter::lang.view.social.update_msg

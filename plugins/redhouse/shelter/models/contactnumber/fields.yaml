@@ -3,11 +3,6 @@
 # ===================================
 
 fields:
-    contact:
-        label: Contact
-        type: relation
-        select: concat(name, '. ', description)
-
     type:
         label: redhouse.shelter::lang.contact_number.type_label
         required: true
@@ -22,9 +17,7 @@ fields:
         type: text
         span: right
 
-    enabled:
+    enabled@update:
         label: redhouse.shelter::lang.contact_number.enabled_label
         default: true
         type: switch
-        on: redhouse.shelter::lang.contact_number.enabled_switch.on
-        off: redhouse.shelter::lang.contact_number.enabled_switch.off
