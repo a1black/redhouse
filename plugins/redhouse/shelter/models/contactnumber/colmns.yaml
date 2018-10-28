@@ -11,7 +11,7 @@ columns:
 
     number:
         label: redhouse.shelter::lang.contact_number.number_label
-        type: text
+        type: phone_number
         sortable: false
         searchable: true
 

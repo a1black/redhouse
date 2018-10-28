@@ -48,7 +48,8 @@ return [
             'empty_msg' => 'No contacts found',
             'search_msg' => 'Search for a contact',
             'filter' => [
-                'name' => 'Name',
+                'name' => 'Contact Name',
+                'number' => 'Contact Number',
                 'published' => 'Visible',
             ],
         ],
@@ -71,10 +72,13 @@ return [
         'odnoklassniki_desc' => 'Odnoklassniki page URL',
         'google_label' => 'Google+',
         'google_desc' => 'Google Plus page URL',
+        'error' => [
+            'url' => 'Link to :attribute page is not valid',
+        ],
     ],
     'contact' => [
         'model_title' => 'Company Contact details',
-        'name_label' => 'Contact',
+        'name_label' => 'Name',
         'name_desc' => 'Persion responding to call',
         'note_label' => 'Note',
         'note_desc' => 'Short note for caller',
@@ -100,6 +104,10 @@ return [
             'mobil' => 'Mobile Operator',
             'skype' => 'Skype',
             'viber' => 'Viber',
+        ],
+        'error' => [
+            'number_digits' => 'Phone number must be eleven digits long',
+            'number_alphanum' => 'Account name is not valid',
         ],
     ],
 ];

@@ -42,14 +42,14 @@ class CreateTables extends Migration
         });
 
         // Organization bank accounts and e-wallets
-        //Schema::create('redhouse_shelter_cash_account', function($table) {
-        //    $table->engine = 'InnoDB';
-        //    $table->increments('id');
-        //    $table->string('type', 5);
-        //    $table->string('acount')->index();
-        //    $table->string('bank_id_code')->nullable();
-        //    $table->string('bank_page')->nullable();
-        //});
+        Schema::create('redhouse_shelter_cash_account', function($table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('type');
+            $table->string('acount')->index();
+            $table->string('bank_id_code')->nullable();
+            $table->string('bank_page')->nullable();
+        });
     }
 
     public function down()

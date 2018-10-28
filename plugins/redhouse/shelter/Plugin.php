@@ -11,7 +11,7 @@ use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
-    public function pluginDetails()
+    public function pluginDetails(): array
     {
         return [
             'name' => 'redhouse.shelter::lang.plugin.name',
@@ -22,22 +22,21 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerMarkupTags()
+    public function registerComponents(): array
     {
         return [];
     }
 
-    public function registerComponents()
+    public function registerListColumnTypes(): array
     {
-        return [];
+        return [
+            'phone_number' => function ($value) {
+                return \Redhouse\Shelter\Models\ContactNumber::makePhoneNumber($value);
+            },
+        ];
     }
 
-    public function registerSettings()
-    {
-        return [];
-    }
-
-    public function registerNavigation()
+    public function registerNavigation(): array
     {
         return [
             'shelter' => [
