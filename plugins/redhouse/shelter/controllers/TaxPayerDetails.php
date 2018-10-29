@@ -10,12 +10,12 @@ use Redirect;
 use BackendMenu;
 use Backend\Classes\Controller;
 use Backend\Behaviors\FormController;
-use Redhouse\Shelter\Models\SocialLink;
+use Redhouse\Shelter\Models\TaxPayerInfo;
 
 /**
- * Management of social links.
+ * Management of tax details.
  */
-class SocialLinks extends Controller
+class TaxPayerDetails extends Controller
 {
     /** @var array */
     public $implement = [
@@ -29,13 +29,13 @@ class SocialLinks extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Redhouse.Shelter', 'shelter', 'social');
+        BackendMenu::setContext('Redhouse.Shelter', 'shelter', 'taxinfo');
     }
 
     public function index()
     {
-        $this->pageTitle = 'redhouse.shelter::lang.view.social.form';
-        $model = SocialLink::instance();
+        $this->pageTitle = 'redhouse.shelter::lang.view.taxinfo.form';
+        $model = TaxPayerInfo::instance();
         if ($model->id) {
             $this->asExtension('FormController')->update($model->id);
         } else {
@@ -48,7 +48,7 @@ class SocialLinks extends Controller
      */
     public function index_onSave($recordId = NULL, $context = NULL)
     {
-        $model = SocialLink::instance();
+        $model = TaxPayerInfo::instance();
         if ($model->id) {
             $this->asExtension('FormController')->update_onSave($model->id, $context);
         } else {

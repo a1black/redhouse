@@ -1,0 +1,16 @@
+<div class="callout callout-info no-icon no-subheader">
+    <div class="content">
+        <h5 style="margin: 0 0 1em;">
+            <?= e(trans('redhouse.shelter::lang.taxinfo.model_title')) ?>&nbsp;
+            <a href="<?= Backend::url('redhouse/shelter/taxpayerdetails') ?>">
+                (<small><?= e(trans('redhouse.shelter::lang.general.change')) ?></small>)
+            </a>
+        </h5>
+        <ul style="display: flex; flex-direction: row; justify-content: flex-start; list-style: none; font-size: 110%;">
+            <li style="margin: 0 2em 0 0;"><strong><?= e(trans('redhouse.shelter::lang.taxinfo.fullname_label')) ?>:</strong> <?= $taxrecord->fullname ?></li>
+            <li style="margin: 0 2em 0 0;"><strong><?= e(trans('redhouse.shelter::lang.taxinfo.tax_id_label')) ?>:</strong> <?= $taxrecord->tax_id ?></li>
+            <li style="margin: 0 2em 0 0;"><strong><?= e(trans('redhouse.shelter::lang.taxinfo.tax_number_label')) ?>:</strong> <?= $taxrecord->tax_number ?></li>
+            <li style="margin: 0 2em 0 0;"><strong><?= e(trans('redhouse.shelter::lang.taxinfo.purpose_label')) ?>:</strong> <?= $taxrecord->purpose ?></li>
+        </ul>
+    </div>
+</div>

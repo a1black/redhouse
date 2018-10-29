@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Redhouse\Shelter\Models;
 
 use October\Rain\Database\Model;
+use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Validation;
 use Redhouse\Shelter\Models\ContactNumber;
 
@@ -47,7 +48,10 @@ class Contact extends Model
         'description' => 'redhouse.shelter::lang.contact.description_label',
     ];
 
-    public function getNumberCountAttribute()
+    /**
+     * Returns count of contuct numbers.
+     */
+    public function getNumberCountAttribute(): int
     {
         return $this->numbers->count();
     }
@@ -56,35 +60,15 @@ class Contact extends Model
      * Apply where condition to list query for filtering by contuct number.
      *
      * @see Redhouse\Shelter\Models\ContuctNumber::scopeNumberLike
-     *
-     * @param  Illuminate\Query\Builder  $query      QueryBuilder
-     * @param  string                    $categories Contuct number
-     * @return Illuminate\Query\Builder              QueryBuilder
      */
-    public function scopeFilterContactNumber($query, $number = null)
+    public function scopeFilterContactNumber(Builder $query, string $number): Builder
     {
         if (strlen($number) >= 4) {
             $query->whereHas('numbers', function ($query) use ($number) {
                 $query->numberLike($number);
             });
         }
-        //var_dump($query->toSql());
-        return $query;
-        //$numlen = strlen($number);
-        //if (!is_numeric($number) && $numlen > 4) {
-        //    $query->numbers()->where('type', ContactNumber::CN_TYPE_MOBILE);
-        //    $query->numbers()->where('number', 'like', $number.'%');
-        //} elseif (is_numeric($number) && $numlen >= 4) {
-        //    if ($numlen > ContactNumber::MOBILE_LEN) {
-        //        $query->where('id', 0);
-        //    } elseif ($numlen == ContactNumber::MOBILE_LEN) {
-        //        $query->numbers->where('number', $number);
-        //    } else {
-        //        $ptn = str_pad('', ContactNumber::MOBILE_LEN - strlen($number), '_');
-        //        $query->numbers()->where('number', 'like', $ptn.$number);
-        //    }
-        //}
 
-        //return $query;
+        return $query;
     }
 }

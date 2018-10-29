@@ -5,7 +5,7 @@
 columns:
     type:
         label: redhouse.shelter::lang.contact_number.type_label
-        type: text
+        type: phone_type
         sortable: false
         searchable: false
 

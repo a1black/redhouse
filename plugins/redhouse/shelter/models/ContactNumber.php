@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Redhouse\Shelter\Models;
 
 use October\Rain\Database\Model;
+use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Validation;
 
 /**
@@ -63,7 +64,10 @@ class ContactNumber extends Model
         'number.regex' => 'redhouse.shelter::lang.contact_number.error.number_regex',
     ];
 
-    public static function makePhoneNumber(string $number)
+    /**
+     * Returns pretty phone number.
+     */
+    public static function makePhoneNumber(string $number): string
     {
         $phone = preg_replace_callback(
             '/^(\d)(\d{3})(\d{3})(\d{2})(\d{2})$/',
@@ -102,13 +106,10 @@ class ContactNumber extends Model
         }
     }
 
-
     /**
      * Returns list of contuct number types.
-     *
-     * @return array
      */
-    public function listTypes()
+    public function listTypes(): array
     {
         $list = [];
         foreach (self::$contactNumberTypes as $type) {
@@ -120,12 +121,8 @@ class ContactNumber extends Model
 
     /**
      * Apply conditions for matching phone number.
-     *
-     * @param  Illuminate\Query\Builder  $query      QueryBuilder
-     * @param  string                    $categories Contuct number
-     * @return Illuminate\Query\Builder              QueryBuilder
      */
-    public function scopeNumberLike($query, $number)
+    public function scopeNumberLike(Builder $query, string $number): Builder
     {
         $numlen = strlen($number);
         if (!is_numeric($number) && $numlen >= 4) {

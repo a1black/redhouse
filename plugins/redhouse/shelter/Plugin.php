@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Redhouse\Shelter;
 
 use App;
+use Lang;
 use Backend;
 use Controller;
 use System\Classes\PluginBase;
@@ -33,6 +34,12 @@ class Plugin extends PluginBase
             'phone_number' => function ($value) {
                 return \Redhouse\Shelter\Models\ContactNumber::makePhoneNumber($value);
             },
+            'phone_type' => function ($value) {
+                return Lang::get('redhouse.shelter::lang.contact_number.type.'.$value);
+            },
+            'cashaccount_type' => function ($value) {
+                return Lang::get('redhouse.shelter::lang.cashaccount.type.'.$value);
+            },
         ];
     }
 
@@ -47,6 +54,12 @@ class Plugin extends PluginBase
                 'order' => 250,
 
                 'sideMenu' => [
+                    'cashaccounts' => [
+                        'label' => 'redhouse.shelter::lang.nav.cashaccounts.label',
+                        'icon' => 'oc-icon-bank',
+                        'url' => Backend::url('redhouse/shelter/cashaccounts'),
+                        'permissions' => [],
+                    ],
                     'social' => [
                         'label' => 'redhouse.shelter::lang.nav.social.label',
                         'icon' => 'oc-icon-globe',

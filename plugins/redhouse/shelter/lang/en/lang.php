@@ -4,10 +4,19 @@ return [
         'name' => 'Animal Shelter',
         'description' => 'Module for managing catalog of animals placed in a shelter.',
     ],
+    'general' => [
+        'change' => 'Change',
+        'warning' => 'Warning',
+        'error' => 'Error',
+    ],
     'nav' => [
         'menu' => [
             'label' => 'Shelter',
             'description' => 'Manage catalog of animals in a shelter',
+        ],
+        'cashaccounts' => [
+            'label' => 'Money Accounts',
+            'description' => 'Manage money accounts for receiving donations',
         ],
         'social' => [
             'label' => 'Social Links',
@@ -25,6 +34,7 @@ return [
     'redirect' => [
         'return_to_main' => 'Back to Main',
         'return_to_contacts' => 'Back to Contacts',
+        'return_to_cash' => 'Back to cash accounts',
     ],
     'form' => [
         'create_and_new' => 'Save and Add',
@@ -58,8 +68,35 @@ return [
             'list' => 'List of Contact Numbers',
             'empty_msg' => 'No contact numbers',
         ],
+        'taxinfo' => [
+            'form' => 'Tax Details',
+            'create' => 'Add Tax Information',
+            'update' => 'Change Tax Information',
+            'update_msg' => 'Information was updated',
+            'empty_msg' => 'No tax details found',
+        ],
+        'cashaccount' => [
+            'form' => 'Bank account',
+            'list' => 'List of bank accounts',
+            'create' => 'Add Account',
+            'update' => 'Change Account',
+            'preview' => 'View Account details',
+            'delete' => 'Delete Account',
+            'create_msg' => 'Account has been created',
+            'update_msg' => 'Account has been updated',
+            'delete_msg' => 'Account has been deleted',
+            'delete_confirm' => 'Do you want to delete account?',
+            'empty_msg' => 'No bank accounts found',
+            'search_msg' => 'Search for a account details',
+            'filter' => [
+                'bank' => 'Bank name',
+                'type' => 'Account type',
+                'account' => 'Account number',
+            ],
+        ],
     ],
     'social' => [
+        'model_title' => 'Social Media',
         'head_section_label' => 'Social Networks',
         'head_section_desc' => 'Manage connections to social networks',
         'toggle_section_label' => 'Link control',
@@ -85,10 +122,6 @@ return [
         'description_label' => 'Description',
         'description_desc' => 'Short info to distinguish contacts',
         'published_label' => 'Show on contact page',
-        'published_switch' => [
-            'on' => 'Contact displayed',
-            'off' => 'Contact hidden',
-        ],
         'number_count_label' => 'Contact Count',
     ],
     'contact_number' => [
@@ -96,10 +129,6 @@ return [
         'type_label' => 'Operator type',
         'number_label' => 'Contact number',
         'enabled_label' => 'Contact state',
-        'enabled_switch' => [
-            'on' => 'Active',
-            'off' => 'Disabled',
-        ],
         'type' => [
             'mobil' => 'Mobile Operator',
             'skype' => 'Skype',
@@ -108,6 +137,38 @@ return [
         'error' => [
             'number_digits' => 'Phone number must be eleven digits long',
             'number_alphanum' => 'Account name is not valid',
+        ],
+    ],
+    'taxinfo' => [
+        'model_title' => 'Organization tax identifications',
+        'tax_id_label' => 'Tax ID',
+        'tax_id_desc' => 'Tax ID issed to your organization',
+        'tax_number_label' => 'Tax Number',
+        'tax_number_desc' => 'Number by which your organization is registreg in a tax collecting institution',
+        'fullname_label' => 'Organization name',
+        'fullname_desc' => 'Name under wich you organization is registred',
+        'purpose_label' => 'Transaction message',
+        'purpose_desc' => 'Message provided during money transaction',
+        'error' => [
+            'digits' => 'The :attribute must be :size digit long',
+        ],
+    ],
+    'cashaccount' => [
+        'model_title' => 'Money account details',
+        'type_label' => 'Account Type',
+        'bank_name_label' => 'Bank',
+        'bank_name_desc' => 'Name of your bank',
+        'bank_id_code_label' => 'Bank ID',
+        'bank_id_code_desc' => 'Number of a license issued to your bank',
+        'account_label' => 'Account Number',
+        'correspondent_label' => 'Correspondent Account',
+        'correspondent_desc' => 'Number of your bank correspondent account',
+        'transfer_url' => 'Transfer Link',
+        'embedded_html' => 'HTML Widget',
+        'type' => [
+            'bank' => 'Bank',
+            'yandex' => 'Yandex.Wallet',
+            'paypal' => 'PayPal Wallet',
         ],
     ],
 ];

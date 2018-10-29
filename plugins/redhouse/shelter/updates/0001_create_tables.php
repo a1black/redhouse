@@ -42,14 +42,24 @@ class CreateTables extends Migration
         });
 
         // Organization bank accounts and e-wallets
-        Schema::create('redhouse_shelter_cash_account', function($table) {
+        Schema::create('redhouse_shelter_cash_accounts', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('type');
-            $table->string('acount')->index();
-            $table->string('bank_id_code')->nullable();
-            $table->string('bank_page')->nullable();
+            $table->string('bank_name'); // Имя банка
+            $table->string('account'); // Р.сч
+            $table->string('bank_id_code')->nullable(); // БИК
+            $table->string('correspondent')->nullable(); // К.сч
+            $table->string('transfer_url')->nullable(); // URL для проведения платежа
+            $table->text('embedded_html')->nullable(); // HTML для размещения на сайте
+            $table->timestamps();
         });
+
+        // Tax payer Info placed in system_setting table.
+        // Имя держателя счета
+        // ИНН
+        // КПП
+        // Наименование платежа
     }
 
     public function down()
@@ -58,7 +68,7 @@ class CreateTables extends Migration
 
         Schema::dropIfExists('redhouse_shelter_contacts');
         Schema::dropIfExists('redhouse_shelter_contact_numbers');
-        Schema::dropIfExists('redhouse_shelter_cash_account');
+        Schema::dropIfExists('redhouse_shelter_cash_accounts');
 
         Schema::enableForeignKeyConstraints();
     }
