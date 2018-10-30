@@ -46,15 +46,17 @@ class TaxPayerDetails extends Controller
     /**
      * AJAX handler for form save action.
      */
-    public function index_onSave($recordId = NULL, $context = NULL)
+    public function index_onSave($recordId = null, $context = null)
     {
         $model = TaxPayerInfo::instance();
         if ($model->id) {
+            $context = 'update';
             $this->asExtension('FormController')->update_onSave($model->id, $context);
         } else {
+            $context = 'create';
             $this->asExtension('FormController')->create_onSave($context);
         }
 
-        return $this->makeRedirect() ?? Redirect::refresh();
+        return $this->makeRedirect($context) ?? Redirect::refresh();
     }
 }

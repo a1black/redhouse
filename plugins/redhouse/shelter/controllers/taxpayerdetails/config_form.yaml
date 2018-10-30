@@ -17,11 +17,11 @@ defaultRedirect: redhouse/shelter/taxpayerdetails
 # Record update form configuration
 create:
     title: redhouse.shelter::lang.view.taxinfo.form
-    redirectClose: redhouse/shelter/cash-accounts
+    redirectClose: redhouse/shelter/cashaccounts
     flashSave: redhouse.shelter::lang.view.taxinfo.update_msg
 
 # Record update form configuration
 update:
     title: redhouse.shelter::lang.view.taxinfo.form
-    redirectClose: redhouse/shelter/cash-accounts
+    redirectClose: redhouse/shelter/cashaccounts
     flashSave: redhouse.shelter::lang.view.taxinfo.update_msg

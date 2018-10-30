@@ -9,7 +9,7 @@ use Flash;
 use Redirect;
 use BackendMenu;
 use Backend\Classes\Controller;
-//use Backend\Behaviors\FormController;
+use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use Redhouse\Shelter\Models\CashAccount;
 use Redhouse\Shelter\Models\TaxPayerInfo;
@@ -20,12 +20,12 @@ use Redhouse\Shelter\Models\TaxPayerInfo;
 class CashAccounts extends Controller
 {
     public $implement = [
-        //'Backend.Behaviors.FormController',
+        'Backend.Behaviors.FormController',
         'Backend.Behaviors.ListController',
     ];
 
     /** @var string */
-    //public $formConfig = 'config_form.yaml';
+    public $formConfig = 'config_form.yaml';
 
     /** @var string */
     public $listConfig = 'config_list.yaml';

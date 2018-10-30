@@ -1,4 +1,5 @@
 <?php
+
 return [
     'plugin' => [
         'name' => 'Animal Shelter',
@@ -34,7 +35,7 @@ return [
     'redirect' => [
         'return_to_main' => 'Back to Main',
         'return_to_contacts' => 'Back to Contacts',
-        'return_to_cash' => 'Back to cash accounts',
+        'return_to_cash' => 'Back to Cash Accounts',
     ],
     'form' => [
         'create_and_new' => 'Save and Add',
@@ -121,14 +122,18 @@ return [
         'note_desc' => 'Short note for caller',
         'description_label' => 'Description',
         'description_desc' => 'Short info to distinguish contacts',
-        'published_label' => 'Show on contact page',
+        'published_label' => 'Visible',
+        'published_desc' => 'Show on contact page',
         'number_count_label' => 'Contact Count',
+        'error' => [
+            'name' => 'Invalid contact name',
+        ],
     ],
     'contact_number' => [
         'model_title' => 'Contact number',
-        'type_label' => 'Operator type',
-        'number_label' => 'Contact number',
-        'enabled_label' => 'Contact state',
+        'type_label' => 'Operator Type',
+        'number_label' => 'Contact Number',
+        'enabled_label' => 'Contact State',
         'type' => [
             'mobil' => 'Mobile Operator',
             'skype' => 'Skype',
@@ -142,7 +147,7 @@ return [
     'taxinfo' => [
         'model_title' => 'Organization tax identifications',
         'tax_id_label' => 'Tax ID',
-        'tax_id_desc' => 'Tax ID issed to your organization',
+        'tax_id_desc' => 'Unique nuber issed to your organization',
         'tax_number_label' => 'Tax Number',
         'tax_number_desc' => 'Number by which your organization is registreg in a tax collecting institution',
         'fullname_label' => 'Organization name',
@@ -150,7 +155,8 @@ return [
         'purpose_label' => 'Transaction message',
         'purpose_desc' => 'Message provided during money transaction',
         'error' => [
-            'digits' => 'The :attribute must be :size digit long',
+            'tax_id' => 'The :attribute must be 10 or 12 digit long',
+            'tax_number' => 'The :attribute must be :digits digit long',
         ],
     ],
     'cashaccount' => [
@@ -170,5 +176,8 @@ return [
             'yandex' => 'Yandex.Wallet',
             'paypal' => 'PayPal Wallet',
         ],
+        'error' => [
+            'bank' => 'Invalid name of a bank',
+        ]
     ],
 ];

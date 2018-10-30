@@ -18,7 +18,7 @@ numbers:
         toolbarButtons: create|delete
 
         # Show checkbox next to each row
-        showCheckboxes: false
+        showCheckboxes: true
 
         # Show search in a toolbar
         showSearch: false

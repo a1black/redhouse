@@ -45,18 +45,6 @@ class SocialLink extends Model
     ];
 
     /**
-     * Custom attribute names used by validator.
-     *
-     * @var array
-     */
-    public $customAttributes = [
-        'fb_link' => 'redhouse.shelter::lang.social.fb_label',
-        'vk_link' => 'redhouse.shelter::lang.social.vk_label',
-        'odnoklassniki_link' => 'redhouse.shelter::lang.social.odnoklassniki_label',
-        'google_link' => 'redhouse.shelter::lang.social.google_label',
-    ];
-
-    /**
      * Custom validation messages
      *
      * @var array

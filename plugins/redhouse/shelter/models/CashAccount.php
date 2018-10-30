@@ -43,40 +43,19 @@ class CashAccount extends Model
     public $rules = [
         'type' => 'required',
         'account' => 'required',
-        'transfer_url' => 'sometimes|url',
     ];
 
     /**
-     * Custom attribute names used by validator.
-     *
-     * @var array
-     */
-    public $attributeNames = [
-    ];
-
-    /**
-     * Custom validation error messages.
+     * Custom validation errors.
      *
      * @var array
      */
     public $customMessages = [
+        'bank' => 'redhouse.shelter::lang.cashaccount.error.bank',
     ];
 
     /**
-     * Returns list of money account types.
-     */
-    public function listTypes(): array
-    {
-        $list = [];
-        foreach (self::$cashAccountTypes as $type) {
-            $list[$type] = 'redhouse.shelter::lang.cashaccount.type.'.$type;
-        }
-
-        return $list;
-    }
-
-    /**
-     * Returns midel data validator.
+     * Returns data validator.
      */
     public function makeValidator(
         array $data,
@@ -87,14 +66,14 @@ class CashAccount extends Model
         $validator = self::traitMakeValidator($data, $rules, $customMessages, $attributeNames);
 
         // Extend validator
-        Validator::extend('bank', function ($attribute, $value, $parameters) {
+        $validator->addExtension('bank', function ($attribute, $value, $parameters) {
             return preg_match('/^[\pL\pM\pN\s\x22\x27\x2C\x2D\x2E\x5F\xAB\xBB]+$/u', $value) > 0;
         });
 
         // Runtime dependent rules
         $extraRules = [
             'type' => sprintf('in:%s', implode(',', self::$cashAccountTypes)),
-            'account' => sprintf('unique:%s,account,NULL,id,type,%s', $this->table, $this->type),
+            'account' => sprintf('unique:%s,account,%s,id,type,%s', $this->table, $this->id ?: 'NULL', $this->type),
         ];
         $validator->addRules($extraRules);
 
@@ -112,12 +91,20 @@ class CashAccount extends Model
         $validator->sometimes('account', 'regex:/^\d{12,}$/', $typeCheck(self::CA_TYPE_YANDEX));
         $validator->sometimes('bank_id_code', 'required|digits:9', $typeCheck(self::CA_TYPE_BANK));
         $validator->sometimes('correspondent', 'required|digits:20', $typeCheck(self::CA_TYPE_BANK));
+        // Optional rules
+        $validator->sometimes('transfer_url', 'url', function (Fluent $request) {
+            return isset($this->transfer_url);
+        });
+
+        return $validator;
     }
 
     public function beforeSave()
     {
         if (in_array($this->type, [self::CA_TYPE_YANDEX, self::CA_TYPE_PAYPAL])) {
             $this->bank_name = '';
+            $this->bank_id_code = '';
+            $this->correspondent = '';
         }
     }
 
@@ -126,7 +113,7 @@ class CashAccount extends Model
      */
     public function scopeAccountLike(Builder $query, string $value): Builder
     {
-        if (strlen($vlaue) > 4) {
+        if (strlen($value) > 4) {
             $query->where('account', 'like', "%$value%");
         }
 

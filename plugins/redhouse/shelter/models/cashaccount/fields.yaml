@@ -1,0 +1,53 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    type:
+        label: redhouse.shelter::lang.cashaccount.type_label
+        type: balloon-selector
+        span: full
+        default: bank
+        options:
+            bank: redhouse.shelter::lang.cashaccount.type.bank
+            yandex: redhouse.shelter::lang.cashaccount.type.yandex
+            paypal: redhouse.shelter::lang.cashaccount.type.paypal
+
+    account:
+        label: redhouse.shelter::lang.cashaccount.account_label
+        placeholder: redhouse.shelter::lang.cashaccount.account_desc
+        type: text
+        span: full
+        required: true
+
+    bank_name:
+        label: redhouse.shelter::lang.cashaccount.bank_name_label
+        placeholder: redhouse.shelter::lang.cashaccount.bank_name_desc
+        type: text
+        span: left
+        required: true
+        trigger:
+            action: show
+            field: type
+            condition: value[bank]
+
+    bank_id_code:
+        label: redhouse.shelter::lang.cashaccount.bank_id_code_label
+        placeholder: redhouse.shelter::lang.cashaccount.bank_id_code_desc
+        type: text
+        span: right
+        required: true
+        trigger:
+            action: show
+            field: type
+            condition: value[bank]
+
+    correspondent:
+        label: redhouse.shelter::lang.cashaccount.correspondent_label
+        placeholder: redhouse.shelter::lang.cashaccount.correspondent_desc
+        type: text
+        span: full
+        trigger:
+            action: show
+            field: type
+            condition: value[bank]

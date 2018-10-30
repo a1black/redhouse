@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Redhouse\Shelter\Models;
 
+use Html;
+use Illuminate\Support\Fluent;
+use Illuminate\Validation\Validator;
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 use System\Behaviors\SettingsModel;
@@ -38,22 +41,10 @@ class TaxPayerInfo extends Model
      * @var array
      */
     public $rules = [
-        'fullname' => 'required|alpha|min:3|min:255',
-        'tax_id' => 'required|digits:10',
+        'fullname' => 'required|min:3|max:255',
+        'tax_id' => ['required', 'regex:/^(\d{10}|\d{12})$/'],
         'tax_number' => 'sometimes|required|digits:9',
-        'purpose' => 'required|alpha|min:10|max:255',
-    ];
-
-    /**
-     * Custom attribute names used by validator.
-     *
-     * @var array
-     */
-    public $customAttributes = [
-        'fullname' => 'redhouse.shelter::lang.taxinfo.fullname_label',
-        'tax_id' => 'redhouse.shelter::lang.taxinfo.tax_id_label',
-        'tax_number' => 'redhouse.shelter::lang.taxinfo.tax_number_label',
-        'purpose' => 'redhouse.shelter::lang.taxinfo.purpose_label',
+        'purpose' => 'required|min:10|max:255',
     ];
 
     /**
@@ -62,15 +53,16 @@ class TaxPayerInfo extends Model
      * @var array
      */
     public $customMessages = [
-        'digits' => 'redhouse.shelter::lang.taxinfo.error.digits',
+        'tax_id.regex' => 'redhouse.shelter::lang.taxinfo.error.tax_id',
+        'tax_number.digits' => 'redhouse.shelter::lang.taxinfo.error.tax_number',
     ];
 
     /**
-     * Modifies data before saving it.
+     * Modifies data before processing it.
      */
-    public function beforeSave()
+    public function beforeValidate()
     {
-        $this->fullname = mb_convert_case($this->fullname, MB_CASE_TITLE);
-        $this->purpose = ucfirst(mb_convert_case($this->purpose, MB_CASE_LOWER));
+        $this->fullname = Html::entities(Html::strip($this->fullname));
+        $this->purpose = Html::entities(Html::strip($this->purpose));
     }
 }

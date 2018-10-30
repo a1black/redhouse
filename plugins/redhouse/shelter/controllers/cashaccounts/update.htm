@@ -5,7 +5,9 @@
                 <?= e(trans('redhouse.shelter::lang.nav.cashaccounts.label')) ?>
             </a>
         </li>
-        <li><?= e(trans($this->pageTitle)) ?></li>
+        <li>
+            <?= e($this->pageTitle) ?>
+        </li>
     </ul>
 <?php Block::endPut() ?>
 
@@ -22,7 +24,7 @@
                 <button
                     type="submit"
                     data-request="onSave"
-                    data-request-data="refresh:1"
+                    data-request-data="redirect:0"
                     data-hotkey="ctrl+s, cmd+s"
                     data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
                     class="btn btn-primary">
@@ -37,6 +39,14 @@
                     class="btn btn-default">
                     <?= e(trans('backend::lang.form.save_and_close')) ?>
                 </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="<?= e(trans('backend::lang.form.deleting')) ?>"
+                    data-request-confirm="<?= e(trans('redhouse.shelter::lang.view.cashaccount.delete_confirm')) ?>">
+                </button>
+
                 <span class="btn-text">
                     <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('redhouse/shelter/cashaccounts') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
                 </span>
