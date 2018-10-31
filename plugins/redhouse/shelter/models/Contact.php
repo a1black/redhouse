@@ -11,6 +11,7 @@ use October\Rain\Database\Model;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Validation;
 use Redhouse\Shelter\Models\ContactNumber;
+use Redhouse\Shelter\Classes\ValidatorExtensions;
 
 /**
  * Organization contact information.
@@ -48,7 +49,7 @@ class Contact extends Model
      * @return array
      */
     public $customMessages = [
-        'name' => 'redhouse.shelter::lang.contact.error.name',
+        'alpha_name' => 'redhouse.shelter::lang.contact.error.name',
     ];
 
     /**
@@ -71,9 +72,7 @@ class Contact extends Model
         $validator = self::traitMakeValidator($data, $rules, $customMessages, $attributeNames);
 
         // Extend validator
-        $validator->addExtension('name', function ($attribute, $value, $parameters) {
-            return preg_match('/^([\pL\pM\pN_-]+\s?){1,3}$/u', $value) > 0;
-        });
+        ValidatorExtensions::apply($validator);
 
         // Add extra rules
         $extraRules = [

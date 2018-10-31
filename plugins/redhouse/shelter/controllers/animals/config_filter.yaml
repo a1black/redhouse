@@ -1,0 +1,35 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    type:
+        label: redhouse.shelter::lang.view.animal.filter.type
+        type: group
+        conditions: type in (:filtered)
+        options:
+            dog: redhouse.shelter::lang.animal.type.dog
+            cat: redhouse.shelter::lang.animal.type.cat
+
+    sex:
+        label: redhouse.shelter::lang.view.animal.filter.sex
+        type: group
+        conditions: sex in (:filtered)
+        options:
+            male: redhouse.shelter::lang.animal.sex.male
+            female: redhouse.shelter::lang.animal.sex.female
+
+    health:
+        label: redhouse.shelter::lang.view.animal.filter.health
+        type: group
+        conditions: health in (:filtered)
+        options:
+            healthy: redhouse.shelter::lang.animal.health.healthy
+            recovery: redhouse.shelter::lang.animal.health.recovery
+            sick: redhouse.shelter::lang.animal.health.sick
+
+    adopted:
+        label: redhouse.shelter::lang.view.animal.filter.adopted
+        type: checkbox
+        default: 0
+        conditions: adopted <> true

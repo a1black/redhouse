@@ -42,7 +42,7 @@ class CreateTables extends Migration
         });
 
         // Organization bank accounts and e-wallets
-        Schema::create('redhouse_shelter_cash_accounts', function($table) {
+        Schema::create('redhouse_shelter_cash_accounts', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('type');
@@ -55,17 +55,31 @@ class CreateTables extends Migration
             $table->timestamps();
         });
 
-        // Tax payer Info placed in system_setting table.
-        // Имя держателя счета
-        // ИНН
-        // КПП
-        // Наименование платежа
+        // Animal catalog
+        Schema::create('redhouse_shelter_animals', function ($table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('slug');
+            $table->string('type');
+            $table->string('name')->nullable();
+            $table->string('sex');
+            $table->date('birthday');
+            $table->string('health');
+            $table->text('health_info')->nullable();
+            $table->string('fundraise_url')->nullable();
+            $table->text('description');
+            $table->boolean('adopted');
+            $table->date('adopted_at')->nullable();
+            $table->string('adopted_by')->nullable();
+            $table->timestamps();
+        });
     }
 
     public function down()
     {
         Schema::disableForeignKeyConstraints();
 
+        Schema::dropIfExists('redhouse_shelter_animals');
         Schema::dropIfExists('redhouse_shelter_contacts');
         Schema::dropIfExists('redhouse_shelter_contact_numbers');
         Schema::dropIfExists('redhouse_shelter_cash_accounts');

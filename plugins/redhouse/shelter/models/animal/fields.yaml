@@ -1,0 +1,104 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    type:
+        label: redhouse.shelter::lang.animal.type_label
+        type: balloon-selector
+        span: full
+        default: dog
+        options:
+            dog: redhouse.shelter::lang.animal.type.dog
+            cat: redhouse.shelter::lang.animal.type.cat
+
+    name:
+        label: redhouse.shelter::lang.animal.name_label
+        type: text
+        span: left
+
+    slug:
+        label: redhouse.shelter::lang.animal.slug_label
+        type: text
+        preset:
+            field: name
+            type: slug
+        span: right
+
+    sex:
+        label: redhouse.shelter::lang.animal.sex_label
+        type: dropdown
+        options:
+            male: redhouse.shelter::lang.animal.sex.male
+            female: redhouse.shelter::lang.animal.sex.female
+        span: left
+
+    birthday:
+        label: redhouse.shelter::lang.animal.birthday_label
+        type: datepicker
+        mode: date
+        format: Y-m-d
+        firstDay: 1
+        span: right
+
+    adopted:
+        tab: redhouse.shelter::lang.animal.tab.adopted
+        label: redhouse.shelter::lang.animal.adopted_label
+        type: checkbox
+        default: false
+        span: full
+
+tabs:
+    defaultTab: redhouse.shelter::lang.animal.tab.description
+    fields:
+        section_description:
+            type: section
+            commentAbove: redhouse.shelter::lang.animal.section.description
+
+        # Description tab
+        description:
+            type: richeditor
+            toolbarButtons: undo|redo|clearFormatting|paragraphFormat|bold|italic|underline|strikeThrough|formatOL|formatUL|quote|selectAll|html
+            size: large
+
+        # Health description tab
+        section_health:
+            tab: redhouse.shelter::lang.animal.tab.health
+            type: section
+            commentAbove: redhouse.shelter::lang.animal.section.health
+
+        health:
+            tab: redhouse.shelter::lang.animal.tab.health
+            label: redhouse.shelter::lang.animal.health_label
+            type: dropdown
+            default: healthy
+            options:
+                healthy: redhouse.shelter::lang.animal.health.healthy
+                recovery: redhouse.shelter::lang.animal.health.recovery
+                sick: redhouse.shelter::lang.animal.health.sick
+            span: left
+
+        fundraise_url:
+            tab: redhouse.shelter::lang.animal.tab.health
+            label: redhouse.shelter::lang.animal.fundraise_url_label
+            type: text
+            span: right
+
+        health_info:
+            tab: redhouse.shelter::lang.animal.tab.health
+            label: redhouse.shelter::lang.animal.health_info_label
+            type: richeditor
+            toolbarButtons: undo|redo|clearFormatting|paragraphFormat|bold|italic|underline|strikeThrough|formatOL|formatUL|quote|selectAll|html
+            size: large
+
+        # Adoption details tab
+        section_adopt:
+            tab: redhouse.shelter::lang.animal.tab.adopted
+            type: section
+            commentAbove: redhouse.shelter::lang.animal.section.adopted
+
+        adopted_by:
+            tab: redhouse.shelter::lang.animal.tab.adopted
+            type: richeditor
+            toolbarButtons: undo|redo|clearFormatting|paragraphFormat|bold|italic|underline|strikeThrough|formatOL|formatUL|quote|selectAll|html
+            size: large

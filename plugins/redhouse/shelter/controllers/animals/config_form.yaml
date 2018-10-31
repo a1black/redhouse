@@ -1,0 +1,33 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: redhouse.shelter::lang.view.animal.form
+
+# Form field configuration file
+form: $/redhouse/shelter/models/animal/fields.yaml
+
+# Record model
+modelClass: Redhouse\Shelter\Models\Animal
+
+# Default redirect destination
+defaultRedirect: redhouse/shelter/animals
+
+# Record create form configuration
+create:
+    title: redhouse.shelter::lang.view.animal.create
+    redirect: redhouse/shelter/animals/update/:id
+    redirectClose: redhouse/shelter/animals
+    flashSave: redhouse.shelter::lang.view.animal.create_msg
+
+# Record update form configuration
+update:
+    title: redhouse.shelter::lang.view.animal.update
+    redirectClose: redhouse/shelter/animals
+    flashSave: redhouse.shelter::lang.view.animal.update_msg
+    flashDelete: redhouse.shelter::lang.view.animal.delete_msg
+
+# Record preview form configuration
+preview:
+    title: redhouse.shelter::lang.view.animal.preview

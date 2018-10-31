@@ -9,6 +9,7 @@ use Lang;
 use Backend;
 use Controller;
 use System\Classes\PluginBase;
+use Redhouse\Shelter\Classes\ListTypeHelpers;
 
 class Plugin extends PluginBase
 {
@@ -32,13 +33,16 @@ class Plugin extends PluginBase
     {
         return [
             'phone_number' => function ($value) {
-                return \Redhouse\Shelter\Models\ContactNumber::makePhoneNumber($value);
+                return ListTypeHelpers::prettyPhoneNumber($value);
             },
             'phone_type' => function ($value) {
                 return Lang::get('redhouse.shelter::lang.contact_number.type.'.$value);
             },
             'cashaccount_type' => function ($value) {
                 return Lang::get('redhouse.shelter::lang.cashaccount.type.'.$value);
+            },
+            'age' => function ($value) {
+                return ListTypeHelpers::age($value);
             },
         ];
     }
@@ -54,6 +58,12 @@ class Plugin extends PluginBase
                 'order' => 250,
 
                 'sideMenu' => [
+                    'animals' => [
+                        'label' => 'redhouse.shelter::lang.nav.animals.label',
+                        'icon' => 'oc-icon-github-alt',
+                        'url' => Backend::url('redhouse/shelter/animals'),
+                        'permissions' => [],
+                    ],
                     'cashaccounts' => [
                         'label' => 'redhouse.shelter::lang.nav.cashaccounts.label',
                         'icon' => 'oc-icon-bank',

@@ -9,6 +9,7 @@ use Illuminate\Validation\Validator;
 use October\Rain\Database\Model;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Validation;
+use Redhouse\Shelter\Classes\ValidatorExtensions;
 
 /**
  * Phone number for specific contact.
@@ -51,7 +52,7 @@ class CashAccount extends Model
      * @var array
      */
     public $customMessages = [
-        'bank' => 'redhouse.shelter::lang.cashaccount.error.bank',
+        'bank_name.alpha_text' => 'redhouse.shelter::lang.cashaccount.error.bank',
     ];
 
     /**
@@ -66,9 +67,7 @@ class CashAccount extends Model
         $validator = self::traitMakeValidator($data, $rules, $customMessages, $attributeNames);
 
         // Extend validator
-        $validator->addExtension('bank', function ($attribute, $value, $parameters) {
-            return preg_match('/^[\pL\pM\pN\s\x22\x27\x2C\x2D\x2E\x5F\xAB\xBB]+$/u', $value) > 0;
-        });
+        ValidatorExtensions::apply($validator);
 
         // Runtime dependent rules
         $extraRules = [
@@ -85,16 +84,20 @@ class CashAccount extends Model
         };
 
         // Bank type dependant rules
-        $validator->sometimes('bank_name', 'required|bank', $typeCheck(self::CA_TYPE_BANK));
+        $validator->sometimes('bank_name', 'required|alpha_text', $typeCheck(self::CA_TYPE_BANK));
         $validator->sometimes('account', 'digits:20', $typeCheck(self::CA_TYPE_BANK));
         $validator->sometimes('account', 'email', $typeCheck(self::CA_TYPE_PAYPAL));
         $validator->sometimes('account', 'regex:/^\d{12,}$/', $typeCheck(self::CA_TYPE_YANDEX));
         $validator->sometimes('bank_id_code', 'required|digits:9', $typeCheck(self::CA_TYPE_BANK));
         $validator->sometimes('correspondent', 'required|digits:20', $typeCheck(self::CA_TYPE_BANK));
         // Optional rules
-        $validator->sometimes('transfer_url', 'url', function (Fluent $request) {
-            return isset($this->transfer_url);
-        });
+        $validator->sometimes(
+            'transfer_url',
+            'url',
+            function (Fluent $request) {
+                return isset($this->transfer_url);
+            }
+        );
 
         return $validator;
     }
@@ -102,9 +105,9 @@ class CashAccount extends Model
     public function beforeSave()
     {
         if (in_array($this->type, [self::CA_TYPE_YANDEX, self::CA_TYPE_PAYPAL])) {
-            $this->bank_name = '';
-            $this->bank_id_code = '';
-            $this->correspondent = '';
+            $this->bank_name = null;
+            $this->bank_id_code = null;
+            $this->correspondent = null;
         }
     }
 
