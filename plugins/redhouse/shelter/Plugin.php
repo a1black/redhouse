@@ -28,7 +28,7 @@ class Plugin extends PluginBase
     {
         return [
             'Redhouse\Shelter\Components\Contacts' => 'contactList',
-            //'Redhouse\Shelter\Components\MoneyAccounts' => 'moneyAccounts',
+            'Redhouse\Shelter\Components\MoneyAccounts' => 'moneyAccounts',
             'Redhouse\Shelter\Components\SocialLikes' => 'socialLikes',
             'Redhouse\Shelter\Components\SocialLinks' => 'socialLinks',
         ];

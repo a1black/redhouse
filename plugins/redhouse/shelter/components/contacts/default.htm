@@ -1,0 +1,17 @@
+{% set contacts = __SELF__.contacts %}
+
+{% if contacts.count %}
+    {% for contact in contacts %}
+        <div>
+            <h5>{{ contact.name }}</h6>
+            <h6>{{ contact.note }}</h6>
+            <ul>
+            {% for number in contact.numbers %}
+                <li class="list-group-item">
+                    <i class="{{ number.icon }}"></i> {{ number.link|raw }}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+{% endif %}

@@ -19,7 +19,7 @@ class CreateTables extends Migration
         Schema::create('redhouse_shelter_contacts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('note')->nullable();
             $table->boolean('published')->default(true);
