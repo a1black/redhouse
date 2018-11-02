@@ -9,9 +9,13 @@ is_hidden = 0
 [blogPost newsPost]
 slug = "{{ :slug }}"
 categoryPage = 404
-==
-use System\Helpers\DateTime;
 
+[socialLikes]
+facebook = 1
+vk = 1
+odnoklassniki = 1
+==
+<?php
 function onEnd() {
         $this['post'] = $this->components['newsPost']->post;
         if (!$this['post']) {
@@ -19,8 +23,9 @@ function onEnd() {
         }
         $postTitle = $this['post']->title;
         $this->page->title = $postTitle;
-        $this->page->meta_title .= ' '.$postTitle;
+        $this->page->meta_title = $postTitle;
 }
+?>
 ==
 <!--
     @TODO Make rounded fa-symbols popuot on focus.
@@ -40,6 +45,7 @@ function onEnd() {
     @TODO On small screen hide either carusel or featured images.
     @TODO Published at is pain in the ass, create Twig filter: https://twig.symfony.com/doc/2.x/advanced.html
 -->
+{% set likelinks = socialLikes.links %}
 
 <!-- newspost.start -->
 <article>
@@ -54,32 +60,20 @@ function onEnd() {
                 <!-- newspost.author -->
                 <div class="lead clearfix">
                     <div class="float-right post-meta">опуб. {{ post.published_at|date('d M') }}</div>
-                    <ul class="list-inline">
+                {% if likelinks.count %}
+                    <ul class="list-inline social-share">
+                    {% for name, link in likelinks %}
                         <li class="list-inline-item">
-                            <a href="https://www.facebook.com/groups/632640273590306/">
+                            <a href="{{ link.url }}" target="_blank" class="social-link" data-socialname="{{ name }}">
                                 <span class="fa-stack fa-xs">
                                     <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    <i class="{{ link.icon }} fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
-                        <li class="list-inline-item">
-                            <a href="https://vk.com/club136697688">
-                                <span class="fa-stack fa-xs">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-vk fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="https://ok.ru/ryzhiki">
-                                <span class="fa-stack fa-xs">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-odnoklassniki fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
+                    {% endfor %}
                     </ul>
+                {% endif %}
                 </div>
 
                 <hr>
@@ -96,4 +90,3 @@ function onEnd() {
     </div>
 </article>
 <!-- newspost.end -->
-<hr>

@@ -5,63 +5,13 @@ description = "Site Footer"
     @TODO Do I need <hr> here?
     @TODO Add div help links just before social links.
 -->
-
 <hr>
 
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <ul class="list-inline text-center">
-                    <!--<li class="list-inline-item">-->
-                    <!--    <a href="#">-->
-                    <!--        <span class="fa-stack fa-lg">-->
-                    <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
-                    <!--            <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>-->
-                    <!--        </span>-->
-                    <!--    </a>-->
-                    <!--</li>-->
-                    <li class="list-inline-item">
-                        <a href="https://www.facebook.com/groups/632640273590306/">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://vk.com/club136697688">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-vk fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://ok.ru/ryzhiki">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-odnoklassniki fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <!--<li class="list-inline-item">-->
-                    <!--    <a href="#">-->
-                    <!--        <span class="fa-stack fa-lg">-->
-                    <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
-                    <!--            <i class="fas fab fa-pencil-alt fa-stack-1x fa-inverse"></i>-->
-                    <!--        </span>-->
-                    <!--    </a>-->
-                    <!--</li>-->
-                    <!--<li class="list-inline-item">-->
-                    <!--    <a href="#">-->
-                    <!--        <span class="fa-stack fa-lg">-->
-                    <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
-                    <!--            <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>-->
-                    <!--        </span>-->
-                    <!--    </a>-->
-                    <!--</li>-->
-                </ul>
+                {% partial 'social' round=1 %}
                 <p class="copyright text-muted">Copyright &copy; {{ this.theme.website_name }} {{ "now"|date("Y") }}</p>
             </div>
         </div>

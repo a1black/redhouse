@@ -1,0 +1,36 @@
+description = "Контактные номера приюта."
+
+[contactList]
+==
+
+{% set contacts = contactList.contacts %}
+
+{% if contacts.count %}
+    <h3 class="my-4 page-section-title">Контактные номера</h3>
+    <div class="row justify-content-start text-left">
+    {% for contact in contacts %}
+        <div class="col-md-6 contact-card">
+            <div class="card-body">
+                <h6 class="card-title">{{ contact.name }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted small">{{ contact.note }}</h6>
+                <ul class="card-text list-group list-group-flush">
+                {% for number in contact.numbers %}
+                    {% if number.type == 'mobil' %}
+                    <li class="list-group-item">
+                        <i class="fas fa-mobile-alt"></i> {{ number.number|phone }}
+                        <a class="btn btn-primary btn-sm d-md-none ml-2" role="button" href="tel:%2B7{{ number.number }}">
+                            <i class="fas fa-phone fa-sm"></i> Call
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="list-group-item">
+                        <i class="{{ number.icon }}"></i> {{ number.link|raw }}
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}

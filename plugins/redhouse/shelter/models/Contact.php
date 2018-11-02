@@ -9,6 +9,7 @@ use Illuminate\Support\Fluent;
 use Illuminate\Validation\Validator;
 use October\Rain\Database\Model;
 use October\Rain\Database\Builder;
+use October\Rain\Database\Relations\HasMany;
 use October\Rain\Database\Traits\Validation;
 use Redhouse\Shelter\Models\ContactNumber;
 use Redhouse\Shelter\Classes\ValidatorExtensions;
@@ -29,7 +30,12 @@ class Contact extends Model
 
     /** @var array */
     public $hasMany = [
-        'numbers' => ['Redhouse\Shelter\Models\ContactNumber', 'delete' => true],
+        'numbers' => [
+            'Redhouse\Shelter\Models\ContactNumber',
+            'order' => 'type',
+            'conditions' => 'enabled = 1',
+            'delete' => true
+        ],
     ];
 
     /**
@@ -60,6 +66,11 @@ class Contact extends Model
         return $this->numbers->count();
     }
 
+    public function numbers(): HasMany
+    {
+        return $this->hasMany(ContactNumber::class);
+    }
+
     /**
      * Returns data validator.
      */
@@ -76,7 +87,7 @@ class Contact extends Model
 
         // Add extra rules
         $extraRules = [
-            'name' => 'name',
+            'name' => 'alpha_name',
         ];
         $validator->addRules($extraRules);
 
@@ -95,14 +106,23 @@ class Contact extends Model
 
     public function beforeSave()
     {
+        $this->name = mb_convert_case($this->name, MB_CASE_TITLE);
         $this->note = Html::entities(Html::strip($this->note));
         $this->description = Html::entities(Html::strip($this->description));
     }
 
     /**
-     * Apply where condition to list query for filtering by contuct number.
+     * Returns query for selecting only published contacts.
+     */
+    public function scopeIsPublished(Builder $query): Builder
+    {
+        return $query->where('published', true);
+    }
+
+    /**
+     * Returns query for selecting contacts with matchin contact number.
      *
-     * @see Redhouse\Shelter\Models\ContuctNumber::scopeNumberLike
+     * @see Redhouse\Shelter\Models\ContactNumber::scopeNumberLike
      */
     public function scopeFilterContactNumber(Builder $query, string $number): Builder
     {

@@ -122,4 +122,14 @@ class CashAccount extends Model
 
         return $query;
     }
+
+    public function getTypeOptions(): array
+    {
+        $options = [];
+        foreach (self::$cashAccountTypes as $type) {
+            $options[$type] = 'redhouse.shelter::lang.cashaccount.type.'.$type;
+        }
+
+        return $options;
+    }
 }

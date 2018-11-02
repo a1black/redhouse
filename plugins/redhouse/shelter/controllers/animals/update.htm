@@ -6,7 +6,13 @@
             </a>
         </li>
         <li>
-            <?= e($this->pageTitle) ?>
+            <?= e($this->pageTitle) ?>&nbsp;&nbsp;
+            <a
+                href="<?= Url::to('/', ['animals', $formModel->slug]) ?>"
+                target="_blank"
+                title="<?= e(trans('redhouse.shelter::lang.nav.animals.to_site')) ?>">
+                <i class="icon-crosshairs text-primary"></i>
+            </a>
         </li>
     </ul>
 <?php Block::endPut() ?>

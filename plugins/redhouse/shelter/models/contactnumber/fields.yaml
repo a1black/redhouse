@@ -7,10 +7,6 @@ fields:
         label: redhouse.shelter::lang.contact_number.type_label
         required: true
         type: dropdown
-        options:
-            mobil: redhouse.shelter::lang.contact_number.type.mobil
-            skype: redhouse.shelter::lang.contact_number.type.skype
-            viber: redhouse.shelter::lang.contact_number.type.viber
         default: mobil
         span: left
 

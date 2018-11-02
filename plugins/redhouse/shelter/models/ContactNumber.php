@@ -47,6 +47,7 @@ class ContactNumber extends Model
     public $rules = [
         'type' => 'required',
         'number' => 'required',
+        'contact_id' => 'required',
     ];
 
     /**
@@ -57,6 +58,7 @@ class ContactNumber extends Model
     public $customMessages = [
         'number.digits' => 'redhouse.shelter::lang.contact_number.error.number_digits',
         'number.regex' => 'redhouse.shelter::lang.contact_number.error.number_regex',
+        'contact_id.required' => 'redhouse.shelter::lang.contact_number.error.contact_id',
     ];
 
     /**
@@ -135,5 +137,15 @@ class ContactNumber extends Model
         }
 
         return $query;
+    }
+
+    public function getTypeOptions(): array
+    {
+        $options = [];
+        foreach (self::$contactNumberTypes as $type) {
+            $options[$type] = 'redhouse.shelter::lang.contact_number.type.'.$type;
+        }
+
+        return $options;
     }
 }

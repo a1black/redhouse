@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Redhouse\Shelter\Models;
 
+use Html;
+use Carbon\Carbon;
 use Illuminate\Support\Fluent;
 use Illuminate\Validation\Validator;
 use October\Rain\Database\Model;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Validation;
+use October\Rain\Database\Traits\Sluggable;
 use Redhouse\Shelter\Classes\ValidatorExtensions;
 
 /**
@@ -16,6 +19,7 @@ use Redhouse\Shelter\Classes\ValidatorExtensions;
  */
 class Animal extends Model
 {
+    use Sluggable;
     use Validation {
         makeValidator as traitMakeValidator;
     }
@@ -53,17 +57,40 @@ class Animal extends Model
     public $table = 'redhouse_shelter_animals';
 
     /** @var array */
+    public $slugs = [
+        'slug' => ['type', 'name'],
+    ];
+
+    /** @var array */
     public $rules = [
-        'slug' => 'required|alpha_dash',
         'type' => 'required',
         'health' => 'required',
         'sex' => 'required',
-        'birthday' => 'required|date_format:Y-m-d',
+        'birthday' => 'required',
+        'description' => 'required',
         'fundraise_url' => 'url',
     ];
 
     /** @var array */
+    public $attributeNames = [
+        'description' => 'redhouse.shelter::lang.animal.description_label',
+        'health_info' => 'redhouse.shelter::lang.animal.health_info_label',
+        'adopted_by' => 'redhouse.shelter::lang.animal.adopted_by_label',
+    ];
+
     public $customMessages = [
+        'description.required' => 'redhouse.shelter::lang.animal.error.desc_required',
+    ];
+
+    /** @var array */
+    protected $dates = [
+        'birthday',
+        'adopted_at',
+    ];
+
+    /** @var array */
+    public $attachMany = [
+        'featured_images' => ['System\Models\File', 'order' => 'sort_order'],
     ];
 
     /**
@@ -86,15 +113,13 @@ class Animal extends Model
             'health' => sprintf('in:%s', implode(',', self::$healthTypes)),
             'sex' => sprintf('in:%s', implode(',', self::$sexTypes)),
             'name' => 'alpha_name',
-            'health_info' => 'alpha_text',
-            'adopted_by' => 'alpha_text',
         ];
         $validator->addRules($extraRules);
 
         // Optional rules
         $validator->sometimes(
             'adopted_at',
-            'required|date_format:Y-m-d',
+            'required',
             function (Fluent $request) {
                 return $request->get('adopted') === true;
             }
@@ -104,13 +129,95 @@ class Animal extends Model
     }
 
     /**
+     * Process input data before validation.
+     */
+    public function beforeValidate()
+    {
+        $this->adopted = $this->adopted == 1;
+    }
+
+    /**
      * Process data before saving it into database.
      */
     public function beforeSave()
     {
-        if ($this->adopted === true) {
-            //$this->adopted_at = null;
-            //$this->adopted_by = null;
+        $this->description = Html::clean($this->description);
+        $this->health_info = Html::clean($this->health_info) ?: null;
+        $this->adopted_by = Html::clean($this->adopted_by) ?: null;
+    }
+
+    /**
+     * Returns birthday date object.
+     */
+    public function getBirthdayAttribute($value): ?Carbon
+    {
+        if ($value == '' && $value == null) {
+            return null;
         }
+
+        return new Carbon($value);
+    }
+
+    /**
+     * Returns adopted_at date object.
+     */
+    public function getAdoptedAtAttribute($value): ?Carbon
+    {
+        if ($value == '' && $value == null) {
+            return null;
+        }
+
+        return new Carbon($value);
+    }
+
+    public function getHealthOptions(): array
+    {
+        $options = [];
+        foreach (self::$healthTypes as $type) {
+            $options[$type] = 'redhouse.shelter::lang.animal.health.'.$type;
+        }
+
+        return $options;
+    }
+
+    public function getSexOptions(): array
+    {
+        $options = [];
+        foreach (self::$sexTypes as $sex) {
+            $options[$sex] = 'redhouse.shelter::lang.animal.sex.'.$sex;
+        }
+
+        return $options;
+    }
+
+    public function getTypeOptions(): array
+    {
+        $options = [];
+        foreach (self::$animalTypes as $type) {
+            $options[$type] = 'redhouse.shelter::lang.animal.type.'.$type;
+        }
+
+        return $options;
+    }
+
+    /**
+     * Returns animal age.
+     * Posible values:
+     *      positive - age in months
+     *      negative - age in days
+     *      zero     - not born yet
+     */
+    public function getAge(): int
+    {
+        $diff = $this->birthday ? $this->birthday->diff(Carbon::now()) : null;
+        if (!$diff || $diff->invert) {
+            $age = 0;
+        } elseif (!$diff->y && !$diff->m) {
+            $age = $diff->d;
+        } else {
+            $age = $diff->y * 12 + $diff->m + round($diff->d / 41);
+        }
+
+        return $age;
     }
 }

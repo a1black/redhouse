@@ -26,7 +26,35 @@ class Plugin extends PluginBase
 
     public function registerComponents(): array
     {
-        return [];
+        return [
+            'Redhouse\Shelter\Components\Contacts' => 'contactList',
+            //'Redhouse\Shelter\Components\MoneyAccounts' => 'moneyAccounts',
+            'Redhouse\Shelter\Components\SocialLikes' => 'socialLikes',
+            'Redhouse\Shelter\Components\SocialLinks' => 'socialLinks',
+        ];
+    }
+
+    public function registerMarkupTags(): array
+    {
+        return [
+            'filters' => [
+                'urlencode' => 'urlencode',
+                'ftrim' => function ($str, $charlist = " \t\n\r\0\x0B") {
+                    return trim(mb_ereg_replace('/\s{2,}/', ' '), $charlist);
+                },
+                'uppercase' => function ($str) {
+                    return mb_convert_case($str, MB_CASE_UPPER, "UTF-8");
+                },
+                'lowercase' => function ($str) {
+                    return mb_convert_case($str, MB_CASE_LOWER, "UTF-8");
+                },
+                'ucfirst' => function ($str) {
+                    return mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
+                },
+                'phone' => ['\Redhouse\Shelter\Classes\ListTypeHelpers', 'prettyPhoneNumber'],
+            ],
+            'functions' => [],
+        ];
     }
 
     public function registerListColumnTypes(): array
@@ -43,6 +71,12 @@ class Plugin extends PluginBase
             },
             'age' => function ($value) {
                 return ListTypeHelpers::age($value);
+            },
+            'sex_type' => function ($value) {
+                return Lang::get('redhouse.shelter::lang.animal.sex.'.$value);
+            },
+            'health_type' => function ($value) {
+                return Lang::get('redhouse.shelter::lang.animal.health.'.$value);
             },
         ];
     }

@@ -10,7 +10,7 @@ columns:
 
     sex:
         label: redhouse.shelter::lang.animal.sex_label
-        type: text
+        type: sex_type
         invisible: true
 
     name:
@@ -20,13 +20,13 @@ columns:
 
     health:
         label: redhouse.shelter::lang.animal.health_label
-        type: text
+        type: health_type
 
     birthday:
-        label: redhouse.shelter::lang.animal.birthday_label
+        label: redhouse.shelter::lang.animal.age_label
         type: age
 
     adopted:
         label: redhouse.shelter::lang.animal.adopted_label
-        type: text
+        type: switch
         sortable: false

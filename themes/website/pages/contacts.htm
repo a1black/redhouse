@@ -6,21 +6,10 @@ meta_title = "Контактная информация"
 meta_description = ""
 meta_keywords = ""
 is_hidden = 0
-==
-function onEnd() {
-    $gingers = new stdClass();
-    $gingers->contacts = [];
-    for ($i=0; $i<2; $i++) {
-        $contact = ['operator' => 'Имя оператора', 'note' => 'звонить с 9:00 по 22:00 МКС', 'contacts' => []];
-        for ($j=0; $j<5; $j++) {
-            $contact['contacts'][] = ['phone' => '+7 (555) 555-55-55', 'provider' => 'mobile'];
-        }
-        $contact['contacts'][] = ['phone' => 'skype:user', 'provider' => 'skype'];
-        $contact['contacts'][] = ['phone' => 'viber:user', 'provider' => 'viber'];
-        $gingers->contacts[] = $contact;
-    }
-    $this['gingers'] = $gingers;
-}
+
+[contactList]
+
+[socialLinks]
 ==
 <!--
     @TODO This page is a condidate for full width header pic.
@@ -38,6 +27,7 @@ function onEnd() {
     @COMPONENT: contact phone numbers
     @COMPONENT: Map pin
 -->
+{% set soclinks = socialLinks.links %}
 
 <div class="container">
     <!-- contacts.title -->
@@ -59,68 +49,17 @@ function onEnd() {
                 <i class="fas fa-envelope"> </i>
                 <a href="mailto:ouremailaddress@example.com">ouremailaddress@example.com</a>
             </div>
+        {% if soclinks.count %}
             <h6>Присоединитесь к нашей группе</h6>
             <div>
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="https://www.facebook.com/groups/632640273590306/">
-                            <span class="fa-stack fa-sm">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://vk.com/club136697688">
-                            <span class="fa-stack fa-sm">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-vk fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://ok.ru/ryzhiki">
-                            <span class="fa-stack fa-sm">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-odnoklassniki fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
+                {% partial 'social' size='xs' round=1 %}
             </div>
+        {% endif %}
         </div>
     </div>
 
     <!-- contacts.phone -->
-    {% if gingers.contacts|length %}
-    <h3 class="my-4 page-section-title">Контактные номера</h3>
-    <div class="row justify-content-start text-left">
-        {% for contact in gingers.contacts %}
-        <div class="col-md-6 col-lg-4 contact-card">
-            <div class="card-body">
-                <h6 class="card-title">{{ contact.operator }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted small">{{ contact.note }}</h6>
-                <ul class="card-text list-group list-group-flush">
-                    {% for number in contact.contacts %}
-                        {% if number.provider == 'skype' %}
-                        <li class="list-group-item"><i class="fab fa-skype"></i> <a href="skype:{{ number.phone }}?call" data-provider="skype">skype:user</a></li>
-                        {% elseif number.provider == 'viber' %}
-                        <li class="list-group-item"><i class="fab fa-viber"></i> <a href="viber://add?number={{ number.phone }}" data-provider="viber">viber:user</a></li>
-                        {% else %}
-                        <li class="list-group-item">
-                            <i class="fas fa-mobile-alt"></i> {{ number.phone }}
-                            <a class="btn btn-primary btn-sm d-md-none ml-2" role="button" href="tel:{{ number.phone }}" data-provider="{{ number.provider }}">
-                                <i class="fas fa-phone fa-sm"></i> Call
-                            </a>
-                        </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+    {% partial 'contacts' %}
 
     <!-- contacts.map -->
     <section id="contact" class="map">
