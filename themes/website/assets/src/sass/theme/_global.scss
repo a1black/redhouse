@@ -2,9 +2,7 @@
 body {
   font-size: 20px;
   color: $gray-900;
-  // AGENCY
-  overflow-x: hidden;
-  @include body-font;
+  @include main-font;
 }
 
 p {
@@ -13,8 +11,16 @@ p {
   a {
     text-decoration: underline;
   }
-  // AGENCY
-  //line-height: 1.75;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  @include main-font;
 }
 
 a {
@@ -26,50 +32,15 @@ a {
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  // AGENCY
-  font-weight: 700;
-  @include heading-font;
-}
-
 blockquote {
   font-style: italic;
   color: $gray-600;
 }
 
-.text-primary {
-  color: $primary !important;
-}
-
-.section-heading {
-  font-size: 36px;
-  font-weight: 700;
-  margin-top: 60px;
-}
-
-.caption {
-  font-size: 14px;
-  font-style: italic;
-  display: block;
-  margin: 0;
-  padding: 10px;
-  text-align: center;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-
-
 ::-moz-selection {
   color: $white;
   background: $primary;
   text-shadow: none;
-  // AGENCY
-  //color: $primary;
 }
 
 ::selection {
@@ -87,7 +58,7 @@ img::-moz-selection {
   color: $white;
   background: transparent;
 }
-// AGENCY ALL BELOW
+
 section {
   padding: 100px 0;
   h2.section-heading {
@@ -101,44 +72,26 @@ section {
     font-style: italic;
     margin-bottom: 75px;
     text-transform: none;
-    @include heading-font;
+    @include main-font;
   }
-}
-@media(min-width:768px) {
-  section {
+  @media(min-width:768px) {
     padding: 150px 0;
   }
 }
 
-.btn-xl {
-  font-size: 18px;
-  padding: 20px 40px;
+// Override bootstrap classes for this theme
+.text-primary {
+  color: $primary !important;
 }
 
-.btn-primary {
-  background-color: $primary;
-  border-color: $primary;
-  &:active,
-  &:focus,
-  &:hover {
-    background-color: darken($primary, 7.5%) !important;
-    border-color: darken($primary, 7.5%) !important;
-    color: white;
-  }
-  &:active,
-  &:focus {
-    box-shadow: 0 0 0 0.2rem rgba(254, 209, 55,.5) !important;
-  }
-}
-// Bootstrap overrides for this template
 .btn {
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   padding: 15px 25px;
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 0;
-  @include body-font;
+  @include main-font;
 }
 
 .btn-primary {
@@ -151,9 +104,36 @@ section {
     background-color: darken($primary, 7.5) !important;
     border-color: darken($primary, 7.5) !important;
   }
+  &:active,
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(254, 209, 55,.5) !important;
+  }
 }
 
 .btn-lg {
   font-size: 16px;
   padding: 25px 35px;
+}
+
+// Global theme classes
+.section-heading {
+  font-size: 36px;
+  font-weight: 700;
+  margin-top: 60px;
+}
+
+.caption {
+  font-size: 14px;
+  font-style: italic;
+  display: block;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.btn-xl {
+  font-size: 18px;
+  padding: 20px 40px;
 }

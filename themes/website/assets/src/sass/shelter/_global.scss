@@ -1,0 +1,114 @@
+// Typography
+body {
+  @include body-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include heading-font;
+}
+
+// Custom Horizontal Rule with Paw icon
+hr.paw-light,
+hr.paw-dark {
+  max-width: 15rem;
+  padding: 0;
+  text-align: center;
+  border: none;
+  border-top: solid 0.25rem;
+  margin-left: auto;
+  margin-right: auto;
+  &.paw-alt {
+    border-top: solid 0.15rem;
+  }
+}
+
+hr.paw-light:after,
+hr.paw-dark:after {
+  position: relative;
+  top: -.8em;
+  display: inline-block;
+  padding: 0 0.25em;
+  content: '\f1b0';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.5em;
+  &.paw-alt {
+    font-size: 1.2em;
+  }
+}
+
+hr.paw-light {
+  border-color: $white;
+}
+hr.paw-light:after {
+  color: $white;
+  background-color: $primary;
+}
+
+hr.paw-dark {
+  border-color: $gray-900;
+}
+hr.paw-dark:after {
+  color: $gray-900;
+  background-color: white;
+}
+
+// Section Padding Settings
+section {
+  padding: 6rem 0;
+  h2 {
+    font-size: 2.25rem;
+    line-height: 2rem;
+  }
+  @media (min-width: 992px) {
+    h2 {
+      font-size: 3rem;
+      line-height: 2.5rem;
+    }
+  }
+}
+
+// Selection effect
+::-moz-selection {
+  color: $white;
+  background: $primary;
+  text-shadow: none;
+}
+
+::selection {
+  color: $white;
+  background: $primary;
+  text-shadow: none;
+}
+
+img::selection {
+  color: $white;
+  background: transparent;
+}
+
+img::-moz-selection {
+  color: $white;
+  background: transparent;
+}
+
+// Custom Button Size
+.btn-xl {
+  padding: 1rem 1.75rem;
+  font-size: 1.25rem;
+}
+
+// Custom Link underline decoration
+.underlined {
+  @include underline-alt;
+  &:hover,
+  &:active,
+  &:focus {
+    border-style: none;
+    @include transition-all;
+  }
+}

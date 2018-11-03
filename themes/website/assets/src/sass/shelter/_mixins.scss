@@ -1,0 +1,28 @@
+@mixin body-font() {
+  font-family: 'Ubuntu';
+  font-weight: $font-weight-normal;
+}
+
+@mixin heading-font() {
+  font-family: 'Ubuntu';
+  font-weight: $font-weight-bold;
+}
+
+@mixin underline-alt() {
+  border-bottom-width: 1px;
+  border-bottom-color: inherit;
+  border-bottom-style: solid;
+}
+
+@mixin transition-all() {
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+@mixin background-cover() {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

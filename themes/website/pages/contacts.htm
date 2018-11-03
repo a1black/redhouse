@@ -8,8 +8,6 @@ meta_keywords = ""
 is_hidden = 0
 
 [contactList]
-
-[socialLinks]
 ==
 <!--
     @TODO This page is a condidate for full width header pic.
@@ -27,39 +25,30 @@ is_hidden = 0
     @COMPONENT: contact phone numbers
     @COMPONENT: Map pin
 -->
-{% set soclinks = socialLinks.links %}
 
 <div class="container">
-    <!-- contacts.title -->
-    <h1 class="page-title">Контакты</h1>
-
-    <!-- contacts.description -->
-    <div class="row">
-        <div class="col-md-10 text page-desc">Наша контактная информация.</div>
-    </div>
-
     <!-- contacts.social -->
     <div class="row justify-content-between">
         <div class="col-md-6 col-lg-5">
             <p>Уважаемый посетитель, мы с радостью готовы ответить на все интересующие вас вопросы, провести корсультацию или рассмотреть предложения о сотрудничестве. Только мы просим вас звонить нам в течении набочего дня с 9:00 до 21:00 по МКС.</p>
         </div>
-        <div class="col-md-6 col-lg-5">
-            <h6>Напишите нам письмо</h6>
-            <div class="text">
-                <i class="fas fa-envelope"> </i>
-                <a href="mailto:ouremailaddress@example.com">ouremailaddress@example.com</a>
+        <div class="col-md-6 col-lg-5 align-self-center p-1 text-center">
+            <h6 class="mb-1">Напишите нам письмо</h6>
+            <div class="text pb-3">
+                <a class="underlined text-primary" href="mailto:ouremailaddress@example.com">ouremailaddress@example.com</a>
             </div>
-        {% if soclinks.count %}
-            <h6>Присоединитесь к нашей группе</h6>
+            <h6 class="mb-1">Присоединитесь к нашей группе</h6>
             <div>
                 {% partial 'social' size='xs' round=1 %}
             </div>
-        {% endif %}
         </div>
     </div>
 
     <!-- contacts.phone -->
-    {% partial 'contacts' %}
+    <h3 class="mt-4 text-center">Контактные номера</h3>
+    <div class="row justify-content-start text-left">
+        {% partial 'contacts' %}
+    </div>
 
     <!-- contacts.map -->
     <section id="contact" class="map">

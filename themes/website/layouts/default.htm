@@ -1,5 +1,7 @@
 description = "Default layout"
 ==
+{% set pageTitle = this.page.url == '/' ? this.theme.website_name : this.page.title %}
+{% set pageDesc = this.page.url == '/' ? '' : ' | ' ~ this.theme.website_name %}
 <!doctype html>
 <html lang="ru">
     <head>
@@ -21,13 +23,32 @@ description = "Default layout"
         <meta name="theme-color" content="#563d7c">
         <!-- favicons.end -->
 
+        <!-- social.start -->
+        <!--Google-->
+        <meta itemprop="name" content="{{ pageTitle }}{{ pageDesc }}"/>
+        <meta itemprop="description" content="{{ this.theme.meta_description }}"/>
+        <!--<meta itemprop="image" content=""/>-->
+        <!--Twitter-->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="{{ pageTitle }}{{ pageDesc }}">
+        <meta name="twitter:description" content="{{ this.theme.meta_description }}"/>
+        <!--<meta name="twitter:image:src" content=""/>-->
+        <!--Facebook-->
+        <meta property="og:site_name" name="og:site_name" content="{{ pageTitle }}"/>
+        <meta property="og:description" name="og:description" content="{{ this.theme.meta_description }}"/>
+        <!--<meta property="og:image" name="og:image" content=""/>-->
+        <meta property="og:title" name="og:title" content="{{ pageTitle }}{{ pageDesc }}"/>
+        <meta property="og:type" name="og:type" content="website"/>
+        <meta property="og:url" name="og:url" content="{{ url_current() }}"/>
+        <!-- social.end -->
+
         <!-- styles -->
         <link href="{{ 'assets/dist/css/app.css'|theme }}" rel="stylesheet">
         {% styles %}
 
-        <title>{% if this.page.url == '/' %} {% elseif this.page.title %}{{ this.page.title }} | {% endif %}{{ this.theme.website_name }}</title>
+        <title>{{ pageTitle }}{{ pageDesc }}</title>
     </head>
-    <body class="layout-{{ this.layout.id }} page-{{ this.page.id }}" style="padding-top: 156px">
+    <body class="layout-{{ this.layout.id }} page-{{ this.page.id }}">
         <!-- @TODO Look into "display: flex" -->
         <!-- @TODO Decide on color theme, I think white-black-darkorange. -->
         <!-- @TODO Make logo and update favicons images and colors. -->

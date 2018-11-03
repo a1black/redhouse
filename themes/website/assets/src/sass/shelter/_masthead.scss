@@ -1,0 +1,12 @@
+header.masthead {
+  padding-top: calc(3rem + 40px);
+  padding-bottom: 2rem;
+}
+@media (min-width: 992px) {
+  header.masthead {
+    padding-top: calc(3rem + 50px);
+    h1 {
+      font-size: 3.25em;
+    }
+  }
+}

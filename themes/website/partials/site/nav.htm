@@ -1,65 +1,47 @@
 description = "Site Navigation"
 ==
-use Cms\Classes\Page as Pg;
-use Cms\Classes\Theme;
-
-function onStart() {
-    $theme = Theme::getEditTheme();
-    $pages = Pg::listInTheme($theme, true);
-    $refes = [];
-    foreach ($pages as $page) {
-    $refes[$page->baseFileName] = [$page->url, $page->title];
-    }
-    $this['pages'] = $refes;
-}
-==
 
 <!-- @TODO add Logo to "navbar-brand" -->
 <!-- @TODO remove border for "dropdown-menu show" -->
 
-{% set
-    links = [
-        'animals',
-        {parent: 'Помочь', children: ['donate', 'adopt']},
-        'news',
-        'about',
-        'contacts',
-    ]
-%}
-
-{% macro render_menu(links, pages, currentPage) %}
-    {% for link in links %}
-        {% set parent = link is iterable ? 1 : 0 %}
-        <li class="nav-item {{ parent ? 'dropdown' }} {{ link == currentPage ? 'active' }}">
-        {% if parent %}
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">{{ link.parent }}</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownResources">
-            {% for child in link.children if attribute(pages, child) is defined %}
-                <a class="nav-link" href="{{ attribute(pages, child)[0] }}">{{ attribute(pages, child)[1] }}</a>
-            {% endfor %}
-            </div>
-        {% elseif attribute(pages, link) is defined %}
-            <a class="nav-link" href="{{ attribute(pages, link)[0] }}">{{ attribute(pages, link)[1] }}</a>
-        {% endif %}
-        </li>
-    {% endfor %}
-{% endmacro %}
-
-{% import _self as nav %}
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="{{ 'home'|page }}">
-            <img src="{{ '/assets/dist/images/site/logo-orange.svg'|theme }}" width="50" height="50" alt=""/>
-            <!--<i class="fa-lg fas fa-dog"></i>-->
+            <img src="{{ '/assets/dist/images/site/logo-white.svg'|theme }}" width="50" height="50" alt=""/>
         </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-             <i class="fas fa-bars"></i> 
-            <!--<span class="navbar-toggler-icon"></span>-->
+        <button class="navbar-toggler navbar-toggler-right text-uppercase rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ml-auto">
-                {{ nav.render_menu(links, pages, this.page.baseFileName) }} </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ 'animals'|page }}">
+                        <span>Наши животные</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown show">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Помочь</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownResources">
+                        <a class="nav-link" href="{{ 'donation'|page }}"><span>Пожертвование</span></a>
+                        <a class="nav-link" href="{{ 'adopt'|page }}"><span>Стать Опекуном</span></a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ 'news'|page }}">
+                        <span>Новости</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ 'contacts'|page }}">
+                        <span>Контакты</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ 'about'|page }}">
+                        <span>О нас</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
