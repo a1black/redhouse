@@ -1,0 +1,52 @@
+// Style for news feed
+.post-preview {
+  padding-bottom: 3rem;
+  .post-title {
+    margin-bottom: 0;
+    font-size: 2rem;
+    line-height: 1.125;
+    a {
+      color: $body-color;
+      &:hover,
+      &:active,
+      &:focus {
+        @include underline-alt;
+        @include transition-all;
+      }
+    }
+  }
+  p.post-meta {
+    margin: 0;
+    font-style: italic;
+    font-size: 80%;
+  }
+  p.post-summary {
+    margin: 1rem 0 0;
+  }
+}
+.post-view {
+  padding-bottom: 1rem;
+  ul.social-share {
+    margin: 0
+  }
+  p.post-meta {
+    margin: 0;
+    font-style: italic;
+    font-size: 80%;
+  }
+  .post-content {
+    margin: 1.5rem 0 0;
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-size: 85%;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      padding-bottom: 1rem;
+    }
+  }
+}

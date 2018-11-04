@@ -1,8 +1,8 @@
-description = "Basic Bootstrap based carousel"
+description = "Примитивная карусель но базе Bootstrap"
 ==
 {% if images.count %}
-<div class="row basic-carousel">
-    <div class="col-lg-8 col-md-10 mx-auto">
+<div class="row pb-4 basic-carousel">
+    <div class="col-lg-8 mx-auto">
         <div id="{{ name }}" class="carousel slide" data-ride="false" data-interval="false">
             <ol class="carousel-indicators">
                 {% for image in images %}
@@ -26,7 +26,7 @@ description = "Basic Bootstrap based carousel"
             </a>
         </div>
         {% if images.count > 1 %}
-        <div class="row text-center text-lg-left carousel-thumbnails">
+        <div class="row text-left d-none d-lg-flex carousel-thumbnails">
             {% for image in images %}
             <div class="col-lg-3 col-md-4 col-xs-6">
                 <span data-target="#{{ name }}" data-slide-to="{{ loop.index0 }}" class="mb-4 h-100">

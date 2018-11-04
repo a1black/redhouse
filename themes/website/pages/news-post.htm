@@ -47,19 +47,21 @@ function onEnd() {
 -->
 {% set likelinks = socialLikes.links %}
 
+<style>
+    .masthead {padding-bottom: 1rem !important;}
+    .masthead .page-title {font-size: 1.5rem !important;}
+</style>
+
 <!-- newspost.start -->
 <article>
     <div class="container">
-        <!-- newspost.content.start -->
+        <!-- newspost.start -->
         <div class="row">
-            <div class="col-lg-10 col-md-10 mx-auto">
 
-                <!-- newspost.title -->
-                <h1 class="mt-4">{{ post.title }}</h1>
-
+            <div class="col-lg-10 mx-auto post-view">
                 <!-- newspost.author -->
                 <div class="lead clearfix">
-                    <div class="float-right post-meta">опуб. {{ post.published_at|date('d M') }}</div>
+                    <p class="float-right post-meta">опуб. {{ post.published_at|date('d M') }}</p>
                 {% if likelinks.count %}
                     <ul class="list-inline social-share">
                     {% for name, link in likelinks %}
@@ -76,13 +78,10 @@ function onEnd() {
                 {% endif %}
                 </div>
 
-                <hr>
-
-                <!-- newspost.preview -->
-                <!--<img class="img-fluid rounded" src="" alt="">-->
-
                 <!-- newspost.body -->
-                {{ post.content_html|raw }}
+                <div class="post-content">
+                    {{ post.content_html|raw }}
+                </div>
             </div>
         </div>
         <!-- newspost.featured -->
