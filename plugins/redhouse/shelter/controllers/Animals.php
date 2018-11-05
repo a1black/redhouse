@@ -11,6 +11,7 @@ use BackendMenu;
 use Backend\Classes\Controller;
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
+use Cms\Classes\Controller as CmsController;
 use Redhouse\Shelter\Models\Animal;
 
 /**
@@ -34,5 +35,15 @@ class Animals extends Controller
         parent::__construct();
 
         BackendMenu::setContext('Redhouse.Shelter', 'shelter', 'animals');
+    }
+
+    public function update($recordId, $context = null)
+    {
+        parent::update($recordId, $context);
+
+        $this->vars['viewOnSite'] = (new CmsController)->pageUrl(
+            'animal',
+            ['slug' => $this->vars['formModel']->slug]
+        );
     }
 }

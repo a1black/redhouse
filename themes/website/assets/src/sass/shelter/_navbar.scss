@@ -6,6 +6,10 @@
   @include heading-font;
   .navbar-brand {
     color: $white;
+    img {
+      height: 50px;
+      width: 50px;
+    }
   }
   .navbar-nav {
     margin-top: 1rem;
@@ -37,6 +41,21 @@
     padding: 0.8rem;
     color: $white;
     background-color: $primary;
+  }
+}
+@media(max-width:720px) {
+  #mainNav {
+    padding-top: 0;
+    padding-bottom: 0;
+    .navbar-brand {
+      img {
+        height: 40px;
+      }
+    }
+    .navbar-toggler {
+      font-size: 120%;
+      padding: 0 0.8rem;
+    }
   }
 }
 @media(min-width:992px) {

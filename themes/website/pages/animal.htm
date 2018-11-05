@@ -1,17 +1,24 @@
 title = "Питомец"
-url = "/animal"
+url = "/animal/:slug"
 layout = "default"
 description = "Описание питомца."
 meta_title = ""
 meta_description = ""
 meta_keywords = ""
 is_hidden = 0
+
+[animalView]
+slug = "{{ :slug }}"
 ==
 function onEnd() {
-    $gingers = new stdClass();
-    $gingers->animal = ['name' => 'Кузя', 'age' => '10', 'sex' => 'm', 'photos' => []];
-    $this->page->title = $gingers->animal['name'];
-    $this['gingers'] = $gingers;
+    $animal = $this->components['animalView']->animal;
+    if (!$animal) {
+        return Redirect::to('/');
+    }
+
+    $this['animal'] = $animal;
+    $this->page->title = $this->page->meta_title = $animal->name;
+    $this->page->title_alt = "Привет, меня зовут {$animal->name}!";
 }
 ==
 
@@ -22,39 +29,48 @@ function onEnd() {
     @CSS Page title and description
     @CSS List group
 -->
+<style>
+    .masthead {padding-bottom: 1rem !important;}
+    .masthead .page-title {font-size: 1.75rem !important;}
+</style>
 
-<div class="container">
-
-    <!-- animal.title -->
-    <h1 class="page-title">Привет, меня зовут {{ gingers.animal.name }}!</h1>
+<div class="container pb-3">
 
     <!-- animal.body -->
-    <div class="row">
+    <div class="row justify-content-center animal-card">
 
-        <!-- animal.photo -->
-        <div class="col-md-8">
-            <img class="img-fluid" src="{{ 'assets/dist/images/employees/security.jpg'|theme }}">
+        <!-- animal.info -->
+        <div class="col-lg-10">
+            <div class="row">
+                <!-- animal.photo -->
+                <div class="col-lg-8">
+                    <img class="img-fluid mx-auto" src="{{ animal.profilePic ?: 'http://placehold.it/500x300' }}">
+                </div>
+
+                <!-- animal.specs -->
+                <div class="col-lg-4">
+                    <ul class="ac-spec">
+                        <li>
+                            <i class="fas fa-{{ animal.sex }}"></i>{{ animal.sexForHumans|title }}
+                        </li>
+                        <li>
+                            <i class="fas fa-birthday-cake"></i>{{ animal.ageForHumans }}
+                        </li>
+                        <li>
+                            <i class="fas fa-heartbeat"></i>{{ animal.healthForHumans|title }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <!-- animal.specs -->
-        <div class="col-md-4">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <i class="fas fa-lg fa-female"></i> Мальчик
-                </li>
-                <li class="list-group-item">
-                    <i class="fas fa-lg fa-birthday-cake"></i> {{ gingers.animal.age }} Месяцев
-                </li>
-                <li class="list-group-item">
-                    <i class="fas fa-lg fa-heartbeat"></i> Здоров
-                </li>
-            </ul>
+        <!-- animal.description -->
+        <div class="col-lg-10 ac-desc">
+            {{ animal.description|raw }}
         </div>
+
     </div>
 
-    <!-- animal.desc -->
-    <div class="row">
-        <p>Что выражалось во всей круглой фигуре графа, у Марьи Дмитриевны выражалось лишь в более и более улыбающемся лице и вздергивающемся носе. Но зато, ежели граф, все более и более расходясь, пленял зрителей неожиданностью ловких вывертов и легких прыжков своих мягких ног, Марья Дмитриевна малейшим усердием при движении плеч или округлении рук в поворотах и прито-пываньях производила не меньшее впечатление по заслуге, которую ценил всякий при ее тучности и всегдашней суровости.</p>
-    </div>
-
+    <!-- animal.featured_images -->
+    {% partial 'widgets/bootstrap-carousel' name=animal.slug images=animal.photos %}
 </div>

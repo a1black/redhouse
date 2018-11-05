@@ -141,6 +141,7 @@ class Animal extends Model
      */
     public function beforeSave()
     {
+        $this->name = mb_convert_case($this->name, MB_CASE_TITLE);
         $this->description = Html::clean($this->description);
         $this->health_info = Html::clean($this->health_info) ?: null;
         $this->adopted_by = Html::clean($this->adopted_by) ?: null;
@@ -218,6 +219,14 @@ class Animal extends Model
             $age = $diff->y * 12 + $diff->m + round($diff->d / 41);
         }
 
-        return $age;
+        return (int) $age;
+    }
+
+    /**
+     * Returns query for selecting not adopted animals.
+     */
+    public function scopeNotAdopted(Builder $query): Builder
+    {
+        return $query->where('adopted', false);
     }
 }

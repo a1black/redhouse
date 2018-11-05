@@ -17,13 +17,13 @@ odnoklassniki = 1
 ==
 <?php
 function onEnd() {
-        $this['post'] = $this->components['newsPost']->post;
-        if (!$this['post']) {
-            return Redirect::to('/');
-        }
-        $postTitle = $this['post']->title;
-        $this->page->title = $postTitle;
-        $this->page->meta_title = $postTitle;
+    $post = $this->components['newsPost']->post;
+    if (!$post) {
+        return Redirect::to('/');
+    }
+
+    $this['post'] = $post;
+    $this->page->title = $this->page->meta_title = $post->title;
 }
 ?>
 ==
@@ -84,6 +84,7 @@ function onEnd() {
                 </div>
             </div>
         </div>
+
         <!-- newspost.featured -->
         {% partial 'widgets/bootstrap-carousel' name=post.slug images=post.featured_images %}
     </div>

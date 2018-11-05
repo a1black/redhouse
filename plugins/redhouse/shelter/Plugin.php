@@ -10,6 +10,7 @@ use Backend;
 use Controller;
 use System\Classes\PluginBase;
 use Redhouse\Shelter\Classes\ListTypeHelpers;
+use Redhouse\Shelter\Classes\TwigExtensions;
 
 class Plugin extends PluginBase
 {
@@ -27,6 +28,8 @@ class Plugin extends PluginBase
     public function registerComponents(): array
     {
         return [
+            'Redhouse\Shelter\Components\Animal' => 'animalView',
+            'Redhouse\Shelter\Components\Animals' => 'animalCatalog',
             'Redhouse\Shelter\Components\Contacts' => 'contactList',
             'Redhouse\Shelter\Components\MoneyAccounts' => 'moneyAccounts',
             'Redhouse\Shelter\Components\SocialLikes' => 'socialLikes',
@@ -49,9 +52,10 @@ class Plugin extends PluginBase
                     return mb_convert_case($str, MB_CASE_LOWER, "UTF-8");
                 },
                 'ucfirst' => function ($str) {
-                    return mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
+                    $str = mb_convert_case($str, MB_CASE_LOWER, "UTF-8");
+                    return mb_convert_case($str[0], MB_CASE_UPPER).substr($str, 1);
                 },
-                'phone' => ['\Redhouse\Shelter\Classes\ListTypeHelpers', 'prettyPhoneNumber'],
+                'phone' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'phoneNumber'],
             ],
             'functions' => [],
         ];

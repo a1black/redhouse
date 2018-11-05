@@ -8,7 +8,7 @@ use October\Rain\Database\Collection;
 use Cms\Classes\ComponentBase;
 use Redhouse\Shelter\Models\Contact;
 use Redhouse\Shelter\Models\ContactNumber;
-use Redhouse\Shelter\Classes\ListTypeHelpers;
+use Redhouse\Shelter\Classes\TwigExtensions;
 
 class Contacts extends ComponentBase
 {
@@ -66,14 +66,14 @@ class Contacts extends ComponentBase
                 $link = sprintf(
                     '<a href="viber://add?number=%%2B7%s">%s</a>',
                     $number->number,
-                    ListTypeHelpers::prettyPhoneNumber($number->number)
+                    TwigExtensions::phoneNumber($number->number)
                 );
                 break;
             default:
                 $link = sprintf(
                     '<a href="tel:%%2B7%s:>%s</a>',
                     $number->number,
-                    ListTypeHelpers::prettyPhoneNumber($number->number)
+                    TwigExtensions::phoneNumber($number->number)
                 );
         }
 
