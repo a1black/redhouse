@@ -223,10 +223,42 @@ class Animal extends Model
     }
 
     /**
+     * Returns true if animal is marked as healty.
+     */
+    public function isHealthy(): bool
+    {
+        return $this->health === self::HP_TYPE_OK;
+    }
+
+    /**
+     * Returns true if animal is marked as sick.
+     */
+    public function isSick(): bool
+    {
+        return $this->health === self::HP_TYPE_BAD;
+    }
+
+    /**
+     * Returns true if animal recovers from being sick.
+     */
+    public function isRecovering(): bool
+    {
+        return $this->health === self::HP_TYPE_RECOVER;
+    }
+
+    /**
      * Returns query for selecting not adopted animals.
      */
     public function scopeNotAdopted(Builder $query): Builder
     {
         return $query->where('adopted', false);
+    }
+
+    /**
+     * Returns query for selecting sick animals.
+     */
+    public function scopeSickOnes(Builder $query): Builder
+    {
+        return $query->where('health', self::HP_TYPE_BAD);
     }
 }

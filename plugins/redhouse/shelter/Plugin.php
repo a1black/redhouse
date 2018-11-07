@@ -30,6 +30,7 @@ class Plugin extends PluginBase
         return [
             'Redhouse\Shelter\Components\Animal' => 'animalView',
             'Redhouse\Shelter\Components\Animals' => 'animalCatalog',
+            'Redhouse\Shelter\Components\AnimalAlert' => 'sickAnimals',
             'Redhouse\Shelter\Components\Contacts' => 'contactList',
             'Redhouse\Shelter\Components\MoneyAccounts' => 'moneyAccounts',
             'Redhouse\Shelter\Components\SocialLikes' => 'socialLikes',

@@ -67,6 +67,7 @@
 
 // Animal details page
 .animal-card {
+  padding-bottom: 2rem;
   .ac-spec {
     display: flex;
     flex-direction: row;
@@ -75,25 +76,82 @@
     margin-bottom: 0;
     font-size: 1rem;
     li {
-      margin-right: 1rem;
-      i {
-        margin-right: 0.5rem;
+      margin-right: 1.5rem;
+    }
+    @media(max-width:540px) {
+      flex-direction: column;
+      padding: 0;
+      li {
+        margin: 0 0 0.5rem;
       }
     }
     @media(min-width:992px) {
       flex-direction: column;
-      padding-left: 0.5rem;
+      padding-left: 2rem;
       font-size: 1.2rem;
       li {
         margin: 0 0 1rem;
-        i {
-          width: 1rem;
-        }
       }
     }
   }
   .ac-desc {
-    margin-bottom: 2rem;
+    margin: 1rem 0 0;
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-size: 85%;
+    }
+  }
+  .ac-health {
     margin-top: 1rem;
+    padding: 0.5rem 1rem 1rem;
+    background-color: fade-out($red, 0.8);
+    ul,
+    ol,
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
+  .ac-adopted {
+    margin-top: 1rem;
+    ul,
+    ol,
+    p {
+      margin-top: 0.5rem;
+    }
+    img {
+      @include img-fluid;
+      max-height: 20rem;
+      text-align: center;
+    }
+  }
+}
+
+.animal-health-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  @media(min-width:992px) {
+    font-size: 1.75rem;
+  }
+}
+
+.animal-health {
+  font-size: 0.8rem;
+  a {
+    color: $body-color;
+    @include underline-alt;
+    @include underline-alt-select;
+  }
+  ul,
+  ol,
+  p {
+    margin-bottom: 0.2rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-size: 85%;
   }
 }

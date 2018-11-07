@@ -14,10 +14,19 @@
   border-bottom-style: solid;
 }
 
+@mixin underline-alt-select() {
+  &:hover,
+  &:active,
+  &:focus {
+    border-style: none;
+    @include transition-all;
+  }
+}
+
 @mixin transition-all() {
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  transition: all 0.25s;
 }
 
 @mixin background-cover() {

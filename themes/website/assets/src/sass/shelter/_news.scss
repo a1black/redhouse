@@ -7,9 +7,7 @@
     line-height: 1.125;
     a {
       color: $body-color;
-      &:hover,
-      &:active,
-      &:focus {
+      @include hover-focus-active {
         @include underline-alt;
         @include transition-all;
       }
@@ -44,9 +42,8 @@
     }
     img {
       display: block;
-      width: 100%;
-      height: auto;
       padding-bottom: 1rem;
+      @include img-fluid;
     }
   }
 }

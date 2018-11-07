@@ -97,12 +97,7 @@ img::-moz-selection {
 // Custom Link underline decoration
 .underlined {
   @include underline-alt;
-  &:hover,
-  &:active,
-  &:focus {
-    border-style: none;
-    @include transition-all;
-  }
+  @include underline-alt-select;
 }
 
 // Map
@@ -118,4 +113,14 @@ img::-moz-selection {
 
 .map iframe {
   pointer-events: none;
+}
+
+// Font-Awesome Icon
+.fa-icon {
+  min-width: 1rem;
+  margin-right: 0.5rem;
+}
+
+.fa-xxs {
+  font-size: 0.65rem;
 }

@@ -7,23 +7,9 @@ meta_description = "Инфрмация о сотрудниках и деятел
 meta_keywords = ""
 is_hidden = 0
 ==
-<!--
-    @TODO Move employee image from tag to div background: https://stackoverflow.com/questions/32477563/css-fit-rounded-circle-image-do-not-stretch-it
-    @TODO Add plugin for adding financial reports.
--->
-<!--
-    @CSS Service card item (caption: <img.round>; title: <h6>; text: <p>)
-    @CSS Employee card item (caption: <img.round>; title: <h4>; text: <p>)
-    @CSS Accent text (like display-* but smaller)
--->
-<!--
-    @COMPONENT: team (can use .media)
-    @COMPONENT: services
-    @COMPONENT: finance report
--->
 
 <article>
-    <div class="container">
+    <div class="container pb-4">
         <!-- about.description -->
         <div class="row">
             <p class="col-lg-10">В этом сегменте мы отображаем мото нашей организации. Мы можем указать наши убеждения цели и т.д. Главное уложиться в 1 - 2 предложения.</p>
@@ -34,17 +20,14 @@ is_hidden = 0
 
         <div class="row mb-2 mb-lg-4">
             <!-- about.employee.founder -->
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-4 text-center mb-lg-4">
                 <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/250x250" alt="">
             </div>
-            <div class="col-lg-8 align-self-center">
+            <div class="col-lg-8 align-self-center mb-2">
                 <h4 class="my-2 text-center text-lg-left">Фамилия Имя Отчество</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
             </div>
-        </div>
 
-        <!-- about.employee.security -->
-        <div class="row">
             <!-- about.employee.founder -->
             <div class="col-lg-4 text-center">
                 <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/250x250" alt="">
@@ -90,7 +73,7 @@ is_hidden = 0
                 <p>Наш приют не может существовать без вашей помощи, и мы в свою очередь покажем куда идет ваша помощь.</p>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action border-0">
-                        <i class="mr-4 fa-md fas fa-piggy-bank"></i> Финансовый отчет за 2018
+                        <i class="fa-md fas fa-piggy-bank fa-icon"></i> Финансовый отчет за 2018
                     </a>
                 </div>
             </div>

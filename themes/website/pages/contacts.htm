@@ -9,45 +9,32 @@ is_hidden = 0
 
 [contactList]
 ==
-<!--
-    @TODO This page is a condidate for full width header pic.
-    @TODO Add plugin for controlling contact info.
-    @TODO Try integrate fa-icons as CSS styling.
--->
-<!--
-    @CSS Page title and description
-    @CSS Page section title
-    @CSS Contact card item
--->
-<!--
-    @COMPONENT: social links
-    @COMPONENT: email links
-    @COMPONENT: contact phone numbers
-    @COMPONENT: Map pin
--->
 
-<div class="container">
-    <!-- contacts.social -->
-    <div class="row justify-content-between">
-        <div class="col-md-6 col-lg-5">
-            <p>Уважаемый посетитель, мы с радостью готовы ответить на все интересующие вас вопросы, провести корсультацию или рассмотреть предложения о сотрудничестве. Только мы просим вас звонить нам в течении набочего дня с 9:00 до 21:00 по МКС.</p>
-        </div>
-        <div class="col-md-6 col-lg-5 align-self-center p-1 text-center">
-            <h6 class="mb-1">Напишите нам письмо</h6>
-            <div class="text pb-3">
-                <a class="underlined text-primary" href="mailto:ouremailaddress@example.com">ouremailaddress@example.com</a>
+<article>
+    <div class="container">
+
+        <!-- contacts.social -->
+        <div class="row justify-content-between">
+            <div class="col-md-6 col-lg-5">
+                <p>Уважаемый посетитель, мы с радостью готовы ответить на все интересующие вас вопросы, провести корсультацию или рассмотреть предложения о сотрудничестве. Только мы просим вас звонить нам в течении набочего дня с 9:00 до 21:00 по МКС.</p>
             </div>
-            <h6 class="mb-1">Присоединитесь к нашей группе</h6>
-            <div>
-                {% partial 'social' size='xs' round=1 %}
+            <div class="col-md-6 col-lg-5 align-self-center p-1 text-center">
+                <h6 class="mb-1">Напишите нам письмо</h6>
+                <div class="text pb-3">
+                    <a class="underlined text-primary" href="mailto:ouremailaddress@example.com">ouremailaddress@example.com</a>
+                </div>
+                <h6 class="mb-1">Присоединитесь к нашей группе</h6>
+                <div>
+                    {% partial 'social' size='xs' round=1 %}
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- contacts.phone -->
-    <h3 class="mt-4 text-center">Контактные номера</h3>
-    <div class="row justify-content-lg-center text-left">
-        {% partial 'contacts' %}
-    </div>
+        <!-- contacts.phone -->
+        <h3 class="mt-4 text-center">Контактные номера</h3>
+        <div class="row justify-content-lg-center text-left">
+            {% partial 'contacts' %}
+        </div>
 
-</div>
+    </div>
+</article>

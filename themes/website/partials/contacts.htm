@@ -15,12 +15,12 @@ description = "Контактные номера приюта."
             {% for number in contact.numbers %}
                 <li class="my-2">
                 {% if number.type == 'mobil' %}
-                    <i class="mr-2 fas fa-mobile-alt"></i>{{ number.number|phone }}
+                    <i class="fas fa-mobile-alt fa-icon"></i>{{ number.number|phone }}
                     <a class="btn btn-primary btn-sm d-md-none ml-2" role="button" href="tel:%2B7{{ number.number }}">
                         <i class="mr-1 fas fa-phone fa-sm"></i>Call
                     </a>
                 {% else %}
-                    <i class="mr-2 {{ number.icon }}"></i>{{ number.link|raw }}
+                    <i class="{{ number.icon }} fa-icon"></i>{{ number.link|raw }}
                 {% endif %}
                 </li>
             {% endfor %}

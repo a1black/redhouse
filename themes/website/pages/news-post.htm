@@ -9,11 +9,6 @@ is_hidden = 0
 [blogPost newsPost]
 slug = "{{ :slug }}"
 categoryPage = 404
-
-[socialLikes]
-facebook = 1
-vk = 1
-odnoklassniki = 1
 ==
 <?php
 function onEnd() {
@@ -27,25 +22,6 @@ function onEnd() {
 }
 ?>
 ==
-<!--
-    @TODO Make rounded fa-symbols popuot on focus.
-    @TODO Apply bootstrap styles to news post raw content:
-        - <blockquote> - .blockquote
-        - <h1>...<h6> - .section-heading
-        - <img> - .image-fluid .rounded
-    @TODO Maybe if <img> is first item in post raw it should be moved in header with post title.
-          If moving isn't option then certanly we need place image before title.
-    @TODO Add view carusel for post featured images. Probobal implemntation:
-        - create empty <div> for hosting carusel
-        - create <img> for all featured images below carusel (see Bootstrap Store Home)
-        - mark featured <img> with class .carusel slide
-        - add js news post initialization function
-        - if news post has only one featured <img> destroy carusel
-        - copy .carusel-slide into carusel
-    @TODO On small screen hide either carusel or featured images.
-    @TODO Published at is pain in the ass, create Twig filter: https://twig.symfony.com/doc/2.x/advanced.html
--->
-{% set likelinks = socialLikes.links %}
 
 <style>
     .masthead {padding-bottom: 1rem !important;}
@@ -55,27 +31,14 @@ function onEnd() {
 <!-- newspost.start -->
 <article>
     <div class="container">
+
         <!-- newspost.start -->
         <div class="row">
-
             <div class="col-lg-10 mx-auto post-view">
                 <!-- newspost.author -->
                 <div class="lead clearfix">
                     <p class="float-right post-meta">опуб. {{ post.published_at|date('d M') }}</p>
-                {% if likelinks.count %}
-                    <ul class="list-inline social-share">
-                    {% for name, link in likelinks %}
-                        <li class="list-inline-item">
-                            <a href="{{ link.url }}" target="_blank" class="social-link" data-socialname="{{ name }}">
-                                <span class="fa-stack fa-xs">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="{{ link.icon }} fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
+                    {% partial 'socialshare' round=1 size='xs' %}
                 </div>
 
                 <!-- newspost.body -->
@@ -86,7 +49,12 @@ function onEnd() {
         </div>
 
         <!-- newspost.featured -->
-        {% partial 'widgets/bootstrap-carousel' name=post.slug images=post.featured_images %}
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                {% partial 'widgets/bootstrap-carousel' name=post.slug images=post.featured_images %}
+            </div>
+        </div>
+
     </div>
 </article>
 <!-- newspost.end -->

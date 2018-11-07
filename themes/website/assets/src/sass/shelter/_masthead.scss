@@ -1,13 +1,88 @@
 header.masthead {
-  padding-top: calc(3rem + 40px);
   padding-bottom: 2rem;
+  .content {
+    padding-top: calc(3rem + 40px);
+    &.with-title {
+      display: block;
+    }
+    &.with-slider {
+      display: none;
+      position: relative;
+      .welcome-caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding-left: 2rem;
+        padding-bottom: 4rem;
+        text-align: left;
+        .btn {
+          color: $black;
+          background-color: $white;
+        }
+        .text {
+          color: $white;
+          text-align: left;
+          padding: 0;
+          margin-bottom: 0 0 0.5rem;
+        }
+        z-index: 2;
+      }
+      .overlay {
+        min-height: 300px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background-color: fade-out($gray-900, 0.6);
+        background-clip: content-box;
+        z-index: 1;
+      }
+      .carousel-item {
+        width: 100%;
+        height: 50vh;
+        min-height: 300px;
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    }
+  }
 }
 @media (min-width: 992px) {
   header.masthead {
-    padding-top: calc(3rem + 50px);
+    padding-bottom: 0;
+    .content {
+      padding-top: calc(3rem + 50px);
+      &.with-title {
+        display: none;
+      }
+      &.with-slider {
+        display: block;
+        padding-top: 0 !important;
+        padding-bottom: 2rem;
+        .overlay {
+          padding-bottom: 2rem;
+        }
+      }
+    }
     h1 {
       font-size: 3.25em;
       width: 75%;
+    }
+  }
+}
+@media (min-width:1140px) {
+  header.masthead {
+    .content {
+      &.with-slider {
+        .carousel-item {
+          height: 65vh;
+        }
+      }
     }
   }
 }

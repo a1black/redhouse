@@ -1,21 +1,23 @@
-description = "Примитивная карусель но базе Bootstrap"
+description = "Примитивная карусель на базе Bootstrap"
 ==
 {% if images.count %}
-<div class="row basic-carousel">
-    <div class="col-lg-8 pb-4 mx-auto">
-        <div id="{{ name }}" class="carousel slide" data-ride="false" data-interval="false">
+    <div id="{{ name }}" class="carousel slide basic-carousel" data-ride="false" data-interval="false">
+
+        {% if images.count > 1 %}
             <ol class="carousel-indicators">
-                {% for image in images %}
+            {% for image in images %}
                 <li data-target="#{{ name }}" data-slide-to="{{ loop.index0 }}" class="{% if not loop.index0 %}active{% endif %}"></li>
-                {% endfor %}
+            {% endfor %}
             </ol>
-            <div class="carousel-inner">
-                {% for image in images %}
-                <div class="carousel-item{% if not loop.index0 %} active{% endif %}">
-                    <img class="d-block img-fluid" data-src="{{ image.filename }}" src="{{ image.path }}" alt="{{ image.description }}" />
-                </div>
-                {% endfor %}
-            </div>
+        {% endif %}
+
+        <div class="carousel-inner">
+        {% for image in images %}
+            <div class="carousel-item{% if not loop.index0 %} active{% endif %}" style="background-image: url('{{ image.path }}')"></div>
+        {% endfor %}
+        </div>
+
+        {% if images.count > 1 %}
             <a class="carousel-control-prev" href="#{{ name }}" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -24,18 +26,18 @@ description = "Примитивная карусель но базе Bootstrap"
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
-        {% if images.count > 1 %}
-        <div class="row text-left d-none d-lg-flex carousel-thumbnails">
-            {% for image in images %}
-            <div class="col-lg-3 col-md-4 col-xs-6">
-                <span data-target="#{{ name }}" data-slide-to="{{ loop.index0 }}" class="mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" data-src="{{ image.filename }}" src="{{ image.path }}" alt="" />
-                </span>
-            </div>
-            {% endfor %}
-        </div>
         {% endif %}
+
     </div>
-</div>
+{% endif %}
+{% if images.count > 1 %}
+    <div class="row basic-carousel-thumbs">
+    {% for image in images %}
+        <div class="col-3">
+            <span data-target="#{{ name }}" data-slide-to="{{ loop.index0 }}">
+                <img class="img-fluid" data-src="{{ image.filename }}" src="{{ image.path }}" alt="{{ image.description }}" />
+            </span>
+        </div>
+    {% endfor %}
+    </div>
 {% endif %}
