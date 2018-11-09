@@ -32,10 +32,7 @@
       a.nav-link {
         color: $white;
         padding: 0.5rem 0;
-        &:hover,
-        &:active,
-        &:focus,
-        &.active {
+        @include hover-focus {
           span {
             @include underline-alt;
             @include transition-all;
@@ -47,6 +44,13 @@
         border: none;
         background-color: $primary;
         padding: 0 1rem;
+      }
+      &.active {
+        a.nav-link {
+          span {
+            @include underline-alt;
+          }
+        }
       }
     }
   }

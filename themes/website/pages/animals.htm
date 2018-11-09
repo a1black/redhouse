@@ -16,19 +16,19 @@ is_hidden = 0
 
     <!-- animals.list -->
     <div class="row justify-content-around">
-    {% for animal in animals %}
-        <div class="col-md-6 col-lg-4">
-            <a href="{{ animal.url }}" class="animal-preview">
-                <span class="ap-caption">
-                    <span class="ap-content">
-                        <h2>Привер, меня зовут {{ animal.name }}!</h2>
-                        <p>Я {{ animal.sexForHumans }}, мне {{ animal.ageForHumans }}.</p>
+        {% for animal in animals %}
+            <div class="col-md-6 col-lg-4">
+                <a href="{{ animal.url }}" class="animal-preview">
+                    <span class="ap-caption">
+                        <span class="ap-content">
+                            <h2>Привер, меня зовут {{ animal.name }}!</h2>
+                            <p>Я {{ animal.sexForHumans }}, мне {{ animal.ageForHumans }}.</p>
+                        </span>
                     </span>
-                </span>
-                <img class="img-fluid" src="{{ animal.profilePic ?: 'http://placehold.it/200x200' }}">
-            </a>
-        </div>
-    {% endfor %}
+                    <img class="img-fluid" src="{{ animal.profilePic ?: 'http://placehold.it/200x200' }}">
+                </a>
+            </div>
+        {% endfor %}
     </div>
 
 </div>

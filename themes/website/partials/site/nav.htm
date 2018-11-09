@@ -1,5 +1,6 @@
 description = "Навигационное меню"
 ==
+{% set curr = this.page.baseFileName %}
 
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
     <div class="container">
@@ -11,7 +12,7 @@ description = "Навигационное меню"
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li class="nav-item{{ curr=='animals'?' active':'' }}">
                     <a class="nav-link" href="{{ 'animals'|page }}">
                         <span>Наши животные</span>
                     </a>
@@ -19,21 +20,21 @@ description = "Навигационное меню"
                 <li class="nav-item dropdown show">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Помочь</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownResources">
-                        <a class="nav-link" href="{{ 'donate'|page }}"><span>Пожертвование</span></a>
+                        <a class="nav-link" href="{{ 'donate'|page }}"><span>Финансово</span></a>
                         <a class="nav-link" href="{{ 'adopt'|page }}"><span>Стать Опекуном</span></a>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item{{ curr=='news'?' active':'' }}">
                     <a class="nav-link" href="{{ 'news'|page }}">
                         <span>Новости</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item{{ curr=='contacts'?' active':'' }}">
                     <a class="nav-link" href="{{ 'contacts'|page }}">
                         <span>Контакты</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item{{ curr=='about'?' active':'' }}">
                     <a class="nav-link" href="{{ 'about'|page }}">
                         <span>О нас</span>
                     </a>

@@ -48,7 +48,7 @@ class Contacts extends ComponentBase
         $contacts = Contact::has('numbers')->isPublished()->orderBy('name')->get();
         foreach ($contacts as $contact) {
             foreach ($contact->numbers as $number) {
-                $number->link = $this->makeCallLink($number);
+                $number->link = $this->makeCallLink($number, 'call-link');
                 $number->icon = 'fab fa-'.$number->type;
             }
         }
@@ -56,22 +56,29 @@ class Contacts extends ComponentBase
         return $contacts;
     }
 
-    public function makeCallLink(ContactNumber $number): string
+    public function makeCallLink(ContactNumber $number, string $style = null): string
     {
         switch ($number->type) {
             case ContactNumber::CN_TYPE_SKYPE:
-                $link = sprintf('<a href="skype:%s?call">%s</a>', $number->number, $number->number);
+                $link = sprintf(
+                    '<a class="%s" href="skype:%s?call">%s</a>',
+                    $style,
+                    $number->number,
+                    $number->number
+                );
                 break;
             case ContactNumber::CN_TYPE_VIBER:
                 $link = sprintf(
-                    '<a href="viber://add?number=%%2B7%s">%s</a>',
+                    '<a class="%s" href="viber://add?number=%%2B7%s">%s</a>',
+                    $style,
                     $number->number,
                     TwigExtensions::phoneNumber($number->number)
                 );
                 break;
             default:
                 $link = sprintf(
-                    '<a href="tel:%%2B7%s:>%s</a>',
+                    '<a class="%s" href="tel:%%2B7%s">%s</a>',
+                    $style,
                     $number->number,
                     TwigExtensions::phoneNumber($number->number)
                 );

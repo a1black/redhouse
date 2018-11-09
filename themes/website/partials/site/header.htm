@@ -1,11 +1,7 @@
 description = "Site Header"
 ==
-function onStart() {
-    $this['welcomeHeader'] = $this->page->baseFileName === 'home';
-}
-==
 
-{% if welcomeHeader %}
+{% if viewBag.welcomeHeader %}
 <header class="masthead text-center" data-navbar-trans="navbar-trans">
     <div class="content with-slider">
         <!-- overlay -->
@@ -13,11 +9,11 @@ function onStart() {
         <!-- slider -->
         <div id="headerWelcomeSlider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active" style="background-image: url('https://picsum.photos/1920/1080?image=1025')"></div>
-                <div class="carousel-item" style="background-image: url('https://picsum.photos/1920/1080?image=1062')"></div>
-                <div class="carousel-item" style="background-image: url('https://picsum.photos/1920/1080?image=837')"></div>
-                <div class="carousel-item" style="background-image: url('https://picsum.photos/1920/1080?image=659')"></div>
-                <div class="carousel-item" style="background-image: url('https://picsum.photos/1920/1080?image=237')"></div>
+                <div class="carousel-item header-image active" style="background-image: url('https://picsum.photos/1920/1080?image=1025')"></div>
+                <div class="carousel-item header-image" style="background-image: url('https://picsum.photos/1920/1080?image=1062')"></div>
+                <div class="carousel-item header-image" style="background-image: url('https://picsum.photos/1920/1080?image=837')"></div>
+                <div class="carousel-item header-image" style="background-image: url('https://picsum.photos/1920/1080?image=659')"></div>
+                <div class="carousel-item header-image" style="background-image: url('https://picsum.photos/1920/1080?image=237')"></div>
             </div>
         </div>
         <!-- welcome -->
@@ -41,14 +37,24 @@ function onStart() {
         </div>
     </div>
     <div class="content with-title">
-        <h1 class="mb-0 mx-auto page-title">{{ this.page.title }}</h1>
+        <h1 class="page-title">{{ this.page.title }}</h1>
         <hr class="paw-dark">
     </div>
 </header>
-{% elseif this.page.title or this.page.title_alt %}
+{% elseif viewBag.infoHeader %}
+<header class="masthead text-center">
+    <div class="content with-image">
+        <div class="overlay">
+            <h1 class="page-title">{{ this.page.title_alt ?? this.page.title }}</h1>
+            <p class="page-desc">{{ this.page.description }}</p>
+        </div>
+        <div class="header-image" style="background-image: url('{{ viewBag.infoHeader }}')"></div>
+    <div>
+</header>
+{% else %}
 <header class="masthead text-center">
     <div class="content">
-        <h1 class="mb-0 mx-auto page-title">{{ this.page.title_alt ?? this.page.title }}</h1>
+        <h1 class="page-title">{{ this.page.title_alt ?? this.page.title }}</h1>
         <hr class="paw-dark">
     </div>
 </header>

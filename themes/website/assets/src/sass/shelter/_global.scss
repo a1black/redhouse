@@ -62,7 +62,7 @@ hr.paw-dark {
 }
 hr.paw-dark:after {
   color: $gray-900;
-  background-color: white;
+  background-color: $white;
 }
 
 // Selection effect
@@ -107,6 +107,14 @@ img::-moz-selection {
   @include underline-alt-select;
 }
 
+.call-link {
+  color: $body-color;
+  @include hover-focus {
+    color: darken($body-color, 0.2);
+    @include underline-alt;
+  }
+}
+
 // Map
 .map {
   height: 30rem;
@@ -141,6 +149,11 @@ img::-moz-selection {
   }
 }
 
+.text-accent {
+  font-weight: $font-weight-bold;
+}
+
+// Container for inserting HTML
 .textraw {
   ul,
   ol,
@@ -161,5 +174,27 @@ img::-moz-selection {
     color: $body-color;
     @include underline-alt;
     @include underline-alt-select;
+  }
+}
+
+// Section title
+.section-title {
+  margin: 1.5rem 0 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  @media(min-width:768px) {
+    text-align: left;
+    font-size: 1.75rem;
+  }
+  @media(min-width:992px) {
+    margin-top: 2rem;
+  }
+}
+
+// Contact card
+.custom-card {
+  .card-body {
+    padding-top: 0;
+    padding-left: 0;
   }
 }

@@ -28,6 +28,19 @@ class Animals extends ComponentBase
         ];
     }
 
+    public function defineProperties()
+    {
+        return [
+            'animalLimit' => [
+                'title' => 'redhouse.shelter::lang.component.animals.animallimit',
+                'type' => 'string',
+                'validationPattern' => '^[0-9]+$',
+                'validationMessage' => 'redhouse.shelter::lang.component.animals.animallimit_error',
+                'default' => '0',
+            ],
+        ];
+    }
+
     public function onRun()
     {
         $this->animals = $this->page['animals'] = $this->loadAnimals();
@@ -45,13 +58,27 @@ class Animals extends ComponentBase
      */
     public function loadAnimals(): Collection
     {
-        $animals = AnimalModel::notAdopted()->orderBy('id', 'desc')->get();
+        $limit = $this->getLimit();
+        $animals = AnimalModel::notAdopted()->orderBy('id', 'desc');
+        if ($limit) {
+            $animals->take($limit);
+        }
 
+        $animals = $animals->get();
         foreach ($animals as $animal) {
             $this->setupAnimal($animal);
         }
 
         return $animals;
+    }
+
+    /**
+     * Returns limit for selecting animals.
+     */
+    public function getLimit(): int
+    {
+        $limit = (int) $this->property('animalLimit');
+        return $limit > 0 ? $limit : 0;
     }
 
     /**

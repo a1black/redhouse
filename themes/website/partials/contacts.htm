@@ -7,21 +7,15 @@ description = "Контактные номера приюта."
 
 {% if contacts.count %}
     {% for contact in contacts %}
-    <div class="col-md-6 col-lg-4 contact-card">
+    <div class="col-md-6 col-lg-4 custom-card">
         <div class="card-body">
             <h6 class="card-title">{{ contact.name }}</h6>
             <h6 class="card-subtitle mb-2 text-muted small">{{ contact.note|raw }}</h6>
-            <ul class="card-text list-unstyled px-3 mx-auto">
+            <ul class="card-text list-unstyled px-3">
             {% for number in contact.numbers %}
-                <li class="my-2">
-                {% if number.type == 'mobil' %}
-                    <i class="fas fa-mobile-alt fa-icon"></i>{{ number.number|phone }}
-                    <a class="btn btn-primary btn-sm d-md-none ml-2" role="button" href="tel:%2B7{{ number.number }}">
-                        <i class="mr-1 fas fa-phone fa-sm"></i>Call
-                    </a>
-                {% else %}
-                    <i class="{{ number.icon }} fa-icon"></i>{{ number.link|raw }}
-                {% endif %}
+                <li class="mb-2">
+                    <i class="{{ number.icon }} fa-icon"></i>
+                    {{ number.link|raw }}
                 </li>
             {% endfor %}
             </ul>
