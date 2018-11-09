@@ -95,63 +95,23 @@
     }
   }
   .ac-desc {
-    margin: 1rem 0 0;
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-size: 85%;
+    margin: 1.5rem 0 0;
+    @media(min-width:992px) {
+      margin: 2rem 0 0;
     }
   }
   .ac-health {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem 1rem;
-    background-color: fade-out($red, 0.8);
-    ul,
-    ol,
-    p {
-      margin-bottom: 0.5rem;
+    margin: 1rem 0 0;
+    @media(min-width:992px) {
+      margin: 1.5rem 0 0;
     }
+    padding: 0.5rem 1rem 0.5rem;
+    background-color: fade-out($red, 0.8);
   }
   .ac-adopted {
-    margin-top: 1rem;
-    ul,
-    ol,
-    p {
-      margin-top: 0.5rem;
+    margin: 1.5rem 0 0;
+    @media(min-width:992px) {
+      margin: 2rem 0 0;
     }
-    img {
-      @include img-fluid;
-      max-height: 20rem;
-      text-align: center;
-    }
-  }
-}
-
-.animal-health-title {
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  @media(min-width:992px) {
-    font-size: 1.75rem;
-  }
-}
-
-.animal-health {
-  font-size: 0.8rem;
-  a {
-    color: $body-color;
-    @include underline-alt;
-    @include underline-alt-select;
-  }
-  ul,
-  ol,
-  p {
-    margin-bottom: 0.2rem;
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    font-size: 85%;
   }
 }

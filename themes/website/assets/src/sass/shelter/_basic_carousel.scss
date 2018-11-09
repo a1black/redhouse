@@ -4,7 +4,11 @@
   .carousel-control-prev,
   .carousel-control-next {
     color: $white;
-    background-color: fade-out($gray-900, 0.5);
+    background-color: fade-out($gray-900, 0.9);
+    @include hover-focus {
+      background-color: fade-out($gray-900, 0.5);
+      @include transition-all;
+    }
   }
   .carousel-item {
     width: 100%;

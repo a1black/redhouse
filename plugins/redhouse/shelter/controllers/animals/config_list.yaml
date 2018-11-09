@@ -28,7 +28,7 @@ showSorting: true
 
 # Set default sorting
 defaultSort:
-    column: id
+    column: created_at
     direction: desc
 
 # Display the list column set up button

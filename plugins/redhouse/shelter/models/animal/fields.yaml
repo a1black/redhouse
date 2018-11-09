@@ -101,5 +101,5 @@ tabs:
         adopted_by:
             tab: redhouse.shelter::lang.animal.tab.adopted
             type: richeditor
-            toolbarButtons: undo|redo|clearFormatting|paragraphFormat|bold|italic|underline|strikeThrough|formatOL|formatUL|quote|selectAll|html
+            toolbarButtons: undo|redo|clearFormatting|paragraphFormat|bold|italic|underline|strikeThrough|formatOL|formatUL|quote|insertImage|selectAll|html
             size: large

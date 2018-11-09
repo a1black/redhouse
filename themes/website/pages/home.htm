@@ -7,14 +7,37 @@ meta_description = "Добро пожаловать на наш сайт."
 is_hidden = 0
 
 [sickAnimals]
+animalLimit = 3
+
+[latestNews]
+postLimit = 2
+daysAgo = 7
 ==
 {% set sicklist = sickAnimals.animals %}
+{% set posts = latestNews.posts %}
 
-<div class="container pb-4">
+<div class="container pb-5">
+
+    <!-- home.about -->
+    <div class="row">
+        <div class="w-100 d-none d-lg-block mb-2">
+            <h3>О нас</h3>
+        </div>
+        <div class="w-100 text textcolumn-2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!<p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!<p>
+        </div>
+    </div>
+
     {% if sicklist.count %}
         <!-- animal.sicklist -->
-        <h2 class="animal-health-title">Нам нужна ваша помощь</h2>
-        <div class="row justify-content-center mb-4">
+        <h2 class="home-section-title">Нам нужна ваша помощь</h2>
+        <div class="row justify-content-center section-health">
             {% for animal in sicklist %}
                 <div class="col-md-6">
                     <a href="{{ animal.url }}" class="animal-preview">
@@ -24,51 +47,41 @@ is_hidden = 0
                                 <p>Я {{ animal.sexForHumans }}, мне {{ animal.ageForHumans }}.</p>
                             </span>
                         </span>
-                        <img class="img-fluid" src="{{ animal.profilePic ?: 'http://placehold.it/200x200' }}">
+                        <img class="img-fluid" src="{{ animal.profilePic ?: 'http://placehold.it/960x480' }}">
                     </a>
                 </div>
-                <div class="col-md-6 animal-health">
+                <div class="col-md-6 textraw">
                     {{ animal.health_info|raw }}
                     {% if animal.fundraise_url %}
                         <div class="fundraise mt-2">
-                            <a href="{{ animal.fundraise_url }}">Сбор средств<a>
+                            <a href="{{ animal.fundraise_url }}">Сбор средств</a>
                         </div>
                     {% endif %}
                 </div>
             {% endfor %}
+
+            <div class="w-100 mt-3 text-center">
+                <a href="{{ 'animals'|page }}" class="btn btn-outline-dark home-section-more">Посмотреть всех животных</a>
+            </div>
         </div>
     {% endif %}
 
-    <!-- home.about -->
-    <h3 class="my-4 text-left text-lg-left">О нас</h3>
-    <div class="row mb-4">
-
-        <!-- home.about.facilities -->
-        <div class="col-lg-5 order-lg-0 text-center mb-lg-4">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/300x300" alt="">
-        </div>
-        <div class="col-lg-7 order-lg-1 mt-2 mt-lg-0">
-            <p>Краткое изложение о условиях обитания животных в приюте. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
-        </div>
-
-        <!-- home.about.medical -->
-        <div class="col-lg-5 order-lg-2 text-center mb-lg-4">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/300x300" alt="">
-        </div>
-        <div class="col-lg-7 order-lg-3 mt-2">
-            <p>Краткое изложение о том как оказывается мед. помощь. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
+    {% if posts.count %}
+        <!-- latest.posts -->
+        <h2 class="home-section-title">Последние новости</h2>
+        <div class="row section-news">
+        {% for post in posts %}
+            <div class="col-lg-6 post-preview">
+                <h2 class="post-title">
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h2>
+                <p class="post-summary">{{ post.summary|striptags }}</p>
+            </div>
+        {% endfor %}
         </div>
 
-        <!-- home.about.finances -->
-        <div class="col-lg-5 order-lg-4 text-center">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/300x300" alt="">
+        <div class="w-100 text-center">
+            <a href="{{ 'news'|page }}" class="btn btn-outline-dark home-section-more">Посмотреть всех новости</a>
         </div>
-        <div class="col-lg-7 order-lg-5 mt-2">
-            <p>Краткое изложение о том как расходуются редства. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
-        </div>
-
-    </div>
-
-    <div class="w-100 text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel? <a href="{{ 'donate'|page }}" class="text-body underlined">Помочь приюту</a></div>
-
+    {% endif %}
 </div>

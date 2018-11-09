@@ -5,7 +5,7 @@
 columns:
     type:
         label: redhouse.shelter::lang.animal.type_label
-        type: text
+        type: animal_type
         invisible: true
 
     sex:
@@ -30,3 +30,8 @@ columns:
         label: redhouse.shelter::lang.animal.adopted_label
         type: switch
         sortable: false
+
+    created_at:
+        label: redhouse.shelter::lang.general.created_at
+        type: text
+        invisible: true

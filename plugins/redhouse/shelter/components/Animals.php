@@ -45,7 +45,8 @@ class Animals extends ComponentBase
      */
     public function loadAnimals(): Collection
     {
-        $animals = AnimalModel::notAdopted()->get();
+        $animals = AnimalModel::notAdopted()->orderBy('id', 'desc')->get();
+
         foreach ($animals as $animal) {
             $this->setupAnimal($animal);
         }

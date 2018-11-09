@@ -94,6 +94,13 @@ img::-moz-selection {
   font-size: 1.25rem;
 }
 
+.btn-xs {
+  padding: 0.15rem 0.3rem;
+  font-size: 0.625rem;
+  line-height: 1;
+  border-radius: 0.1rem;
+}
+
 // Custom Link underline decoration
 .underlined {
   @include underline-alt;
@@ -123,4 +130,36 @@ img::-moz-selection {
 
 .fa-xxs {
   font-size: 0.65rem;
+}
+
+// Columned text
+@media(min-width:768px) {
+  @for $i from 2 through 4 {
+    .textcolumn-#{$i} {
+      @include columned($i);
+    }
+  }
+}
+
+.textraw {
+  ul,
+  ol,
+  p {
+    margin-bottom: 0.5rem;
+  }
+  @for $i from 1 through 4 {
+    h#{$i} {
+      font-size: $font-size-base * (2 - ($i - 1) * 0.25);
+    }
+  }
+  img {
+    display: block;
+    padding-bottom: 1rem;
+    @include img-fluid;
+  }
+  a {
+    color: $body-color;
+    @include underline-alt;
+    @include underline-alt-select;
+  }
 }

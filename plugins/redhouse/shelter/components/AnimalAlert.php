@@ -28,6 +28,19 @@ class AnimalAlert extends ComponentBase
         ];
     }
 
+    public function defineProperties()
+    {
+        return [
+            'animalLimit' => [
+                'title' => 'redhouse.shelter::lang.component.animalalert.animallimit',
+                'type' => 'string',
+                'validationPattern' => '^[0-9]+$',
+                'validationMessage' => 'redhouse.shelter::lang.component.animalalert.animallimit_error',
+                'default' => '3',
+            ],
+        ];
+    }
+
     public function onRun()
     {
         $this->animals = $this->page['animals'] = $this->loadAnimals();
@@ -45,12 +58,26 @@ class AnimalAlert extends ComponentBase
      */
     public function loadAnimals(): Collection
     {
-        $animals = AnimalModel::notAdopted()->sickOnes()->get();
+        $animals = AnimalModel::notAdopted()
+            ->sickOnes()
+            ->orderBy('id', 'desc')
+            ->take($this->getLimit())
+            ->get();
+
         foreach ($animals as $animal) {
             $this->setupAnimal($animal);
         }
 
         return $animals;
+    }
+
+    /**
+     * Returns limit for selecting animals.
+     */
+    public function getLimit(): int
+    {
+        $limit = (int) $this->property('animalLimit');
+        return $limit > 0 ? $limit : 3;
     }
 
     /**
@@ -67,6 +94,7 @@ class AnimalAlert extends ComponentBase
         $animal->sexForHumans = Lang::get('redhouse.shelter::lang.general.sex.'.$animal->sex);
         // Set profile picture
         $profilePic = $animal->featured_images->first();
+        $animal->profilePic = $profilePic ? $profilePic->path : null;
         // Set url to animal page
         $animal->url = $this->controller->pageUrl('animal', ['slug' => $animal->slug]);
 

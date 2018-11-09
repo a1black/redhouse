@@ -35,3 +35,17 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
+@mixin columned($columns: 2, $rule...) {
+  -webkit-column-count: $columns;
+  -moz-column-count: $columns;
+  -webkit-column-fill: balance;
+  -moz-column-fill: balance;
+  column-count: $columns;
+  column-fill: balance;
+  @if $rule {
+    -webkit-column-rule: $rule;
+    -moz-column-rule: $rule;
+    column-rule: $rule;
+  }
+}

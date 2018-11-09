@@ -43,6 +43,7 @@ class Plugin extends PluginBase
         return [
             'filters' => [
                 'urlencode' => 'urlencode',
+                'strlimit' => 'str_limit',
                 'ftrim' => function ($str, $charlist = " \t\n\r\0\x0B") {
                     return trim(mb_ereg_replace('/\s{2,}/', ' '), $charlist);
                 },
@@ -57,6 +58,8 @@ class Plugin extends PluginBase
                     return mb_convert_case($str[0], MB_CASE_UPPER).substr($str, 1);
                 },
                 'phone' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'phoneNumber'],
+                'monthsToAge' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'age'],
+                'verbend' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'verbGender'],
             ],
             'functions' => [],
         ];
@@ -82,6 +85,9 @@ class Plugin extends PluginBase
             },
             'health_type' => function ($value) {
                 return Lang::get('redhouse.shelter::lang.animal.health.'.$value);
+            },
+            'animal_type' => function ($value) {
+                return Lang::get('redhouse.shelter::lang.animal.type.'.$value);
             },
         ];
     }

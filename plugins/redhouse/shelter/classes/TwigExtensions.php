@@ -33,6 +33,18 @@ class TwigExtensions
     }
 
     /**
+     * Returns string with correct verb ending.
+     */
+    public static function verbGender(string $str, string $gender): string
+    {
+        return sprintf(
+            '%s%s',
+            $str,
+            Lang::choice('redhouse.shelter::lang.general.verbend', $gender == 'female')
+        );
+    }
+
+    /**
      * Returns localazed date part.
      *
      * Supported values: day, month, year
@@ -51,7 +63,7 @@ class TwigExtensions
      *
      * @param int $months age in months
      */
-    public static function age(int $months): string
+    public static function age($months): string
     {
         $years = (int) floor($months / 12);
         $months -= $years * 12;
