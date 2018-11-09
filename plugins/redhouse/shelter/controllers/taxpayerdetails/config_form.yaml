@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: redhouse.shelter::lang.view.taxinfo.form
+
+# Form field configuration file
+form: $/redhouse/shelter/models/taxpayerinfo/fields.yaml
+
+# Record model
+modelClass: Redhouse\Shelter\Models\TaxPayerInfo
+
+# Default redirect destination
+defaultRedirect: redhouse/shelter/taxpayerdetails
+
+# Record update form configuration
+create:
+    title: redhouse.shelter::lang.view.taxinfo.form
+    redirectClose: redhouse/shelter/cashaccounts
+    flashSave: redhouse.shelter::lang.view.taxinfo.update_msg
+
+# Record update form configuration
+update:
+    title: redhouse.shelter::lang.view.taxinfo.form
+    redirectClose: redhouse/shelter/cashaccounts
+    flashSave: redhouse.shelter::lang.view.taxinfo.update_msg

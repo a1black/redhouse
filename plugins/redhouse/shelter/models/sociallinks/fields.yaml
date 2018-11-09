@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    fb_link:
+        label: redhouse.shelter::lang.social.fb_label
+        placeholder: redhouse.shelter::lang.social.fb_desc
+        span: full
+        type: text
+
+    vk_link:
+        label: redhouse.shelter::lang.social.vk_label
+        placeholder: redhouse.shelter::lang.social.vk_desc
+        span: full
+        type: text
+
+    odnoklassniki_link:
+        label: redhouse.shelter::lang.social.odnoklassniki_label
+        placeholder: redhouse.shelter::lang.social.odnoklassniki_desc
+        span: full
+        type: text
+
+    google_link:
+        label: redhouse.shelter::lang.social.google_label
+        placeholder: redhouse.shelter::lang.social.google_desc
+        span: full
+        type: text

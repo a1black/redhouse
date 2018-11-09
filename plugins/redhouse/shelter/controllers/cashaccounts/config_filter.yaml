@@ -1,0 +1,18 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    type:
+        label: redhouse.shelter::lang.view.cashaccount.filter.type
+        type: group
+        conditions: type in (:filtered)
+        options:
+            bank: redhouse.shelter::lang.cashaccount.type.bank
+            yandex: redhouse.shelter::lang.cashaccount.type.yandex
+            paypal: redhouse.shelter::lang.cashaccount.type.paypal
+
+    account:
+        label: redhouse.shelter::lang.view.cashaccount.filter.account
+        type: text
+        scope: AccountLike

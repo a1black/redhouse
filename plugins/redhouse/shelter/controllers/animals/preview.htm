@@ -1,0 +1,30 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li>
+            <a href="<?= Backend::url('redhouse/shelter/animals') ?>">
+                <?= e(trans('redhouse.shelter::lang.nav.animals.label')) ?>
+            </a>
+        </li>
+        <li>
+            <?= e($this->pageTitle) ?>
+        </li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <div class="form-preview">
+        <?= $this->formRenderPreview() ?>
+    </div>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+
+<?php endif ?>
+
+<p>
+    <a href="<?= Backend::url('redhouse/shelter/animals') ?>" class="btn btn-default oc-icon-chevron-left">
+        <?= e(trans('redhouse.shelter::lang.redirect.return_to_main')) ?>
+    </a>
+</p>

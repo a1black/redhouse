@@ -6,7 +6,7 @@
 // ======================================================================== //
 
 // Google Fonts
-@import url('https://fonts.googleapis.com/css?family=Cuprum:700|Lobster|Ubuntu:400,400i,700&amp;subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Cuprum:400,700|Lobster|Ubuntu:400,400i,700&amp;subset=cyrillic');
 
 // Core variable and Mixins
 @import "variables";
@@ -15,4 +15,8 @@
 @import "global";
 // Site header and navbar styling
 @import "navbar";
-@import "masthead";
+//@import "masthead";
+// Site footer
+//@import "footer";
+// Site pages
+//@import "post";

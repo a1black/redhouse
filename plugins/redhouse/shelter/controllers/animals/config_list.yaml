@@ -1,0 +1,47 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# List title
+title: redhouse.shelter::lang.view.animal.list
+
+# Column list configuration
+list: $/redhouse/shelter/models/animal/columns.yaml
+
+# List filter options
+filter: config_filter.yaml
+
+# Model class
+modelClass: Redhouse\Shelter\Models\Animal
+
+# Record page
+recordUrl: redhouse/shelter/animals/update/:id
+
+# Message displayed on empty list
+noRecordsMessage: redhouse.shelter::lang.view.animal.empty_msg
+
+# Record per page setting
+recordsPerPage: 20
+
+# Display the sorting link on each column
+showSorting: true
+
+# Set default sorting
+defaultSort:
+    column: created_at
+    direction: desc
+
+# Display the list column set up button
+showSetup: true
+
+# Display checkboxes next to each record
+showCheckboxes: true
+
+# Toolbar configuration
+toolbar:
+    # Partial view with the control buttons
+    buttons: list_toolbar
+
+    # Search configuration
+    search:
+        prompt: redhouse.shelter::lang.view.animal.search_msg

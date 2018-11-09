@@ -1,0 +1,34 @@
+.basic-carousel {
+  padding: 0;
+  margin: 0 0 1.5rem;
+  .carousel-control-prev,
+  .carousel-control-next {
+    color: $white;
+    background-color: fade-out($gray-900, 0.9);
+    @include hover-focus {
+      background-color: fade-out($gray-900, 0.5);
+      @include transition-all;
+    }
+  }
+  .carousel-item {
+    width: 100%;
+    height: 30rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}
+.basic-carousel-thumbs {
+  display: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  img {
+    margin-right: 0.5rem;
+  }
+  @media(min-width:992px) {
+    display: flex;
+  }
+}

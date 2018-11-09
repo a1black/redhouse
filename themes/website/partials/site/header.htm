@@ -1,19 +1,61 @@
 description = "Site Header"
 ==
-<!-- @TODO make different headers (or use %placeholder%):
-        - for landing pade with full wide image
-        - for rest of of pages
-     @TODO On home page move title and desc to left.
-     @TODO Hide home page desc on small screens.
-     @TODO Font size is pain in the ass, get it right later.
-     @TODO Header css has .meta style for 3rd row, see if it really needed.
--->
-<header class="masthead" style="background-image: url('{{ 'assets/dist/images/header-wide-bg.jpg'|theme }}')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="site-heading">
-            <h1>{{ this.page.title }}</h1>
-            <span class="subheading">{{ this.page.description }}</span>
+
+{% if viewBag.welcomeHeader %}
+<header class="masthead text-center" data-navbar-trans="navbar-trans">
+    <div class="content with-slider">
+        <!-- overlay -->
+        <div class="overlay"></div>
+        <!-- slider -->
+        <div id="headerWelcomeSlider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item header-image active" style="background-image: url('https://picsum.photos/1920/1080?image=1025')"></div>
+                <div class="carousel-item header-image" style="background-image: url('https://picsum.photos/1920/1080?image=1062')"></div>
+                <div class="carousel-item header-image" style="background-image: url('https://picsum.photos/1920/1080?image=837')"></div>
+                <div class="carousel-item header-image" style="background-image: url('https://picsum.photos/1920/1080?image=659')"></div>
+                <div class="carousel-item header-image" style="background-image: url('https://picsum.photos/1920/1080?image=237')"></div>
+            </div>
+        </div>
+        <!-- welcome -->
+        <div class="welcome-caption">
+            <div class="container">
+                <h1 class="text">Рыжики</h1>
+                <p class="text">Домашний приют для животных<p>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="btn" role="button" href="{{ 'donate'|page }}">
+                            <i class="fas fa-money-bill mr-2"></i>Помочь
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn" href="{{ 'adopt'|page }}">
+                            <i class="fas fa-hand-holding-heart mr-2"></i>Взять питомца
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+    <div class="content with-title">
+        <h1 class="page-title">{{ this.page.title }}</h1>
+        <hr class="paw-dark">
+    </div>
 </header>
+{% elseif viewBag.infoHeader %}
+<header class="masthead text-center">
+    <div class="content with-image">
+        <div class="overlay">
+            <h1 class="page-title">{{ this.page.title_alt ?? this.page.title }}</h1>
+            <p class="page-desc">{{ this.page.description }}</p>
+        </div>
+        <div class="header-image" style="background-image: url('{{ viewBag.infoHeader }}')"></div>
+    <div>
+</header>
+{% else %}
+<header class="masthead text-center">
+    <div class="content">
+        <h1 class="page-title">{{ this.page.title_alt ?? this.page.title }}</h1>
+        <hr class="paw-dark">
+    </div>
+</header>
+{% endif %}

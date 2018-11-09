@@ -1,0 +1,49 @@
+title = "Стать опекуном"
+url = "/adopt"
+layout = "default"
+description = "Информация о приручении питомца."
+meta_title = "Приручение питомцев из приюта"
+meta_description = "Информация о приручении питомцев из приюта «Рыжики»."
+meta_keywords = ""
+is_hidden = 0
+==
+
+<article>
+    <div class="container pb-5">
+
+        <!-- adopt.description -->
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <img class="img-fluid" src="https://picsum.photos/1920/1080?image=1062">
+            </div>
+            <div class="col-md-6 col-lg-4 d-none d-md-block">
+                <img class="img-fluid" src="https://picsum.photos/1920/1080?image=1012">
+            </div>
+            <div class="col-lg-4 d-none d-lg-block">
+                <img class="img-fluid" src="https://picsum.photos/1920/1080?image=1025">
+            </div>
+            <p class="col-lg-12 mt-2 textcolumn-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
+        </div>
+
+        <!-- adopt.instractions -->
+        <h3 class="section-title">Как приручить?</h3>
+        <div class="row">
+            <div class="col-lg-10">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Ознакомьтесь с <a class="underlined text-body" href="{{ 'animals'|page }}" target="_blank">обитателями приюта</a>.</li>
+                    <li>Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat.</li>
+                    <li>Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet.</li>
+                    <li>Temporibus, voluptatibus.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- adopt.contacts -->
+        <h3 class="section-title">Контактная информация</h3>
+        <div class="row">
+            {% partial 'contacts' %}
+        </div>
+
+    </div>
+</article>

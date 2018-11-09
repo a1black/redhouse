@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    fullname:
+        label: redhouse.shelter::lang.taxinfo.fullname_label
+        placeholder: redhouse.shelter::lang.taxinfo.fullname_desc
+        span: full
+        type: text
+
+    tax_id:
+        label: redhouse.shelter::lang.taxinfo.tax_id_label
+        comment: redhouse.shelter::lang.taxinfo.tax_id_desc
+        span: left
+        type: text
+
+    tax_number:
+        label: redhouse.shelter::lang.taxinfo.tax_number_label
+        comment: redhouse.shelter::lang.taxinfo.tax_number_desc
+        span: right
+        type: text
+
+    purpose:
+        label: redhouse.shelter::lang.taxinfo.purpose_label
+        placeholder: redhouse.shelter::lang.taxinfo.purpose_desc
+        span: full
+        type: text

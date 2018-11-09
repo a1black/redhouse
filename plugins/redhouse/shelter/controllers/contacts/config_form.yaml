@@ -1,0 +1,34 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: redhouse.shelter::lang.view.contact.form
+
+# Form field configuration file
+form: $/redhouse/shelter/models/contact/fields.yaml
+
+# Record model
+modelClass: Redhouse\Shelter\Models\Contact
+
+# Default redirect destination
+defaultRedirect: redhouse/shelter/contacts
+
+# Record create form configuration
+create:
+    title: redhouse.shelter::lang.view.contact.create
+    redirect: redhouse/shelter/contacts/update/:id
+    redirectClose: redhouse/shelter/contacts
+    flashSave: redhouse.shelter::lang.view.contact.create_msg
+
+# Record update form configuration
+update:
+    title: redhouse.shelter::lang.view.contact.update
+    redirect: redhouse/shelter/contacts
+    redirectClose: redhouse/shelter/contacts
+    flashSave: redhouse.shelter::lang.view.contact.update_msg
+    flashDelete: redhouse.shelter::lang.view.contact.delete_msg
+
+# Record preview form configuration
+preview:
+    title: redhouse.shelter::lang.view.contact.preview

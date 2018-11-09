@@ -1,0 +1,37 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    type:
+        label: redhouse.shelter::lang.animal.type_label
+        type: animal_type
+        invisible: true
+
+    sex:
+        label: redhouse.shelter::lang.animal.sex_label
+        type: sex_type
+        invisible: true
+
+    name:
+        label: redhouse.shelter::lang.animal.name_label
+        type: text
+        searchable: true
+
+    health:
+        label: redhouse.shelter::lang.animal.health_label
+        type: health_type
+
+    birthday:
+        label: redhouse.shelter::lang.animal.age_label
+        type: age
+
+    adopted:
+        label: redhouse.shelter::lang.animal.adopted_label
+        type: switch
+        sortable: false
+
+    created_at:
+        label: redhouse.shelter::lang.general.created_at
+        type: text
+        invisible: true

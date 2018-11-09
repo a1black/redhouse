@@ -17,10 +17,9 @@ coverage/
 /themes/*
 !/themes/website
 /plugins/*
-!/plugins/a1black
+!/plugins/redhouse
 /index.php
 # JS
-dist/
 node_modules/
 package-lock.json
 # Other

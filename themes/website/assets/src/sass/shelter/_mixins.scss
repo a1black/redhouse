@@ -1,0 +1,51 @@
+@mixin body-font() {
+  font-family: 'Ubuntu';
+  font-weight: $font-weight-normal;
+}
+
+@mixin heading-font() {
+  font-family: 'Ubuntu';
+  font-weight: $font-weight-bold;
+}
+
+@mixin underline-alt() {
+  border-bottom-width: 1px;
+  border-bottom-color: inherit;
+  border-bottom-style: solid;
+}
+
+@mixin underline-alt-select() {
+  &:hover,
+  &:active,
+  &:focus {
+    border-style: none;
+    @include transition-all;
+  }
+}
+
+@mixin transition-all() {
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+@mixin background-cover() {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@mixin columned($columns: 2, $rule...) {
+  -webkit-column-count: $columns;
+  -moz-column-count: $columns;
+  -webkit-column-fill: balance;
+  -moz-column-fill: balance;
+  column-count: $columns;
+  column-fill: balance;
+  @if $rule {
+    -webkit-column-rule: $rule;
+    -moz-column-rule: $rule;
+    column-rule: $rule;
+  }
+}

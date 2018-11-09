@@ -1,0 +1,46 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+numbers:
+    # Relation name (singular tense)
+    label: redhouse.shelter::lang.contact_number.model_title
+
+    # Configuration for a view container
+    view:
+        # List column definition file
+        list: $/redhouse/shelter/models/contactnumber/colmns.yaml
+
+        # Maximum row per page
+        recordsPerPage: 5
+
+        # Control buttons
+        toolbarButtons: create|delete
+
+        # Show checkbox next to each row
+        showCheckboxes: true
+
+        # Show search in a toolbar
+        showSearch: false
+
+        # Show sorting link on each column
+        showSorting: false
+
+        # Default list sorting
+        defaultSort:
+            column: type
+            direction: asc
+
+    # Configuration for a form popup
+    manage:
+        # List column definition file
+        list: $/redhouse/shelter/models/contactnumber/colmns.yaml
+
+        # Form field definition file
+        form: $/redhouse/shelter/models/contactnumber/fields.yaml
+
+        # Maximum row per page
+        recordsPerPage: 5
+
+    # A message displayed on empty relation
+    emptyMessage: redhouse.shelter::lang.view.contact_number.empty_msg

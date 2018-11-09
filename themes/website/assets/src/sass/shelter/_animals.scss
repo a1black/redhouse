@@ -1,0 +1,117 @@
+// Animal list page
+.animal-preview {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: auto auto 1rem;
+  text-align: center;
+  .ap-caption {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: fade-out($gray-900, 0.6);
+    .ap-content {
+      color: $white;
+      margin: auto 1rem 1rem;
+      text-align: left;
+      h2 {
+        margin: 0;
+        font-size: 0.8rem;
+      }
+      p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+  @media(min-width: 992px) {
+    margin-bottom: 2rem;
+    .ap-caption {
+      //@include transition-all;
+      clip-path: inset(0px);
+      -webkit-transition: -webkit-clip-path 0.25s ease-out, background-color 0.7s;
+      -webkit-clip-path: inset(0px);
+      .ap-content {
+        //@include transition-all;
+        transition: opacity 0.25s;
+        margin-left: 1.2rem;
+        margin-right: 1.2rem;
+        margin-bottom: 1.2rem;
+        h2 {
+          font-size: 1rem;
+        }
+      }
+    }
+    img {
+      -webkit-transition: -webkit-clip-path 0.25s ease-out;
+      -webkit-clip-path: inset(-1px);
+      clip-path: inset(-1px);
+    }
+    &:hover {
+      img {
+        -webkit-clip-path: inset(1rem);
+        clip-path: inset(1rem);
+      }
+      .ap-caption {
+        background-color: fade-out($gray-900, 0.3);
+        -webkit-clip-path: inset(1rem);
+        clip-path: inset(1rem);
+      }
+    }
+  }
+}
+
+// Animal details page
+.animal-card {
+  padding-bottom: 2rem;
+  .ac-spec {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 1.5rem 0 0;
+    margin-bottom: 0;
+    font-size: 1rem;
+    li {
+      margin-right: 1.5rem;
+    }
+    @media(max-width:540px) {
+      flex-direction: column;
+      padding: 0;
+      li {
+        margin: 0 0 0.5rem;
+      }
+    }
+    @media(min-width:992px) {
+      flex-direction: column;
+      padding-left: 2rem;
+      font-size: 1.2rem;
+      li {
+        margin: 0 0 1rem;
+      }
+    }
+  }
+  .ac-desc {
+    margin: 1.5rem 0 0;
+    @media(min-width:992px) {
+      margin: 2rem 0 0;
+    }
+  }
+  .ac-health {
+    margin: 1rem 0 0;
+    @media(min-width:992px) {
+      margin: 1.5rem 0 0;
+    }
+    padding: 0.5rem 1rem 0.5rem;
+    background-color: fade-out($red, 0.8);
+  }
+  .ac-adopted {
+    margin: 1.5rem 0 0;
+    @media(min-width:992px) {
+      margin: 2rem 0 0;
+    }
+  }
+}

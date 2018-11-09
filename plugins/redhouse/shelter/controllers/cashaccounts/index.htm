@@ -1,0 +1,14 @@
+<?php if(!isset($errorNoTax)) : ?>
+
+    <?= $this->makePartial('taxinfo', ['taxrecord' => $taxrecord]) ?>
+
+    <?= $this->listRender() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e(trans($errorNoTax)) ?></p>
+    <p>
+        <a href="<?= Backend::url('redhouse/shelter/taxpayerdetails') ?>" class="btn btn-default"><?= e(trans('redhouse.shelter::lang.view.taxinfo.create')) ?></a>
+    </p>
+
+<?php endif; ?>

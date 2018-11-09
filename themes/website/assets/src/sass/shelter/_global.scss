@@ -1,0 +1,200 @@
+// Typography
+html {
+  height: 100%;
+}
+
+body {
+  @include body-font;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include heading-font;
+}
+
+// Custom Horizontal Rule with Paw icon
+hr.paw-light,
+hr.paw-dark {
+  max-width: 15rem;
+  padding: 0;
+  text-align: center;
+  border: none;
+  border-top: solid 0.25rem;
+  margin-left: auto;
+  margin-right: auto;
+  &.paw-alt {
+    border-top: solid 0.15rem;
+  }
+}
+
+hr.paw-light:after,
+hr.paw-dark:after {
+  position: relative;
+  top: -.8em;
+  display: inline-block;
+  padding: 0 0.25em;
+  content: '\f1b0';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.5em;
+  &.paw-alt {
+    font-size: 1.2em;
+  }
+}
+
+hr.paw-light {
+  border-color: $white;
+}
+hr.paw-light:after {
+  color: $white;
+  background-color: $primary;
+}
+
+hr.paw-dark {
+  border-color: $gray-900;
+}
+hr.paw-dark:after {
+  color: $gray-900;
+  background-color: $white;
+}
+
+// Selection effect
+::-moz-selection {
+  color: $white;
+  background: $primary;
+  text-shadow: none;
+}
+
+::selection {
+  color: $white;
+  background: $primary;
+  text-shadow: none;
+}
+
+img::selection {
+  color: $white;
+  background: transparent;
+}
+
+img::-moz-selection {
+  color: $white;
+  background: transparent;
+}
+
+// Custom Button Size
+.btn-xl {
+  padding: 1rem 1.75rem;
+  font-size: 1.25rem;
+}
+
+.btn-xs {
+  padding: 0.15rem 0.3rem;
+  font-size: 0.625rem;
+  line-height: 1;
+  border-radius: 0.1rem;
+}
+
+// Custom Link underline decoration
+.underlined {
+  @include underline-alt;
+  @include underline-alt-select;
+}
+
+.call-link {
+  color: $body-color;
+  @include hover-focus {
+    color: darken($body-color, 0.2);
+    @include underline-alt;
+  }
+}
+
+// Map
+.map {
+  height: 30rem;
+}
+
+@media(max-width: 992px) {
+  .map {
+    height: 20rem;
+  }
+}
+
+.map iframe {
+  pointer-events: none;
+}
+
+// Font-Awesome Icon
+.fa-icon {
+  min-width: 1rem;
+  margin-right: 0.5rem;
+}
+
+.fa-xxs {
+  font-size: 0.65rem;
+}
+
+// Columned text
+@media(min-width:768px) {
+  @for $i from 2 through 4 {
+    .textcolumn-#{$i} {
+      @include columned($i);
+    }
+  }
+}
+
+.text-accent {
+  font-weight: $font-weight-bold;
+}
+
+// Container for inserting HTML
+.textraw {
+  ul,
+  ol,
+  p {
+    margin-bottom: 0.5rem;
+  }
+  @for $i from 1 through 4 {
+    h#{$i} {
+      font-size: $font-size-base * (2 - ($i - 1) * 0.25);
+    }
+  }
+  img {
+    display: block;
+    padding-bottom: 1rem;
+    @include img-fluid;
+  }
+  a {
+    color: $body-color;
+    @include underline-alt;
+    @include underline-alt-select;
+  }
+}
+
+// Section title
+.section-title {
+  margin: 1.5rem 0 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  @media(min-width:768px) {
+    text-align: left;
+    font-size: 1.75rem;
+  }
+  @media(min-width:992px) {
+    margin-top: 2rem;
+  }
+}
+
+// Contact card
+.custom-card {
+  .card-body {
+    padding-top: 0;
+    padding-left: 0;
+  }
+}

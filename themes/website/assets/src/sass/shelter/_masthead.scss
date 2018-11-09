@@ -1,0 +1,102 @@
+header.masthead {
+  .content {
+    padding-bottom: 1.5rem;
+    padding-top: calc(3rem + 40px);
+    // Style for alternative header on smallf devices
+    &.with-title {
+      display: block;
+    }
+    // Style for header with slider on big devices
+    &.with-slider {
+      display: none;
+      position: relative;
+    }
+    // Style for header with full width image
+    &.with-image {
+      padding: 0;
+      position: relative;
+      color: $white;
+      .page-title {
+        margin-top: calc(8rem + 100px);
+        text-transform: uppercase;
+      }
+    }
+    // Style for displaying page title in header
+    .page-title {
+      margin: 0 auto;
+    }
+    .page-desc {
+      font-size: 1.75rem;
+    }
+    // Style for header with image on all devices
+    .header-image {
+      width: 100%;
+      height: 50vh;
+      min-height: 300px;
+      background-repeat: no-repeat;
+      background-position: 50% 0;
+      @include background-cover;
+    }
+    // Place transparent element over header content
+    .overlay {
+      min-height: 300px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background-color: fade-out($gray-900, 0.6);
+      background-clip: content-box;
+      z-index: 1;
+    }
+    // Small area at the bottom of header
+    .welcome-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding-left: 2rem;
+      padding-bottom: 4rem;
+      text-align: left;
+      .btn {
+        color: $black;
+        background-color: $white;
+      }
+      .text {
+        color: $white;
+        text-align: left;
+        padding: 0;
+        margin-bottom: 0 0 0.5rem;
+      }
+      z-index: 2;
+      h1 {
+        font-size: 3.25em;
+      }
+    }
+  }
+}
+@media (min-width: 992px) {
+  header.masthead {
+    .content {
+      padding-bottom: 2rem;
+      padding-top: calc(3rem + 50px);
+      &.with-title {
+        display: none;
+      }
+      &.with-slider {
+        display: block;
+        padding-top: 0 !important;
+        padding-bottom: 0;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
+@media (min-width:1140px) {
+  header.masthead {
+    .content {
+      .header-image {
+        height: 65vh;
+      }
+    }
+  }
+}

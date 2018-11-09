@@ -1,0 +1,102 @@
+title = "Питомец"
+url = "/animal/:slug"
+layout = "default"
+description = "Описание питомца."
+meta_title = ""
+meta_description = ""
+meta_keywords = ""
+is_hidden = 0
+
+[animalView]
+slug = "{{ :slug }}"
+==
+function onEnd() {
+    $animal = $this->components['animalView']->animal;
+    if (!$animal) {
+        return Redirect::to('/');
+    }
+
+    $this['animal'] = $animal;
+    $this->page->title = $this->page->meta_title = $animal->name;
+    $this->page->title_alt = "Привет, меня зовут {$animal->name}!";
+}
+==
+
+<style>
+    .masthead {padding-bottom: 1rem !important;}
+    .masthead .page-title {font-size: 1.75rem !important;}
+</style>
+
+<div class="container pb-4">
+
+    <!-- animal.body -->
+    <div class="row justify-content-center animal-card">
+
+        <!-- animal.info -->
+        <div class="col-lg-10">
+            <div class="row">
+                <!-- animal.photo -->
+                <div class="col-lg-8">
+                    <img class="img-fluid mx-auto" src="{{ animal.profilePic ?: 'http://placehold.it/500x300' }}">
+                </div>
+
+                <!-- animal.specs -->
+                <div class="col-lg-4">
+                    <ul class="ac-spec">
+                        <li>
+                            <i class="fas fa-{{ animal.sex }} fa-icon"></i>{{ animal.sexForHumans|title }}
+                        </li>
+                        <li>
+                            <i class="fas fa-birthday-cake fa-icon"></i>{{ animal.ageForHumans }}
+                        </li>
+                        <li>
+                            <i class="fas fa-heartbeat fa-icon"></i>{{ animal.healthForHumans|title }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {% if animal.adopted %}
+            <div class="col-lg-10 textraw ac-adopted">
+                <h4>{{ animal.name }} {{ 'нашел'|verbend(animal.sex) }} новых хозяев, Ура!</h4>
+                {{ animal.adopted_by|raw }}
+            </div>
+        {% elseif not animal.isHealthy and animal.health_info %}
+            <div class="col-lg-10 rounded textraw ac-health">
+                {{ animal.health_info|raw }}
+                {% if animal.isSick and animal.fundraise_url %}
+                    <div class="my-2">
+                        <a href="{{ animal.fundraise_url }}" class="text-body underlined">Сбора средст на лечение</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <!-- animal.description -->
+        <div class="col-lg-10 textraw ac-desc">
+            {{ animal.description|raw }}
+        </div>
+
+        <!-- social.share -->
+        <div class="col-lg-10 pt-2">
+            {% partial 'socialshare' round=1 size='xxs' msg='<strong>Поделиться в</strong> ' %}
+        </div>
+
+    </div>
+
+    <!-- animal.featured_images -->
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            {% partial 'widgets/bootstrap-carousel' name=animal.slug images=animal.photos %}
+        </div>
+    </div>
+
+    <!-- contacts.phone -->
+    <h3 class="mt-4 text-center">Контактные информация</h3>
+    <hr class="paw-dark">
+    <div class="row justify-content-lg-center text-left">
+        {% partial 'contacts' %}
+    </div>
+
+</div>

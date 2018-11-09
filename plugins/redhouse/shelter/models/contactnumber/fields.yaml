@@ -1,0 +1,22 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    type:
+        label: redhouse.shelter::lang.contact_number.type_label
+        required: true
+        type: dropdown
+        default: mobil
+        span: left
+
+    number:
+        label: redhouse.shelter::lang.contact_number.number_label
+        required: true
+        type: text
+        span: right
+
+    enabled@update:
+        label: redhouse.shelter::lang.contact_number.enabled_label
+        default: true
+        type: switch

@@ -1,0 +1,12 @@
+.footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  background-color: $primary;
+  color: $white;
+  a.social-link {
+    color: $white;
+    i.fa-inverse {
+      color: $primary;
+    }
+  }
+}

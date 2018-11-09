@@ -1,14 +1,17 @@
 // ======================================================================== //
-//
-// Name:            Font-Awesome
-// Description:     Connecting the proper SCSS source code Font-Awesome
-//
+// Import external dependecies
 // ======================================================================== //
 
+// Bootstrap 4 framework
+@import "~bootstrap/scss/bootstrap";
+
+// Font-Awesome
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
-
 @import "~@fortawesome/fontawesome-free/scss/brands";
-
 @import "~@fortawesome/fontawesome-free/scss/solid";
-
 @import "~@fortawesome/fontawesome-free/scss/regular";
+// Your mixins below
+@import '~@fortawesome/fontawesome-free/scss/variables';
+
+// Mixins for converting px to rem.
+@import "~sass-rem/rem";

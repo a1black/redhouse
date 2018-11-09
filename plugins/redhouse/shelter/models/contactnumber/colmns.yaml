@@ -1,0 +1,22 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    type:
+        label: redhouse.shelter::lang.contact_number.type_label
+        type: phone_type
+        sortable: false
+        searchable: false
+
+    number:
+        label: redhouse.shelter::lang.contact_number.number_label
+        type: phone_number
+        sortable: false
+        searchable: true
+
+    enabled:
+        label: redhouse.shelter::lang.contact_number.enabled_label
+        type: switch
+        sortable: false
+        searchable: false

@@ -1,0 +1,13 @@
+{% set links = __SELF__.links %}
+
+{% if links.count %}
+    <ul class="list-inline text-center">
+    {% for name, link in links %}
+        <li class="list-inline-item">
+            <a href="{{ link.url }}" target="_blank" data-socialname="{{ name }}">
+                <i class="{{ link.icon }}"></i>
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}

@@ -1,0 +1,37 @@
+title = "Контакты"
+url = "/contacts"
+layout = "default"
+description = "Контактные данные и место положение приюта."
+meta_title = "Контактная информация"
+meta_description = ""
+meta_keywords = ""
+is_hidden = 0
+==
+
+<article>
+    <div class="container">
+
+        <!-- contacts.social -->
+        <div class="row">
+            <div class="col-md-6">
+                <p>Уважаемый посетитель, мы с радостью готовы ответить на все интересующие вас вопросы, провести корсультацию или рассмотреть предложения о сотрудничестве. Только мы просим вас звонить нам в течении набочего дня с 9:00 до 21:00 по МКС.</p>
+            </div>
+            <div class="col-md-6 px-1 align-self-center text-center">
+                <div class="mb-3">
+                    <i class="fas fa-envelope fa-icon"></i><a class="underlined text-body" href="mailto:ouremailaddress@example.com">ouremailaddress@example.com</a>
+                </div>
+
+                <div>
+                    {% partial 'social' size='xs' round=1 %}
+                </div>
+            </div>
+        </div>
+
+        <!-- contacts.phone -->
+        <h3 class="section-title">Контактная информация</h3>
+        <div class="row">
+            {% partial 'contacts' %}
+        </div>
+
+    </div>
+</article>

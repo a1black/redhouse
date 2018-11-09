@@ -1,13 +1,15 @@
 description = "Default layout"
 ==
+{% set pageTitle = this.page.url == '/' ? this.theme.website_name : this.page.title %}
+{% set pageDesc = this.page.url == '/' ? '' : ' | ' ~ this.theme.website_name %}
 <!doctype html>
 <html lang="ru">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{{ this.theme.meta_description }} {{ this.page.meta_description }}">
+        <meta name="description" content="{{ this.theme.meta_description }}">
         <meta name="keywords" content="{{ this.theme.meta_keywords }}">
-        <meta name="title" content="{% if this.page.meta_title %}{{ this.page.meta_title }}{% else %}{{ this.theme.meta_title }}{% endif %}">
+        <meta name="title" content="{{ this.theme.meta_title }}">
         <meta name="author" content="{{ this.theme.website_author }}">
 
         <!-- favicons.start -->
@@ -21,16 +23,36 @@ description = "Default layout"
         <meta name="theme-color" content="#563d7c">
         <!-- favicons.end -->
 
+        <!-- social.start -->
+        <!--Google-->
+        <meta itemprop="name" content="{{ pageTitle }}{{ pageDesc }}"/>
+        <meta itemprop="description" content="{{ this.theme.meta_description }}"/>
+        <meta itemprop="image" content="http://placehold.it/200x200"/>
+        <!--Twitter-->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="{{ pageTitle }}{{ pageDesc }}">
+        <meta name="twitter:description" content="{{ this.theme.meta_description }}"/>
+        <meta name="twitter:image:src" content="http://placehold.it/200x200"/>
+        <!--Facebook-->
+        <meta property="og:site_name" name="og:site_name" content="{{ pageTitle }}"/>
+        <meta property="og:description" name="og:description" content="{{ this.theme.meta_description }}"/>
+        <meta property="og:image" name="og:image" content="http://placehold.it/200x200"/>
+        <meta property="og:title" name="og:title" content="{{ pageTitle }}{{ pageDesc }}"/>
+        <meta property="og:type" name="og:type" content="website"/>
+        <meta property="og:url" name="og:url" content="{{ url_current() }}"/>
+        <!-- social.end -->
+
         <!-- styles -->
         <link href="{{ 'assets/dist/css/app.css'|theme }}" rel="stylesheet">
         {% styles %}
 
-        <title>{% if this.page.url == '/' %} {% elseif this.page.title %}{{ this.page.title }} | {% endif %}{{ this.theme.website_name }}</title>
+        <title>{{ pageTitle }}{{ pageDesc }}</title>
     </head>
     <body class="layout-{{ this.layout.id }} page-{{ this.page.id }}">
         <!-- @TODO Look into "display: flex" -->
         <!-- @TODO Decide on color theme, I think white-black-darkorange. -->
         <!-- @TODO Make logo and update favicons images and colors. -->
+        <!-- @TODO favicon is too small. -->
 
         <!-- navbar.start -->
         {%partial 'site/nav' %}

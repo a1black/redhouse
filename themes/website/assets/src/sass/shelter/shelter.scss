@@ -1,0 +1,23 @@
+// ======================================================================== //
+//
+// Name:            Shelter Theme
+// Description:     Connecting the SCSS source code of theme
+//
+// ======================================================================== //
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=cyrillic');
+
+@import "variables.scss";
+@import "mixins.scss";
+@import "global.scss";
+@import "navbar.scss";
+@import "masthead.scss";
+@import "footer.scss";
+
+@import "home.scss";
+@import "animals.scss";
+@import "news.scss";
+@import "basic_carousel.scss";
+
+@import "bootstrap-overrides.scss";

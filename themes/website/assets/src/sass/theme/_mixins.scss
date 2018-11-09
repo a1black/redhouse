@@ -1,13 +1,15 @@
 // Font Mixins
-// AGENCY Font mixins
-@mixin body-font {
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+// Site theme fonts
+@mixin main-font {
+  font-family: 'Ubuntu', $font-family-base;
 }
-@mixin heading-font {
-  font-family: 'Cuprum', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
+
 @mixin cursive-font {
-  font-family: 'Lobster', -apple-system, BlinkMacSystemFont, 'Segoe UI', cursive, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: 'Lobster', $font-family-base;
+}
+
+@mixin main-font-alt {
+  font-family: 'Cuprum', $font-family-base;
 }
 
 // Effect Mixins
@@ -16,60 +18,10 @@
   -moz-transition: all 0.2s;
   transition: all 0.2s;
 }
+
 @mixin background-cover() {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-// Button Mixin
-@mixin button-variant($color, $background, $border) {
-  color: $color;
-  border-color: $border;
-  background-color: $background;
-  &.focus,
-  &:focus {
-    color: $color;
-    border-color: darken($border, 25%);
-    background-color: darken($background, 10%);
-  }
-  &:hover {
-    color: $color;
-    border-color: darken($border, 12%);
-    background-color: darken($background, 10%);
-  }
-  &.active,
-  &:active,
-  .open > &.dropdown-toggle {
-    color: $color;
-    border-color: darken($border, 12%);
-    background-color: darken($background, 10%);
-    &.focus,
-    &:focus,
-    &:hover {
-      color: $color;
-      border-color: darken($border, 25%);
-      background-color: darken($background, 17%);
-    }
-  }
-  &.active,
-  &:active,
-  .open > &.dropdown-toggle {
-    background-image: none;
-  }
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    &.focus,
-    &:focus,
-    &:hover {
-      border-color: $border;
-      background-color: $background;
-    }
-  }
-  .badge {
-    color: $background;
-    background-color: $color;
-  }
 }

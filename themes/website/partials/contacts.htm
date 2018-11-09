@@ -1,0 +1,25 @@
+description = "Контактные номера приюта."
+
+[contactList]
+==
+
+{% set contacts = contactList.contacts %}
+
+{% if contacts.count %}
+    {% for contact in contacts %}
+    <div class="col-md-6 col-lg-4 custom-card">
+        <div class="card-body">
+            <h6 class="card-title">{{ contact.name }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted small">{{ contact.note|raw }}</h6>
+            <ul class="card-text list-unstyled px-3">
+            {% for number in contact.numbers %}
+                <li class="mb-2">
+                    <i class="{{ number.icon }} fa-icon"></i>
+                    {{ number.link|raw }}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
