@@ -69,6 +69,7 @@ class Animal extends Model
         'birthday' => 'required',
         'description' => 'required',
         'fundraise_url' => 'url',
+        'featured_images' => 'required',
     ];
 
     /** @var array */
@@ -79,7 +80,9 @@ class Animal extends Model
     ];
 
     public $customMessages = [
+        'name.alpha_name' => 'redhouse.shelter::lang.animal.error.name',
         'description.required' => 'redhouse.shelter::lang.animal.error.desc_required',
+        'featured_images.required' => 'redhouse.shelter::lang.animal.error.photo_required',
     ];
 
     /** @var array */

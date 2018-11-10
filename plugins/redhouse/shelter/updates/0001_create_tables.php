@@ -22,23 +22,9 @@ class CreateTables extends Migration
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('note')->nullable();
+            $table->text('numbers');
             $table->boolean('published')->default(true);
             $table->timestamps();
-        });
-
-        Schema::create('redhouse_shelter_contact_numbers', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->unsignedInteger('contact_id');
-            $table->string('number');
-            $table->char('type', 5);
-            $table->boolean('enabled')->default(true);
-            $table->timestamps();
-
-            $table->foreign('contact_id')
-                ->references('id')
-                ->on('redhouse_shelter_contacts')
-                ->onDelete('cascade');
         });
 
         // Organization bank accounts and e-wallets

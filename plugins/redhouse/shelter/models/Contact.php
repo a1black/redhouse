@@ -9,9 +9,7 @@ use Illuminate\Support\Fluent;
 use Illuminate\Validation\Validator;
 use October\Rain\Database\Model;
 use October\Rain\Database\Builder;
-use October\Rain\Database\Relations\HasMany;
 use October\Rain\Database\Traits\Validation;
-use Redhouse\Shelter\Models\ContactNumber;
 use Redhouse\Shelter\Classes\ValidatorExtensions;
 
 /**
@@ -23,19 +21,26 @@ class Contact extends Model
         makeValidator as traitMakeValidator;
     }
 
+    const CN_TYPE_MOBILE = 'mobile';
+    const CN_TYPE_SKYPE = 'skype';
+    const CN_TYPE_VIBER = 'viber';
+
+    public static $contactNumberTypes = [
+        self::CN_TYPE_MOBILE,
+        self::CN_TYPE_SKYPE,
+        self::CN_TYPE_VIBER,
+    ];
+
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $table = 'redhouse_shelter_contacts';
 
-    /** @var array */
-    public $hasMany = [
-        'numbers' => [
-            'Redhouse\Shelter\Models\ContactNumber',
-            'order' => 'type',
-            'conditions' => 'enabled = 1',
-            'delete' => true
-        ],
+    /**
+     * {@inheritdoc}
+     */
+    public $jsonable = [
+        'numbers',
     ];
 
     /**
@@ -47,6 +52,8 @@ class Contact extends Model
         'name' => 'required|min:2|max:100',
         'note' => 'max:100',
         'description' => 'max:255',
+        'numbers' => 'required|array',
+        'numbers.*.number' => 'required_with:numbers.*.type',
     ];
 
     /**
@@ -55,21 +62,10 @@ class Contact extends Model
      * @return array
      */
     public $customMessages = [
-        'alpha_name' => 'redhouse.shelter::lang.contact.error.name',
+        'name.alpha_name' => 'redhouse.shelter::lang.contact.error.name',
+        'numbers.*.number.contact_number' => 'redhouse.shelter::lang.contact_number.error.number',
+        'numbers.required' => 'redhouse.shelter::lang.contact.error.numbers',
     ];
-
-    /**
-     * Returns count of contuct numbers.
-     */
-    public function getNumberCountAttribute(): int
-    {
-        return $this->numbers->count();
-    }
-
-    public function numbers(): HasMany
-    {
-        return $this->hasMany(ContactNumber::class);
-    }
 
     /**
      * Returns data validator.
@@ -88,6 +84,8 @@ class Contact extends Model
         // Add extra rules
         $extraRules = [
             'name' => 'alpha_name',
+            'numbers.*.type' => sprintf('in:%s', implode(',', self::$contactNumberTypes)),
+            'numbers.*.number' => 'contact_number:numbers.*.type',
         ];
         $validator->addRules($extraRules);
 
@@ -102,6 +100,15 @@ class Contact extends Model
         if ($this->name) {
             $this->name = mb_ereg_replace('\s{2,}', ' ', $this->name);
         }
+
+        $numbers = [];
+        foreach ($this->numbers as $val) {
+            $val['number'] = preg_replace('/[\s\(\)-]/', '', $val['number']);
+            $val['number'] = preg_replace('/^(\+?7|8)(?=\d{10})/', '', $val['number']);
+            $numbers[] = $val;
+        }
+
+        $this->numbers = $numbers;
     }
 
     public function beforeSave()
@@ -112,26 +119,23 @@ class Contact extends Model
     }
 
     /**
+     * Returns option list for dropdown widget.
+     */
+    public function getTypeOptions(): array
+    {
+        $options = [];
+        foreach (self::$contactNumberTypes as $type) {
+            $options[$type] = 'redhouse.shelter::lang.contact_number.type.'.$type;
+        }
+
+        return $options;
+    }
+
+    /**
      * Returns query for selecting only published contacts.
      */
     public function scopeIsPublished(Builder $query): Builder
     {
         return $query->where('published', true);
-    }
-
-    /**
-     * Returns query for selecting contacts with matchin contact number.
-     *
-     * @see Redhouse\Shelter\Models\ContactNumber::scopeNumberLike
-     */
-    public function scopeFilterContactNumber(Builder $query, string $number): Builder
-    {
-        if (strlen($number) >= 4) {
-            $query->whereHas('numbers', function ($query) use ($number) {
-                $query->numberLike($number);
-            });
-        }
-
-        return $query;
     }
 }

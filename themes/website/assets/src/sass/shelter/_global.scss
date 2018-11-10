@@ -107,14 +107,6 @@ img::-moz-selection {
   @include underline-alt-select;
 }
 
-.call-link {
-  color: $body-color;
-  @include hover-focus {
-    color: darken($body-color, 0.2);
-    @include underline-alt;
-  }
-}
-
 // Map
 .map {
   height: 30rem;
@@ -188,13 +180,5 @@ img::-moz-selection {
   }
   @media(min-width:992px) {
     margin-top: 2rem;
-  }
-}
-
-// Contact card
-.custom-card {
-  .card-body {
-    padding-top: 0;
-    padding-left: 0;
   }
 }

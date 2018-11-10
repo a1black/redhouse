@@ -63,4 +63,37 @@ class ValidatorExtensions
 
         return $validator;
     }
+
+    /**
+     * Returns validator after adding rule for checking list of contuct numbers.
+     */
+    public function addRuleContactNumbers(Validator $validator): Validator
+    {
+        $rule = function ($attribute, $value, $params) {
+            $this->requireParameterCount(1, $params, 'contact_number');
+
+            $other = \Illuminate\Support\Arr::get($this->data, $params[0]);
+
+            if ($other === 'skype') {
+                return $this->validateRegex(
+                    $attribute,
+                    $value,
+                    ['/^[a-z][a-z0-9_\-\.]{5,31}$/i']
+                );
+            } elseif ($other) {
+                return $this->validateDigits($attribute, $value, [10]);
+            }
+
+            return true;
+        };
+
+        $validator->addDependentExtension(
+            'contact_number',
+            \Closure::bind($rule, $validator, 'Illuminate\Validation\Validator')
+        );
+
+        $validator->setCustomMessages(['contact_number' => 'The :attribute field has invalid format!']);
+
+        return $validator;
+    }
 }
