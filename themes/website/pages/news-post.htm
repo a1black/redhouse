@@ -37,7 +37,7 @@ function onEnd() {
             <div class="col-lg-10 mx-auto post-view">
                 <!-- newspost.author -->
                 <div class="lead clearfix">
-                    <p class="float-right post-meta">опуб. {{ post.published_at|date('d M') }}</p>
+                    <p class="float-right post-meta">опуб. {{ post.published_at|postdate }}</p>
                     {% partial 'socialshare' round=1 size='xs' %}
                 </div>
 

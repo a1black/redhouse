@@ -1,0 +1,48 @@
+{% if __SELF__.enabled %}
+    <div
+        id="{{ __SELF__.id }}"
+        class="{{ __SELF__.property('class') }}"
+        style="{% if __SELF__.property('width') %}
+                    width: {{ __SELF__.property('width') }};
+               {% endif %}
+               {% if __SELF__.property('height') %}
+                    height: {{ __SELF__.property('height') }}
+                {% endif %}
+        ">
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            ymaps.ready(function () {
+
+                var map = new ymaps.Map("{{ __SELF__.id }}", {
+                    center: {{ __SELF__.coordinates|json_encode|raw }},
+                    zoom: {{ __SELF__.property('zoom') }},
+                    controls: ['smallMapDefaultSet', 'routeButtonControl']
+                });
+
+                // Place organization headquarter marker
+                map.geoObjects.add(new ymaps.Placemark(
+                    // Coordinates
+                    {{ __SELF__.coordinates|json_encode|raw }},
+                    // Properties
+                    {balloonContentHeader: '{{ __SELF__.location.title|escape }}',
+                     balloonContentBody: '{{ __SELF__.location.description|escape }}'},
+                    // Options
+                    {balloonShadow: false,
+                     balloonCloseButton: false,
+                     hideIconOnBalloonOpen: false,
+                     iconColor: '#ff0000',
+                     preset: 'islands#circleDotIcon'}
+                ));
+
+                // Add route control to headquarter
+                var routeControl = map.controls.get('routeButtonControl');
+                routeControl.routePanel.state.set('to', '{{ __SELF__.coordinates|join(", ") }}');
+
+                // Remove unnessary controls
+                map.controls.remove('searchControl');
+            });
+        });
+    </script>
+{% endif %}

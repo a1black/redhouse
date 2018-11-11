@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: redhouse.shelter::lang.view.yandexmap.form
+
+# Form field configuration file
+form: $/redhouse/shelter/models/yandexmap/fields.yaml
+
+# Record model
+modelClass: Redhouse\Shelter\Models\YandexMap
+
+# Default redirect destination
+defaultRedirect: redhouse/shelter/yandexmap
+
+# Record update form configuration
+create:
+    title: redhouse.shelter::lang.view.yandexmap.form
+    redirectClose: redhouse/shelter/settings
+    flashSave: redhouse.shelter::lang.view.yandexmap.update_msg
+
+# Record update form configuration
+update:
+    title: redhouse.shelter::lang.view.yandexmap.form
+    redirectClose: redhouse/shelter/settings
+    flashSave: redhouse.shelter::lang.view.yandexmap.update_msg

@@ -1,0 +1,25 @@
+<?php if (!$this->fatalError): ?>
+
+    <div class="layout-row">
+        <div class="form-tabless-fields">
+            <div class="form-group section-field span-full">
+                <div class="field-section">
+                    <h4>Настройка Яндекс API для размещения на сайте карты с гео-координатами приюта</h4>
+                </div>
+            </div>
+            <div>
+                <a href="<?= Backend::url('redhouse/shelter/yandexmap') ?>" class="btn btn-primary oc-icon-map">
+                    <?= e(trans('redhouse.shelter::lang.view.yandexmap.form')) ?>
+                </a>
+            </div>
+        </div>
+    </div>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
+    <p>
+        <a href="<?= Backend::url('redhouse/shelter/animals') ?>" class="btn btn-default"><?= e(trans('redhouse.shelter::lang.redirect.return_to_main')) ?></a>
+    </p>
+
+<?php endif ?>

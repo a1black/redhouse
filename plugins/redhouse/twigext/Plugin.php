@@ -79,7 +79,8 @@ class Plugin extends PluginBase {
         if ($months < 1 && $years < 1) {
             throw new InvalidArgumentException(Lang::get(
                 'redhouse.twigext::lang.errors.invalid_birthday',
-                ['msg'=> $birthday]));
+                ['msg' => $birthday]
+            ));
         }
         $str = [
             $years

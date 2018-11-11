@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Redhouse\Shelter\Classes;
 
 use Lang;
-use Carbon\Carbon;
+use October\Rain\Argon\Argon;
 
 class ListTypeHelpers
 {
@@ -30,10 +30,10 @@ class ListTypeHelpers
     /**
      * Returns age using birthday.
      */
-    public static function age(Carbon $date): string
+    public static function age(Argon $date): string
     {
         $parts = [];
-        $diff = $date->diff(Carbon::now(), false);
+        $diff = $date->diff(Argon::now(), false);
         $diffParts = [
             ['value' => $diff->y, 'unit' => 'y'],
             ['value' => $diff->m, 'unit' => 'm'],

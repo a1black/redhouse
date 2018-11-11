@@ -35,6 +35,7 @@ class Plugin extends PluginBase
             'Redhouse\Shelter\Components\MoneyAccounts' => 'moneyAccounts',
             'Redhouse\Shelter\Components\SocialLikes' => 'socialLikes',
             'Redhouse\Shelter\Components\SocialLinks' => 'socialLinks',
+            'Redhouse\Shelter\Components\YandexMap' => 'yandexmap',
         ];
     }
 
@@ -60,6 +61,7 @@ class Plugin extends PluginBase
                 'phone' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'phoneNumber'],
                 'monthsToAge' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'age'],
                 'verbend' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'verbGender'],
+                'postdate' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'postdate'],
             ],
             'functions' => [],
         ];

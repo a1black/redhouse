@@ -14,10 +14,6 @@ coverage/
 /artisan
 # OctoberCMS
 /public/
-/themes/*
-!/themes/website
-/plugins/*
-!/plugins/redhouse
 /index.php
 # JS
 node_modules/
