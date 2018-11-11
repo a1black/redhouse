@@ -18,7 +18,7 @@ class ValidatorExtensions
         $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC);
         foreach ($methods as $method) {
             if (strpos($method->name, 'addRule') === 0) {
-                $method->invoke(new self, $validator);
+                $method->invoke(new self(), $validator);
             }
         }
 
@@ -27,7 +27,7 @@ class ValidatorExtensions
 
     /**
      * Returns validator after adding rules for checkin 3 part name.
-     * Valid names: Last-name[ F.[ Middle]]
+     * Valid names: Last-name[ F.[ Middle]].
      */
     public function addRuleName(Validator $validator): Validator
     {
@@ -55,6 +55,7 @@ class ValidatorExtensions
             'alpha_text',
             function ($attribute, $value, $params) {
                 $multi = array_key_exists(0, $params) && $params[0] == 1 ? 'm' : '';
+
                 return preg_match('/^[\pL\pM\pN\pP\pZ]+$/u'.$multi, $value) > 0;
             }
         );

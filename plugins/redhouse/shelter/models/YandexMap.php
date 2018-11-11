@@ -53,7 +53,7 @@ class YandexMap extends Model
     ];
 
     /**
-     * Custom validation messages
+     * Custom validation messages.
      *
      * @var array
      */

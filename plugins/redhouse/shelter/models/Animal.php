@@ -53,7 +53,7 @@ class Animal extends Model
         self::SEX_F,
     ];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $table = 'redhouse_shelter_animals';
 
     /** @var array */
@@ -185,7 +185,7 @@ class Animal extends Model
      * Posible values:
      *      positive - age in months
      *      negative - age in days
-     *      zero     - not born yet
+     *      zero     - not born yet.
      */
     public function getAge(): int
     {

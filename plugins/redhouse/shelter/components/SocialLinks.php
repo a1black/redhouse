@@ -11,7 +11,7 @@ use Redhouse\Shelter\Models\SocialLink as SLModel;
 class SocialLinks extends ComponentBase
 {
     /**
-     * @var October\Rain\Support\Collection List of links.
+     * @var October\Rain\Support\Collection list of links
      */
     public $links;
 

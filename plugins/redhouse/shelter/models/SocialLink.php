@@ -9,7 +9,7 @@ use October\Rain\Database\Traits\Validation;
 use System\Behaviors\SettingsModel;
 
 /**
- * Social links settings
+ * Social links settings.
  */
 class SocialLink extends Model
 {
@@ -45,7 +45,7 @@ class SocialLink extends Model
     ];
 
     /**
-     * Custom validation messages
+     * Custom validation messages.
      *
      * @var array
      */

@@ -12,7 +12,7 @@ use Redhouse\Shelter\Models\SocialLink as SLModel;
 class SocialLikes extends ComponentBase
 {
     /**
-     * @var October\Rain\Support\Collection List of links.
+     * @var October\Rain\Support\Collection list of links
      */
     public $links;
 
@@ -74,7 +74,7 @@ class SocialLikes extends ComponentBase
      */
     public function loadLinks(): Collection
     {
-        $controller = Controller::getController() ?: new Controller;
+        $controller = Controller::getController() ?: new Controller();
         $pageUrl = $controller->currentPageUrl();
         $links = new Collection([]);
 

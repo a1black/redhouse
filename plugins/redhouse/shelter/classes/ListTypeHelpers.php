@@ -17,8 +17,8 @@ class ListTypeHelpers
         $phone = preg_replace_callback(
             '/^(\d{3})(\d{3})(\d{2})(\d{2})$/',
             function ($match) {
-                if (count($match) == 5) {
-                    return sprintf('+7(%d) %d-%d-%d', ...array_slice($match, 1));
+                if (\count($match) == 5) {
+                    return sprintf('+7(%d) %d-%d-%d', ...\array_slice($match, 1));
                 }
             },
             $number
@@ -50,7 +50,7 @@ class ListTypeHelpers
             }
         }
 
-        return count($parts) && !$diff->invert
+        return \count($parts) && !$diff->invert
             ? implode(' ', $parts)
             : Lang::get('redhouse.shelter::lang.general.not_born');
     }

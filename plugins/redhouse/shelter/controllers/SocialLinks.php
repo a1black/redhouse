@@ -45,6 +45,9 @@ class SocialLinks extends Controller
 
     /**
      * AJAX handler for form save action.
+     *
+     * @param null|int    $recordId record identifier
+     * @param null|string $context  form context
      */
     public function index_onSave($recordId = null, $context = null)
     {

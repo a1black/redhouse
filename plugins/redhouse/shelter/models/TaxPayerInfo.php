@@ -48,7 +48,7 @@ class TaxPayerInfo extends Model
     ];
 
     /**
-     * Custom validation messages
+     * Custom validation messages.
      *
      * @var array
      */

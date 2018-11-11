@@ -56,6 +56,7 @@ class Plugin extends PluginBase
                 },
                 'ucfirst' => function ($str) {
                     $str = mb_convert_case($str, MB_CASE_LOWER, "UTF-8");
+
                     return mb_convert_case($str[0], MB_CASE_UPPER).substr($str, 1);
                 },
                 'phone' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'phoneNumber'],
@@ -136,7 +137,7 @@ class Plugin extends PluginBase
                         'permissions' => [],
                     ],
                 ],
-            ]
+            ],
         ];
     }
 }

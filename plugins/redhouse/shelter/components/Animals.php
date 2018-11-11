@@ -78,6 +78,7 @@ class Animals extends ComponentBase
     public function getLimit(): int
     {
         $limit = (int) $this->property('animalLimit');
+
         return $limit > 0 ? $limit : 0;
     }
 

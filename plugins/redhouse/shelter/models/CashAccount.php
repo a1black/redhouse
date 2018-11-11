@@ -32,7 +32,7 @@ class CashAccount extends Model
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $table = 'redhouse_shelter_cash_accounts';
 
@@ -104,7 +104,7 @@ class CashAccount extends Model
 
     public function beforeSave()
     {
-        if (in_array($this->type, [self::CA_TYPE_YANDEX, self::CA_TYPE_PAYPAL])) {
+        if (\in_array($this->type, [self::CA_TYPE_YANDEX, self::CA_TYPE_PAYPAL])) {
             $this->bank_name = null;
             $this->bank_id_code = null;
             $this->correspondent = null;
@@ -116,7 +116,7 @@ class CashAccount extends Model
      */
     public function scopeAccountLike(Builder $query, string $value): Builder
     {
-        if (strlen($value) > 4) {
+        if (\strlen($value) > 4) {
             $query->where('account', 'like', "%$value%");
         }
 
