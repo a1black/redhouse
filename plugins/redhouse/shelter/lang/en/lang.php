@@ -29,7 +29,7 @@ return [
         ],
         'settings' => [
             'label' => 'Settings',
-            'description' => 'Manage various options'
+            'description' => 'Manage various options',
         ],
     ],
     'redirect' => [
@@ -178,6 +178,6 @@ return [
         ],
         'error' => [
             'bank' => 'Invalid name of a bank',
-        ]
+        ],
     ],
 ];

@@ -11,7 +11,6 @@ use BackendMenu;
 use Backend\Classes\Controller;
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
-use Backend\Behaviors\RelationController;
 use Redhouse\Shelter\Models\Contact;
 use Redhouse\Shelter\Models\ContactNumber;
 
@@ -23,7 +22,6 @@ class Contacts extends Controller
     public $implement = [
         'Backend.Behaviors.FormController',
         'Backend.Behaviors.ListController',
-        'Backend.Behaviors.RelationController',
     ];
 
     /** @var string */
@@ -31,13 +29,6 @@ class Contacts extends Controller
 
     /** @var string */
     public $listConfig = 'config_list.yaml';
-
-    /** @var string */
-    public $relationConfig = 'config_relation.yaml';
-
-    public $hasMany = [
-        'numbers' => ['Redhouse\Shelter\Models\ContactNumber'],
-    ];
 
     public function __construct()
     {

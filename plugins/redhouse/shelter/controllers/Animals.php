@@ -37,11 +37,17 @@ class Animals extends Controller
         BackendMenu::setContext('Redhouse.Shelter', 'shelter', 'animals');
     }
 
+    /**
+     * Handle record update request.
+     *
+     * @param null|int    $recordId record identifier
+     * @param null|string $context  form context
+     */
     public function update($recordId, $context = null)
     {
         parent::update($recordId, $context);
 
-        $this->vars['viewOnSite'] = (new CmsController)->pageUrl(
+        $this->vars['viewOnSite'] = (new CmsController())->pageUrl(
             'animal',
             ['slug' => $this->vars['formModel']->slug]
         );

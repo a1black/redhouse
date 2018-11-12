@@ -1,0 +1,43 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    apikey:
+        label: redhouse.shelter::lang.mapapi.apikey_label
+        comment: redhouse.shelter::lang.mapapi.apikey_desc
+        span: full
+        type: text
+
+    enabled:
+        label: redhouse.shelter::lang.mapapi.enabled_label
+        span: full
+        type: checkbox
+
+    coordinates_section:
+        label: redhouse.shelter::lang.mapapi.coordinates_label
+        type: section
+
+    latitude:
+        label: redhouse.shelter::lang.mapapi.latitude_label
+        span: left
+        type: text
+
+    longitude:
+        label: redhouse.shelter::lang.mapapi.longitude_label
+        span: right
+        type: text
+
+    location_section:
+        label: redhouse.shelter::lang.mapapi.location_label
+        type: section
+
+    title:
+        label: redhouse.shelter::lang.mapapi.title_label
+        span: left
+        type: text
+
+    description:
+        label: redhouse.shelter::lang.mapapi.description_label
+        span: right
+        type: text

@@ -1,0 +1,75 @@
+description = "Список банковских аккаунтов."
+
+[moneyAccounts]
+==
+
+{% set accounts = moneyAccounts.accounts %}
+{% set recipient = moneyAccounts.taxpayer %}
+
+{% set showBank = showBank ?? 1 %}
+{% set showWallet = showWallet ?? 1 %}
+
+{% if accounts.bank.count and showBank %}
+    <!-- accounts.bank -->
+    <h3 class="section-title">
+        <i class="fas fa-dollar-sign fa-icon"></i>По банковским реквизитам
+    </h3>
+    <div class="row">
+    {% for bank in accounts.bank %}
+        <div class="col-lg-6">
+            <div class="custom-card card-body">
+                <h5 class="card-title">{{ bank.bank_name|raw }}</h5>
+                <ul class="card-text">
+                    <li><strong>Р/сч.</strong> {{ bank.account }}</li>
+                    <li><strong>БИК</strong> {{ bank.bank_id_code }}</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+
+        <ul class="col-12 mt-3 list-unstyled">
+            <li><strong>Получатель:</strong> {{ recipient.fullname|raw }}</li>
+            <li><strong>ИНН:</strong> {{ recipient.tax_id }}</li>
+            <li><strong>Наименование платежа:</strong> {{ recipient.purpose|raw }}</li>
+        </ul>
+    </div>
+{% endif %}
+
+{% if (accounts.yandex.count or accounts.paypal.count) and showWallet %}
+    <!-- accounts.ewallets -->
+    <h3 class="mt-5 section-title">
+        <i class="fas fa-wallet fa-icon"></i>На электронный кошелек
+    </h3>
+    <div class="row">
+    {% for bank in accounts.yandex %}
+        <div class="col-md-6">
+            <div class="custom-card card-body">
+                <h5 class="card-title">Яндекс.Деньги</h5>
+                <ul class="card-text">
+                    <li><strong>Счет:</strong> {{ bank.account }}</li>
+                    <li>
+                        <a class="btn btn-sm btn-outline-dark mt-2" href="https://money.yandex.ru/{{ bank.account }}" target="_blank">
+                            Перевести средства
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+    {% for bank in accounts.paypal %}
+        <div class="col-md-6">
+            <div class="custom-card card-body">
+                <h5 class="card-title">PayPal</h5>
+                <ul class="card-text">
+                    <li><strong>Счет:</strong> {{ bank.account }}</li>
+                    <li>
+                        <a class="btn btn-sm btn-outline-dark mt-2" href="https://paypal.com" target="_blank">
+                            Перейти на PayPal
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}

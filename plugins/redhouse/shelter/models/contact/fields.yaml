@@ -27,3 +27,23 @@ fields:
         comment: redhouse.shelter::lang.contact.published_desc
         default: true
         type: checkbox
+
+    numbers:
+        label: redhouse.shelter::lang.contact.numbers_label
+        prompt: redhouse.shelter::lang.view.contact_number.create
+        type: repeater
+        span: full
+        form:
+            fields:
+                type:
+                    label: redhouse.shelter::lang.contact_number.type_label
+                    required: true
+                    type: dropdown
+                    default: mobile
+                    span: left
+
+                number:
+                    label: redhouse.shelter::lang.contact_number.number_label
+                    required: true
+                    type: text
+                    span: right

@@ -35,6 +35,8 @@ class Plugin extends PluginBase
             'Redhouse\Shelter\Components\MoneyAccounts' => 'moneyAccounts',
             'Redhouse\Shelter\Components\SocialLikes' => 'socialLikes',
             'Redhouse\Shelter\Components\SocialLinks' => 'socialLinks',
+            'Redhouse\Shelter\Components\YandexMap' => 'yandexmap',
+            'Redhouse\Shelter\Components\FinanceHistory' => 'finances',
         ];
     }
 
@@ -55,11 +57,13 @@ class Plugin extends PluginBase
                 },
                 'ucfirst' => function ($str) {
                     $str = mb_convert_case($str, MB_CASE_LOWER, "UTF-8");
+
                     return mb_convert_case($str[0], MB_CASE_UPPER).substr($str, 1);
                 },
                 'phone' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'phoneNumber'],
                 'monthsToAge' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'age'],
                 'verbend' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'verbGender'],
+                'postdate' => ['\Redhouse\Shelter\Classes\TwigExtensions', 'postdate'],
             ],
             'functions' => [],
         ];
@@ -134,7 +138,7 @@ class Plugin extends PluginBase
                         'permissions' => [],
                     ],
                 ],
-            ]
+            ],
         ];
     }
 }

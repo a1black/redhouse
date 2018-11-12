@@ -1,0 +1,51 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__.'/plugins/redhouse')
+;
+
+return PhpCsFixer\Config::create()
+    ->setFinder($finder)
+    ->setCacheFile('.cache/php_cs.cache')
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@Symfony' => true,
+        '@Symfony:risky' => true,
+        '@PHP70Migration' => true,
+        'binary_operator_spaces' => ['default' => 'single_space'],
+        'blank_line_before_statement' => ['statements' => ['try', 'throw', 'return', 'declare']],
+        'cast_spaces' => ['space' => 'single'],
+        'increment_style' => false,
+        'method_argument_space' => ['ensure_fully_multiline' => false],
+        'no_extra_blank_lines' => ['tokens' => ['break', 'continue', 'curly_brace_block', 'extra', 'parenthesis_brace_block', 'return', 'square_brace_block', 'throw', 'use']],
+        'no_mixed_echo_print' => false,
+        'no_unneeded_control_parentheses' => false,
+        'no_unneeded_curly_braces' => false,
+        'no_unused_imports' => false,
+        'single_quote' => false,
+        'space_after_semicolon' => ['remove_in_empty_for_expressions' => true],
+        'standardize_increment' => false,
+        'yoda_style' => false,
+
+        'align_multiline_comment' => true,
+        'array_indentation' => true,
+        'array_syntax' => ['syntax' => 'short'],
+        'backtick_to_shell_exec' => true,
+        'combine_consecutive_issets' => true,
+        'combine_consecutive_unsets' => true,
+        'compact_nullable_typehint' => true,
+        'list_syntax' => ['syntax' => 'long'],
+        'method_chaining_indentation' => true,
+        'no_alias_functions' => true,
+        'no_null_property_initialization' => true,
+        'no_php4_constructor' => true,
+        'ordered_class_elements' => false,
+        'ordered_imports' => false,
+        'php_unit_ordered_covers' => true,
+        'phpdoc_add_missing_param_annotation' => true,
+        'phpdoc_order' => true,
+        'phpdoc_types_order' => true,
+    ])
+;
+
+// vi: ft=php

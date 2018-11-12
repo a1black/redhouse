@@ -16,7 +16,7 @@ postPage = "news-post"
 ==
 {% set posts = newsList.posts %}
 
-<div class="container pb-4">
+<div class="container pb-5">
 
     <!-- news.start -->
     <div class="row">
@@ -28,7 +28,7 @@ postPage = "news-post"
                 <h2 class="post-title">
                     <a href="{{ post.url }}">{{ post.title }}</a>
                 </h2>
-                <p class="post-meta">опуб. {{ post.published_at|date('d M') }}</p>
+                <p class="post-meta">опуб. {{ post.published_at|postdate }}</p>
                 <p class="post-summary">{{ post.summary|striptags }}</p>
             </div>
         {% else %}

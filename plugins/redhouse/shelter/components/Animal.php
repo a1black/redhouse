@@ -35,10 +35,10 @@ class Animal extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'rainlab.blog::lang.component.animal.slug_label',
+                'title' => 'rainlab.blog::lang.component.animal.slug_label',
                 'description' => 'rainlab.blog::lang.component.animal.slug_desc',
-                'default'     => '{{ :slug }}',
-                'type'        => 'string'
+                'default' => '{{ :slug }}',
+                'type' => 'string',
             ],
         ];
     }

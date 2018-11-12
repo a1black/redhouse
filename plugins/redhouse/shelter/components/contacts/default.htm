@@ -2,13 +2,28 @@
 
 {% if contacts.count %}
     {% for contact in contacts %}
-        <div>
-            <h5>{{ contact.name }}</h6>
-            <h6>{{ contact.note }}</h6>
-            <ul>
+        <div class="custom-card card-body">
+            <h6 class="card-title">{{ contact.name }}</h6>
+            <h6 class="card-subtitle text-muted">{{ contact.note|raw }}</h6>
+            <ul class="card-text card-contact-list">
             {% for number in contact.numbers %}
-                <li class="list-group-item">
-                    <i class="{{ number.icon }}"></i> {{ number.link|raw }}
+                <li>
+                    {% if number.type == 'skype' %}
+                        <i class="fab fa-skype fa-icon"></i>
+                        <a class="call-link" href="skype:{{ number.number }}?call">
+                            {{ number.number }}
+                        </a>
+                    {% elseif number.type == 'viber' %}
+                        <i class="fab fa-viber fa-icon"></i>
+                        <a class="call-link" href="viber://add?number=%2B7{{ number.number }}">
+                            {{ number.number|phone }}
+                        </a>
+                    {% else %}
+                        <i class="fas fa-mobile-alt fa-icon"></i>
+                        <a class="call-link" href="tel:%2B7{{ number.number }}">
+                            {{ number.number|phone }}
+                        </a>
+                    {% endif %}
                 </li>
             {% endfor %}
             </ul>

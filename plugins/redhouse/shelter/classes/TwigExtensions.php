@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Redhouse\Shelter\Classes;
 
 use Lang;
+use October\Rain\Argon\Argon;
 
 class TwigExtensions
 {
@@ -13,7 +14,7 @@ class TwigExtensions
      */
     public static function phoneNumber(string $number): string
     {
-        if (strpos($number, '+7') === 0 || (strlen($number) == 11 && $number[0] === '8')) {
+        if (strpos($number, '+7') === 0 || (\strlen($number) == 11 && $number[0] === '8')) {
             $phone = substr($number, -10);
         } else {
             $phone = $number;
@@ -22,8 +23,8 @@ class TwigExtensions
         $phone = preg_replace_callback(
             '/^(\d{3})(\d{3})(\d{2})(\d{2})$/',
             function ($match) {
-                if (count($match) == 5) {
-                    return sprintf('+7(%d) %d-%d-%d', ...array_slice($match, 1));
+                if (\count($match) == 5) {
+                    return sprintf('+7(%d) %d-%d-%d', ...\array_slice($match, 1));
                 }
             },
             $phone
@@ -80,5 +81,25 @@ class TwigExtensions
         return $age
             ? implode(' ', $age)
             : Lang::get('redhouse.shelter::lang.general.not_born');
+    }
+
+    /**
+     * Returns time difference for blog posts.
+     *
+     * @param mixed $date
+     */
+    public static function postdate($date): string
+    {
+        $now = Argon::now();
+        $date = new Argon($date);
+
+        $diff = $date->diff($now, true);
+        if ($diff->y || $now->year != $date->year) {
+            $date = $date->format('j F Y');
+        } else {
+            $date = $date->format('j F');
+        }
+
+        return mb_convert_case($date, MB_CASE_TITLE);
     }
 }

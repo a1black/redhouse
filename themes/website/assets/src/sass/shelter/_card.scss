@@ -1,0 +1,42 @@
+// Modification for bootstrap Card component
+.custom-card {
+  &.card-body {
+    padding: 0 1rem 1rem 0;
+    .card-title {
+      &.smaller {
+        font-size: 110%;
+      }
+    }
+    .card-subtitle {
+      font-weight: $font-weight-normal;
+      font-size: 80%;
+      margin-bottom: 0.5rem;
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+      li {
+        margin-bottom: 0 0 0.5rem;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .card-contact-list {
+      padding-left: 0.75rem !important;
+    }
+    .card-bank-list {
+      li {
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+}
+
+.call-link {
+  color: $body-color;
+  @include hover-focus {
+    color: darken($body-color, 0.2);
+    @include underline-alt;
+  }
+}

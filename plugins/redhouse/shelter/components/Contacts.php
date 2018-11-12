@@ -7,8 +7,6 @@ namespace Redhouse\Shelter\Components;
 use October\Rain\Database\Collection;
 use Cms\Classes\ComponentBase;
 use Redhouse\Shelter\Models\Contact;
-use Redhouse\Shelter\Models\ContactNumber;
-use Redhouse\Shelter\Classes\TwigExtensions;
 
 class Contacts extends ComponentBase
 {
@@ -45,45 +43,16 @@ class Contacts extends ComponentBase
      */
     public function loadContacts(): Collection
     {
-        $contacts = Contact::has('numbers')->isPublished()->orderBy('name')->get();
+        $contacts = Contact::isPublished()->orderBy('name')->get();
         foreach ($contacts as $contact) {
-            foreach ($contact->numbers as $number) {
-                $number->link = $this->makeCallLink($number, 'call-link');
-                $number->icon = 'fab fa-'.$number->type;
-            }
+            $numbers = $contact->numbers;
+            usort($numbers, function ($left, $right) {
+                return $left['type'] === $right['type'];
+            });
+
+            $contact->numbers = $numbers;
         }
 
         return $contacts;
-    }
-
-    public function makeCallLink(ContactNumber $number, string $style = null): string
-    {
-        switch ($number->type) {
-            case ContactNumber::CN_TYPE_SKYPE:
-                $link = sprintf(
-                    '<a class="%s" href="skype:%s?call">%s</a>',
-                    $style,
-                    $number->number,
-                    $number->number
-                );
-                break;
-            case ContactNumber::CN_TYPE_VIBER:
-                $link = sprintf(
-                    '<a class="%s" href="viber://add?number=%%2B7%s">%s</a>',
-                    $style,
-                    $number->number,
-                    TwigExtensions::phoneNumber($number->number)
-                );
-                break;
-            default:
-                $link = sprintf(
-                    '<a class="%s" href="tel:%%2B7%s">%s</a>',
-                    $style,
-                    $number->number,
-                    TwigExtensions::phoneNumber($number->number)
-                );
-        }
-
-        return $link;
     }
 }

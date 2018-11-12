@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Redhouse\Shelter\Models;
 
 use Html;
-use Carbon\Carbon;
 use Illuminate\Support\Fluent;
 use Illuminate\Validation\Validator;
+use October\Rain\Argon\Argon;
 use October\Rain\Database\Model;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Validation;
@@ -53,7 +53,7 @@ class Animal extends Model
         self::SEX_F,
     ];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $table = 'redhouse_shelter_animals';
 
     /** @var array */
@@ -69,6 +69,7 @@ class Animal extends Model
         'birthday' => 'required',
         'description' => 'required',
         'fundraise_url' => 'url',
+        'featured_images' => 'required',
     ];
 
     /** @var array */
@@ -79,7 +80,9 @@ class Animal extends Model
     ];
 
     public $customMessages = [
+        'name.alpha_name' => 'redhouse.shelter::lang.animal.error.name',
         'description.required' => 'redhouse.shelter::lang.animal.error.desc_required',
+        'featured_images.required' => 'redhouse.shelter::lang.animal.error.photo_required',
     ];
 
     /** @var array */
@@ -147,30 +150,6 @@ class Animal extends Model
         $this->adopted_by = Html::clean($this->adopted_by) ?: null;
     }
 
-    /**
-     * Returns birthday date object.
-     */
-    public function getBirthdayAttribute($value): ?Carbon
-    {
-        if ($value == '' && $value == null) {
-            return null;
-        }
-
-        return new Carbon($value);
-    }
-
-    /**
-     * Returns adopted_at date object.
-     */
-    public function getAdoptedAtAttribute($value): ?Carbon
-    {
-        if ($value == '' && $value == null) {
-            return null;
-        }
-
-        return new Carbon($value);
-    }
-
     public function getHealthOptions(): array
     {
         $options = [];
@@ -206,11 +185,11 @@ class Animal extends Model
      * Posible values:
      *      positive - age in months
      *      negative - age in days
-     *      zero     - not born yet
+     *      zero     - not born yet.
      */
     public function getAge(): int
     {
-        $diff = $this->birthday ? $this->birthday->diff(Carbon::now()) : null;
+        $diff = $this->birthday ? $this->birthday->diff(Argon::now()) : null;
         if (!$diff || $diff->invert) {
             $age = 0;
         } elseif (!$diff->y && !$diff->m) {

@@ -80,6 +80,7 @@ class LatestNews extends ComponentBase
     public function getLimit(): int
     {
         $limit = (int) $this->property('postLimit');
+
         return $limit > 0 ? $limit : 3;
     }
 
@@ -89,6 +90,7 @@ class LatestNews extends ComponentBase
     public function getDays(): int
     {
         $days = (int) $this->property('daysAgo');
+
         return $days > 0 ? $days : 7;
     }
 }
