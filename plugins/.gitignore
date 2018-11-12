@@ -1,3 +1,7 @@
 *
 !.gitignore
 !redhouse/
+!redhouse/shelter/
+!redhouse/shelter/**
+!redhouse/latestnews/
+!redhouse/latestnews/**

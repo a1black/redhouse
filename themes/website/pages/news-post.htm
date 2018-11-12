@@ -24,7 +24,7 @@ function onEnd() {
 ==
 
 <style>
-    .masthead {padding-bottom: 1rem !important;}
+    .masthead .content {padding-bottom: 0.5rem !important;}
     .masthead .page-title {font-size: 1.5rem !important;}
 </style>
 
@@ -36,7 +36,7 @@ function onEnd() {
         <div class="row">
             <div class="col-lg-10 mx-auto post-view">
                 <!-- newspost.author -->
-                <div class="lead clearfix">
+                <div class="clearfix">
                     <p class="float-right post-meta">опуб. {{ post.published_at|postdate }}</p>
                     {% partial 'socialshare' round=1 size='xs' %}
                 </div>

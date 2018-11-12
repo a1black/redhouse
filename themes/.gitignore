@@ -1,3 +1,7 @@
 *
 !.gitignore
 !website/
+!website/**
+
+website/node_modules/
+website/package-lock.json

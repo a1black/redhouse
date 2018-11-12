@@ -36,6 +36,7 @@ class Plugin extends PluginBase
             'Redhouse\Shelter\Components\SocialLikes' => 'socialLikes',
             'Redhouse\Shelter\Components\SocialLinks' => 'socialLinks',
             'Redhouse\Shelter\Components\YandexMap' => 'yandexmap',
+            'Redhouse\Shelter\Components\FinanceHistory' => 'finances',
         ];
     }
 

@@ -14,6 +14,20 @@
   .textraw {
     font-size: 0.8rem;
   }
+  .health-desc {
+    margin-bottom: 2rem;
+  }
+  .home-section-more {
+    margin-top: -1rem;
+  }
+  @media(min-width:768px) {
+    .health-desc {
+      margin-bottom: 1.5rem;
+    }
+    .home-section-more {
+      margin-top: 0 !important;
+    }
+  }
 }
 
 .section-news {

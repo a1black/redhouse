@@ -5,7 +5,10 @@ description = "Информация по сбору пожертвований."
 meta_title = "Сбор пожертвований для приюта"
 meta_description = "Информация по сбору пожертваваний для приюта «Рыжики»."
 is_hidden = 0
+
+[finances]
 ==
+{% set files = finances.files %}
 
 <article>
     <div class="container pb-5">
@@ -22,10 +25,12 @@ is_hidden = 0
             <div class="col-lg-10">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat.</p>
                 <ul class="pl-3 list-unstyled">
+                {% for file in files %}
                     <li>
                         <i class="fas fa-piggy-bank fa-icon"></i>
-                        <a class="underlined text-body" href="#">Финансовый отчет за 2018</a>
+                        <a class="underlined text-body" href="{{ file.url }}">{{ file.name }}</a>
                     </li>
+                {% endfor %}
                 </ul>
             </div>
         </div>
